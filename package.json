@@ -1,7 +1,7 @@
 {
   "version": "0.0.1",
-  "description": "ifm-s1",
-  "name": "ifm-s1",
+  "description": "ifm-wiz",
+  "name": "ifm-wiz",
   "scripts": {
     "build": "webpack --mode=production --node-env=production",
     "build:dev": "webpack --mode=development",
