@@ -1,0 +1,53 @@
+{
+    "eula": "",
+    "vendor": "IFM",
+    "icon": "https://1dawu2.github.io/ifm-wiz/icon.png",
+    "license": "MIT",
+    "id": "wizard.card",
+    "version": "0.0.1",
+    "name": "IFM Wizard",
+    "newInstancePrefix": "IFM",
+    "description": "IFM Wizard Card",
+    "imports": [],
+    "webcomponents": [
+        {
+            "kind": "main",
+            "tag": "wizard-card",
+            "url": "https://1dawu2.github.io/ifm-wiz/dist/main_bundle.js",
+            "integrity": "",
+            "ignoreIntegrity": true
+        }
+    ],
+    "properties": {
+        "imgURL": {
+            "type": "string",
+            "description": "Player image URL",
+            "default": ""
+        }
+    },
+    "dataBindings": {},
+    "methods": {
+        "getURL": {
+            "returnType": "string",
+            "description": "Get the player image URL",
+            "parameters": [],
+            "body": "return this.imgURL;"
+        },
+        "setURL": {
+            "description": "Set the player image URL",
+            "parameters": [
+                {
+                    "name": "value",
+                    "type": "string",
+                    "description": "Selected player image URL"
+                }
+            ],
+            "body": "this.imgURL = value;"
+        }
+    },
+    "events": {
+        "onStart": {
+            "description": "onStart events trigger"
+        }
+    }
+}
