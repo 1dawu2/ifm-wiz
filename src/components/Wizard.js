@@ -1,6 +1,6 @@
 import "@ui5/webcomponents-base/dist/CustomElementsScope.js"
 import "@ui5/webcomponents-fiori/dist/Wizard.js"
-export default class Wizard extends HTMLElement {
+export default class IFMWizard extends HTMLElement {
     constructor() {
         super();
         this.attachShadow({ mode: 'open' });

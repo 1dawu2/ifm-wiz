@@ -3,7 +3,7 @@
     "vendor": "IFM",
     "icon": "https://1dawu2.github.io/ifm-wiz/icon.png",
     "license": "MIT",
-    "id": "wizard.card",
+    "id": "ifm.wiz",
     "version": "0.0.1",
     "name": "IFM Wizard",
     "newInstancePrefix": "IFM",
@@ -12,7 +12,7 @@
     "webcomponents": [
         {
             "kind": "main",
-            "tag": "wizard-card",
+            "tag": "ifm-wiz",
             "url": "https://1dawu2.github.io/ifm-wiz/dist/main_bundle.js",
             "integrity": "",
             "ignoreIntegrity": true
