@@ -82,6 +82,40 @@ export default class IFMWizard extends HTMLElement {
                     <ui5-button id="finalize">Finalize</ui5-button>
                 </ui5-wizard-step>
             </ui5-wizard>
+            <script>
+                // The code shows how the users can manipulte the ui5-wizard-step API (selected and disabled)
+                // to go through the wizard steps.
+                const moveToStep = idx => {
+                    const step = getStep(idx); // where "step" is an instance of ui5-wizard-step
+                    step.selected = true;
+                    step.disabled = false;
+                }
+                const getStep = idx => {
+                    return Array.from(wizard.children)[idx];
+                }
+                const deselectAllSteps = () => {
+                    Array.from(wizard.children).forEach(function(step) {
+                        step.selected = false;
+                    });
+                }
+
+                // Move to Step 2
+                toStep2.addEventListener("click", function () {
+                    deselectAllSteps();
+                    moveToStep(1);
+                });
+
+                // Move to Step 3
+                toStep3.addEventListener("click", function () {
+                    deselectAllSteps();
+                    moveToStep(2);
+                });
+
+                // Show the "step to 3" button after "validation"
+                sw.addEventListener("change", function () {
+                    toStep3.removeAttribute("hidden");
+                });
+            </script>            
             `
         shadowRoot.append(uiCardWC);
     }
