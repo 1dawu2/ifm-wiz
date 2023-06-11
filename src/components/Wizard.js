@@ -44,7 +44,44 @@ export default class Wizard extends HTMLElement {
         var uiCardWC = document.createElement('div');
         uiCardWC.innerHTML =
             `
+            <ui5-wizard id="wiz">
+                <ui5-wizard-step icon="product" title-text="Product type" selected>
+                    <ui5-title>1. Product Type</ui5-title>
 
+                    <!-- Move to step 2 -->
+                    <ui5-button id="toStep2">Step 2</ui5-button>
+                </ui5-wizard-step>
+
+                <ui5-wizard-step icon="hint" title-text="Product Information" disabled>
+                    <ui5-title>2. Product Information</ui5-title>
+
+                    <div>
+                        <ui5-label>5 years guarantee included</ui5-label>
+                        <ui5-switch id="sw"></ui5-switch>
+                    </div>
+
+                    <!-- Move to step 3 -->
+                    <ui5-button id="toStep3" hidden>Step 3</ui5-button>
+                </ui5-wizard-step>
+
+                <ui5-wizard-step icon="action-settings" title-text="Options" disabled>
+                    <ui5-title>3. Options</ui5-title><br>
+
+                    <ui5-segmented-button id="sb">
+                        <ui5-toggle-button icon="employee" pressed>Small</ui5-toggle-button>
+                        <ui5-toggle-button>Medium</ui5-toggle-button>
+                        <ui5-toggle-button>Large</ui5-toggle-button>
+                    </ui5-segmented-button>
+
+                    <!-- Move to step 4 -->
+                    <ui5-button id="toStep4" hidden>Step 4</ui5-button>
+                </ui5-wizard-step>
+
+                <ui5-wizard-step icon="lead" title-text="Pricing" disabled>
+                    <ui5-title>4. Pricing</ui5-title><br>
+                    <ui5-button id="finalize">Finalize</ui5-button>
+                </ui5-wizard-step>
+            </ui5-wizard>
             `
         shadowRoot.append(uiCardWC);
     }

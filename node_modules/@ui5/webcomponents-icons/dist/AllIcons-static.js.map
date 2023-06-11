@@ -1,0 +1,1 @@
+{"version":3,"file":"AllIcons-static.js","sourceRoot":"","sources":["../src/AllIcons-static.ts"],"names":[],"mappings":"AAAA,OAAO,gCAAgC,CAAC","sourcesContent":["import \"./json-imports/Icons-static.js\";\n"]}

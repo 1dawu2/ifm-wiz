@@ -1,0 +1,1 @@
+{"version":3,"file":"Assets-static.js","sourceRoot":"","sources":["../src/Assets-static.ts"],"names":[],"mappings":"AAAA,OAAO,yCAAyC,CAAC","sourcesContent":["import \"./generated/json-imports/i18n-static.js\";\n"]}
