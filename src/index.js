@@ -1,2 +1,2 @@
-import IFMWizard from './components/Wizard';
-customElements.define('ifm-wiz', IFMWizard);
+import IFMDraggable from './components/Draggable';
+customElements.define('ifm-drag', IFMDraggable);
