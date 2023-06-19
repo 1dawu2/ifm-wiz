@@ -3,16 +3,16 @@
     "vendor": "IFM",
     "icon": "https://1dawu2.github.io/ifm-wiz/icon.png",
     "license": "MIT",
-    "id": "ifm.wiz",
+    "id": "ifm.drag",
     "version": "0.0.1",
-    "name": "IFM Wizard",
+    "name": "IFM Drag&Drop",
     "newInstancePrefix": "IFM",
-    "description": "IFM Wizard Card",
+    "description": "IFM Drag&Drop List",
     "imports": [],
     "webcomponents": [
         {
             "kind": "main",
-            "tag": "ifm-wiz",
+            "tag": "ifm-drag",
             "url": "https://1dawu2.github.io/ifm-wiz/dist/main_bundle.js",
             "integrity": "",
             "ignoreIntegrity": true
