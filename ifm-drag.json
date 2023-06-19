@@ -27,16 +27,14 @@
     },
     "dataBindings": {},
     "methods": {
-        "setListItems": {
-            "description": "Set list items",
+        "getArrayByValue": {
             "parameters": [
                 {
-                    "name": "value",
-                    "type": "string[]",
-                    "returnType": "string[]",
-                    "description": "Set list items"
+                    "name": "values",
+                    "type": "string[]"
                 }
-            ]
+            ],
+            "returnType": "string[]"
         }
     },
     "events": {
