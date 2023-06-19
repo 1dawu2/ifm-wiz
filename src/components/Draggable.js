@@ -17,35 +17,7 @@ tmpl.innerHTML = `
       xmlns:m="sap.m"
       xmlns:f="sap.f"
       xmlns:mvc="sap.ui.core.mvc">
-	    <Panel id="panelForGridList" backgroundDesign="Transparent">
-		<headerToolbar>
-			<Toolbar height="3rem">
-				<Title text="Grid List with Drag and Drop"/>
-			</Toolbar>
-		</headerToolbar>
-		<f:GridList
-			id="gridList"
-			headerText="GridList header">
-			<f:dragDropConfig>
-				<dnd:DragInfo sourceAggregation="items" />
-				<dnd-grid:GridDropInfo targetAggregation="items" dropPosition="Between" dropLayout="Horizontal" drop="onDrop" />
-			</f:dragDropConfig>
-			<f:customLayout>
-				<grid:GridBoxLayout boxMinWidth="17rem" />
-			</f:customLayout>
-			<f:GridListItem>
-				<VBox height="100%">
-					<VBox class="sapUiSmallMargin">
-						<layoutData>
-							<FlexItemData growFactor="1" shrinkFactor="0" />
-						</layoutData>
-						<Title text="Title" wrapping="true" />
-						<Label text="Subtitle" wrapping="true" />
-					</VBox>
-				</VBox>
-			</f:GridListItem>
-		</f:GridList>
-	    </Panel>
+      <m:Panel height="100%" expandable="true" expanded="true" headerText="SAC artifacts" id="oPanel"></m:Panel>
     </mvc:View>
     </script>
 `
