@@ -21,8 +21,7 @@
     "properties": {
         "listItems": {
             "type": "string[]",
-            "description": "List Items",
-            "default": ""
+            "description": "List Items"
         }
     },
     "dataBindings": {},
