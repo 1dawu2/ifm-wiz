@@ -1,3 +1,4 @@
+let _shadowRoot;
 let tmpl = document.createElement("template");
 tmpl.innerHTML = `
 
