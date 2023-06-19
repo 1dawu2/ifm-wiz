@@ -17,7 +17,17 @@ tmpl.innerHTML = `
       xmlns:m="sap.m"
       xmlns:f="sap.f"
       xmlns:mvc="sap.ui.core.mvc">
-      <m:Panel height="100%" expandable="true" expanded="true" headerText="SAC artifacts" id="oPanel"></m:Panel>
+      <m:Panel height="100%" expandable="true" expanded="true" headerText="SAC artifacts" id="oPanel">
+      	<m:List
+		headerText="Products"
+		items="{
+			path: '/ProductCollection'
+		}" >
+		<m:StandardListItem
+			title="{ProductID}"
+			counter="{Count}"/>
+	    </m:List>
+      </m:Panel>
     </mvc:View>
     </script>
 `
@@ -36,12 +46,12 @@ export default class IFMDraggable extends HTMLElement {
     }
 
     // SETTINGS
-    get ListItems() {
-        return this._export_settings.imgURL;
+    get ArrayByValue() {
+        return this._export_settings.listItems;
     }
 
-    set ListItems(value) {
-        this._export_settings.imgURL = value;
+    set ArrayByValue(value) {
+        this._export_settings.listItems = value;
     }
 
     static get observedAttributes() {
