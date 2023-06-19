@@ -1,10 +1,8 @@
-import "@ui5/webcomponents-base/dist/CustomElementsScope.js"
-import "@ui5/webcomponents-fiori/dist/Wizard.js"
 let tmpl = document.createElement("template");
 tmpl.innerHTML = `
 
 `
-export default class IFMWizard extends HTMLElement {
+export default class IFMDraggable extends HTMLElement {
     constructor() {
         super();
 
