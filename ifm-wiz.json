@@ -20,29 +20,23 @@
     ],
     "properties": {
         "listItems": {
-            "type": "string",
+            "type": "string[]",
             "description": "List Items",
             "default": ""
         }
     },
     "dataBindings": {},
     "methods": {
-        "getListItems": {
-            "returnType": "string",
-            "description": "Get list items",
-            "parameters": [],
-            "body": "return this.listItems;"
-        },
         "setListItems": {
             "description": "Set list items",
             "parameters": [
                 {
                     "name": "value",
-                    "type": "string",
+                    "type": "string[]",
+                    "returnType": "string[]",
                     "description": "Set list items"
                 }
-            ],
-            "body": "this.listItems = value;"
+            ]
         }
     },
     "events": {
