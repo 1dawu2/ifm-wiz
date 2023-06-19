@@ -1,80 +1,90 @@
 import "@ui5/webcomponents-base/dist/CustomElementsScope.js"
 import "@ui5/webcomponents-fiori/dist/Wizard.js"
+let tmpl = document.createElement("template");
+tmpl.innerHTML = `
+
+`
 export default class IFMWizard extends HTMLElement {
     constructor() {
         super();
-        this.attachShadow({ mode: 'open' });
-        this.render();
+
+        _shadowRoot = this.attachShadow({
+            mode: "open"
+        });
+
+        _shadowRoot.appendChild(tmpl.content.cloneNode(true));
 
         this._export_settings = {};
-        this._export_settings.imgURL = "";
+        this._export_settings.listItems = "";
     }
 
     // SETTINGS
-    get URL() {
+    get ListItems() {
         return this._export_settings.imgURL;
     }
 
-    set URL(value) {
+    set ListItems(value) {
         this._export_settings.imgURL = value;
     }
 
     static get observedAttributes() {
         return [
-            "imgURL",
+            "listItems",
         ];
     }
 
-    attributeChangedCallback(name, oldValue, newValue) {
-        if (oldValue != newValue) {
-            this[name] = newValue;
+
+    onCustomWidgetResize(width, height) {
+    }
+
+    connectedCallback() {
+    }
+
+    disconnectedCallback() {
+    }
+
+    onCustomWidgetBeforeUpdate(changedProperties) {
+        if ("designMode" in changedProperties) {
+            this._designMode = changedProperties["designMode"];
         }
     }
 
-    render() {
-        const { shadowRoot } = this;
-
-        // create player card element
-        const wizardCard = document.createElement('div');
-        wizardCard.id = 'wizard-card';
-
-        // append player card to shadow DOM
-        shadowRoot.appendChild(wizardCard);
-
-        var uiCardWC = document.createElement('div');
-        uiCardWC.innerHTML =
-            `
-            <mvc:View
-                controllerName="sap.m.sample.TableDnD.Controller"
-                xmlns:dnd="sap.ui.core.dnd"
-                xmlns:mvc="sap.ui.core.mvc"
-                xmlns:c="sap.ui.core"
-                xmlns="sap.m"
-                height="100%">
-                <Page
-                    showHeader="false"
-                    enableScrolling="true"
-                    class="sapUiContentPadding">
-                    <content>
-                        <HBox renderType="Bare">
-                            <mvc:XMLView id="availableProducts" viewName="sap.m.sample.TableDnD.AvailableProducts" async="true"/>
-                            <VBox justifyContent="Center" class="sapUiTinyMarginBeginEnd">
-                                <Button
-                                    class="sapUiTinyMarginBottom"
-                                    icon="sap-icon://navigation-right-arrow"
-                                    tooltip="Move to selected"
-                                    press="moveToSelectedProductsTable"/>
-                                <Button
-                                    icon="sap-icon://navigation-left-arrow"
-                                    tooltip="Move to available"
-                                    press="moveToAvailableProductsTable"/>
-                            </VBox>
-                            <mvc:XMLView id="selectedProducts" viewName="sap.m.sample.TableDnD.SelectedProducts" async="true"/>
-                        </HBox>
-                    </content>
-                </Page>
-            </mvc:View>           
-            `
-        shadowRoot.append(uiCardWC);
+    onCustomWidgetAfterUpdate(changedProperties) {
+        this.buildUI(changedProperties, this);
     }
+
+
+    buildUI(changedProperties, that) {
+
+        var that_ = that;
+
+        let content = document.createElement('div');
+        content.slot = "content";
+        that_.appendChild(content);
+
+        sap.ui.define(
+            [
+                "sap/ui/core/mvc/Controller",
+                "sap/ui/export/Spreadsheet",
+                "sap/f/dnd/GridDropInfo",
+                "sap/ui/core/library",
+            ],
+            function (Controller) {
+                "use strict";
+
+                return Controller.extend("ifm.hack.initial", {
+
+                });
+            });
+
+        //### THE APP: place the XMLView somewhere into DOM ###
+        var oView = new sap.ui.core.mvc.XMLView({
+            viewContent: jQuery(_shadowRoot.getElementById("oView")).html(),
+        });
+        oView.placeAt(content);
+
+    }
+
+
+
 }

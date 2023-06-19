@@ -19,30 +19,30 @@
         }
     ],
     "properties": {
-        "imgURL": {
+        "listItems": {
             "type": "string",
-            "description": "Player image URL",
+            "description": "List Items",
             "default": ""
         }
     },
     "dataBindings": {},
     "methods": {
-        "getURL": {
+        "getListItems": {
             "returnType": "string",
-            "description": "Get the player image URL",
+            "description": "Get list items",
             "parameters": [],
-            "body": "return this.imgURL;"
+            "body": "return this.listItems;"
         },
-        "setURL": {
-            "description": "Set the player image URL",
+        "setListItems": {
+            "description": "Set list items",
             "parameters": [
                 {
                     "name": "value",
                     "type": "string",
-                    "description": "Selected player image URL"
+                    "description": "Set list items"
                 }
             ],
-            "body": "this.imgURL = value;"
+            "body": "this.listItems = value;"
         }
     },
     "events": {
