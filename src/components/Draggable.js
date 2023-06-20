@@ -1,5 +1,30 @@
 let _shadowRoot;
 let tmpl = document.createElement("template");
+/*
+        <f:GridContainer
+            id="grid1"
+            snapToRow="true">
+            <f:layout>
+                <f:GridContainerSettings rowSize="5rem" columnSize="5rem" gap="1rem" />
+            </f:layout>
+            <f:Card width="300px">
+                <f:header>
+                <card:Header iconSrc="sap-icon://sort" title="Sort Order" subtitle="Material" />
+                </f:header>
+                <f:content>
+                <m:List
+                    showSeparators="None"
+                    items="{products>/productItems}">
+                    <m:StandardListItem
+
+                    description="{products>description}"
+                    icon="{products>iconFile}"
+                    title="{products>id}" />
+                </m:List>
+                </f:content>
+            </f:Card>
+        </f:GridContainer>
+*/
 tmpl.innerHTML = `
     <style>
     </style>
@@ -18,7 +43,7 @@ tmpl.innerHTML = `
       xmlns:f="sap.f"
       xmlns:card="sap.f.cards"
       xmlns:mvc="sap.ui.core.mvc">
-      <m:Panel height="100%" expandable="true" expanded="true" headerText="SAC artifacts" id="oPanel">
+      <m:Panel height="100%" expandable="true" expanded="true" headerText="Maintain Aggregate" id="oPanel">
 		<f:GridList
 			id="grid1"
             iconSrc="sap-icon://sort"
@@ -27,24 +52,18 @@ tmpl.innerHTML = `
 
 			<f:dragDropConfig>
 				<dnd:DragInfo sourceAggregation="items" />
-				<dnd-grid:GridDropInfo targetAggregation="items" dropPosition="Between" dropLayout="Horizontal" drop="onDrop" />
+				<dnd-grid:GridDropInfo targetAggregation="items" dropPosition="Between" dropLayout="Vertical" drop="onDrop" />
 			</f:dragDropConfig>
 
-			<f:customLayout>
-				<grid:GridBoxLayout boxMinWidth="17rem" />
-			</f:customLayout>
-
 			<f:GridListItem counter="{rank}">
-				<m:VBox height="100%">
-					<m:VBox class="sapUiSmallMargin">
-						<layoutData>
-							<m:FlexItemData growFactor="1" shrinkFactor="0" />
-						</layoutData>
-
-						<Title text="{products>id}" wrapping="true" />
-						<Label text="{products>description}" wrapping="true" />
-					</m:VBox>
-				</m:VBox>
+                <m:List
+                    showSeparators="None"
+                    items="{products>/productItems}">
+                    <m:StandardListItem
+                        description="{products>description}"
+                        icon="{products>iconFile}"
+                        title="{products>id}" />
+                </m:List>
 			</f:GridListItem>
 		</f:GridList>
       </m:Panel>
