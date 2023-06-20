@@ -106,7 +106,7 @@ export default class IFMDraggable extends HTMLElement {
                         this.oPanel = this.byId("oPanel");
                         this.configGrid(this.get);
                         console.log("--- onInit ---")
-                        console.log(this._listOfItems.ListValue);
+                        console.log(this._listOfItems);
                     },
 
                     configGrid: function (materialJSON) {
@@ -114,6 +114,8 @@ export default class IFMDraggable extends HTMLElement {
                         var DropPosition = sap.ui.core.dnd.DropPosition;
                         var oGrid = this.byId("grid1");
                         var modelProduct = new sap.ui.model.json.JSONModel();
+                        console.log("--- JSON Model omit configGrid ---");
+                        console.log(materialJSON);
                         var myList = {
                             "productItems": [
                                 {
