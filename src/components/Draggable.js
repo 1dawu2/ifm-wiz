@@ -105,6 +105,8 @@ export default class IFMDraggable extends HTMLElement {
                     onInit: function (oEvent) {
                         this.oPanel = this.byId("oPanel");
                         this.configGrid(this.get);
+                        console.log("--- onInit ---")
+                        console.log(this._listOfItems.ListValue);
                     },
 
                     configGrid: function (materialJSON) {
@@ -131,9 +133,9 @@ export default class IFMDraggable extends HTMLElement {
                                 }
                             ]
                         };
-
-                        this.ListValue(myList);
-                        console.log(this.ListValue());
+                        this._listOfItems.ListValue(myList);
+                        console.log("--- list after assignment ---")
+                        console.log(this._listOfItems.ListValue);
                         modelProduct.setData(myList);
 
                         sap.ui.getCore().setModel(modelProduct, "products");
