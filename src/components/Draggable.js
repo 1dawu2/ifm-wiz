@@ -66,7 +66,7 @@ export default class IFMDraggable extends HTMLElement {
 
 
     // setter and getter functions
-    setListValue(newList) {
+    set ListValue(newList) {
         this._listOfItems = newList;
         this.dispatchEvent(new CustomEvent("propertiesChanged", {
             detail: {
@@ -77,7 +77,7 @@ export default class IFMDraggable extends HTMLElement {
         }));
     }
 
-    getListValue() {
+    get ListValue() {
         return this._listOfItems;
     }
 
@@ -132,8 +132,8 @@ export default class IFMDraggable extends HTMLElement {
                             ]
                         };
 
-                        this.setListValue(myList);
-                        console.log(this.getListValue);
+                        this.ListValue(myList);
+                        console.log(this.ListValue());
                         modelProduct.setData(myList);
 
                         sap.ui.getCore().setModel(modelProduct, "products");
