@@ -19,28 +19,40 @@ tmpl.innerHTML = `
       xmlns:card="sap.f.cards"
       xmlns:mvc="sap.ui.core.mvc">
       <m:Panel height="100%" expandable="true" expanded="true" headerText="SAC artifacts" id="oPanel">
-        <f:GridContainer
-            id="grid1"
-            snapToRow="true">
-            <f:layout>
-                <f:GridContainerSettings rowSize="5rem" columnSize="5rem" gap="1rem" />
-            </f:layout>
-            <f:Card width="300px">
-                <f:header>
-                <card:Header iconSrc="sap-icon://sort" title="Sort Order" subtitle="Material" />
-                </f:header>
-                <f:content>
-                <m:List
-                    showSeparators="None"
-                    items="{products>/productItems}">
-                    <m:StandardListItem
-                    description="{products>description}"
-                    icon="{products>iconFile}"
-                    title="{products>id}" />
-                </m:List>
-                </f:content>
-            </f:Card>
-            </f:GridContainer>
+      	<headerToolbar>
+			<Toolbar height="3rem" iconSrc="sap-icon://sort">
+				<Title text="Grid List with Drag and Drop"/>
+			</Toolbar>
+		</headerToolbar>
+
+		<f:GridList
+			id="grid1"
+            iconSrc="sap-icon://sort"
+			headerText="Sort Order Material"
+			items="{products>/productItems}">
+
+			<f:dragDropConfig>
+				<dnd:DragInfo sourceAggregation="items" />
+				<dnd-grid:GridDropInfo targetAggregation="items" dropPosition="Between" dropLayout="Horizontal" drop="onDrop" />
+			</f:dragDropConfig>
+
+			<f:customLayout>
+				<grid:GridBoxLayout boxMinWidth="17rem" />
+			</f:customLayout>
+
+			<f:GridListItem counter="{rank}">
+				<m:VBox height="100%">
+					<m:VBox class="sapUiSmallMargin">
+						<layoutData>
+							<m:FlexItemData growFactor="1" shrinkFactor="0" />
+						</layoutData>
+
+						<Title text="{products>id}" wrapping="true" />
+						<Label text="{products>description}" wrapping="true" />
+					</VBox>
+				</VBox>
+			</f:GridListItem>
+		</f:GridList>
       </m:Panel>
     </mvc:View>
     </script>
@@ -121,17 +133,20 @@ export default class IFMDraggable extends HTMLElement {
                                 {
                                     "id": "P_0123456",
                                     "description": "Test 1",
-                                    "iconFile": "sap-icon://world"
+                                    "iconFile": "sap-icon://world",
+                                    "rank": 1
                                 },
                                 {
                                     "id": "P_1234567",
                                     "description": "Test 2",
-                                    "iconFile": "sap-icon://call"
+                                    "iconFile": "sap-icon://call",
+                                    "rank": 2
                                 },
                                 {
                                     "id": "P_2345678",
                                     "description": "Test 3",
-                                    "iconFile": "sap-icon://business-card"
+                                    "iconFile": "sap-icon://business-card",
+                                    "rank": 3
                                 }
                             ]
                         };
