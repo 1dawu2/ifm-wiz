@@ -133,9 +133,9 @@ export default class IFMDraggable extends HTMLElement {
                                 }
                             ]
                         };
-                        this._listOfItems.ListValue(myList);
+                        this._listOfItems.newList = myList;
                         console.log("--- list after assignment ---")
-                        console.log(this._listOfItems.ListValue);
+                        console.log(this._listOfItems);
                         modelProduct.setData(myList);
 
                         sap.ui.getCore().setModel(modelProduct, "products");
