@@ -47,17 +47,17 @@ tmpl.innerHTML = `
 		<f:GridList
 			id="grid1"
             iconSrc="sap-icon://sort"
-			headerText="Sort Order Material"
-			items="{products>/productItems}">
+			headerText="Sort Order Material">
 
 			<f:dragDropConfig>
 				<dnd:DragInfo sourceAggregation="items" />
 				<dnd-grid:GridDropInfo targetAggregation="items" dropPosition="Between" dropLayout="Vertical" drop="onDrop" />
 			</f:dragDropConfig>
 
-			<f:GridListItem counter="{rank}">
+			<f:GridListItem">
                 <m:List
                     showSeparators="None"
+                    counter={rank}
                     items="{products>/productItems}">
                     <m:StandardListItem
                         description="{products>description}"
