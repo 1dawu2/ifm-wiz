@@ -133,7 +133,7 @@ export default class IFMDraggable extends HTMLElement {
                                 }
                             ]
                         };
-                        this._listOfItems.newList = myList;
+                        this._listOfItems = myList;
                         console.log("--- list after assignment ---")
                         console.log(this._listOfItems);
                         modelProduct.setData(myList);
