@@ -60,6 +60,11 @@ export default class IFMDraggable extends HTMLElement {
 
     }
 
+    onCustomWidgetAfterUpdate(changedProperties) {
+        this.buildUI(changedProperties, this);
+    }
+
+
     // setter and getter functions
     setListValue(newList) {
         this._listOfItems = newList;
