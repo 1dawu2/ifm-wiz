@@ -19,12 +19,6 @@ tmpl.innerHTML = `
       xmlns:card="sap.f.cards"
       xmlns:mvc="sap.ui.core.mvc">
       <m:Panel height="100%" expandable="true" expanded="true" headerText="SAC artifacts" id="oPanel">
-      	<headerToolbar>
-			<Toolbar height="3rem" iconSrc="sap-icon://sort">
-				<Title text="Grid List with Drag and Drop"/>
-			</Toolbar>
-		</headerToolbar>
-
 		<f:GridList
 			id="grid1"
             iconSrc="sap-icon://sort"
