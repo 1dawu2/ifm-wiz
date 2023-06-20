@@ -140,13 +140,15 @@ export default class IFMDraggable extends HTMLElement {
                         oGrid.addDragDropConfig(new sap.f.dnd.GridDropInfo({
                             targetAggregation: "items",
                             dropPosition: DropPosition.Between,
-                            dropLayout: DropLayout.Horizontal,
+                            dropLayout: DropLayout.Vertical,
                             drop: function (oInfo) {
                                 var oDragged = oInfo.getParameter("draggedControl"),
                                     oDropped = oInfo.getParameter("droppedControl"),
                                     sInsertPosition = oInfo.getParameter("dropPosition"),
                                     iDragPosition = oGrid.indexOfItem(oDragged),
                                     iDropPosition = oGrid.indexOfItem(oDropped);
+                                console.log("Drop Position");
+                                console.log(iDropPosition);
 
                                 oGrid.removeItem(oDragged);
 
