@@ -46,7 +46,6 @@ tmpl.innerHTML = `
       <m:Panel height="100%" expandable="true" expanded="true" headerText="Maintain Aggregate" id="oPanel">
 		<f:GridList
 			id="grid1"
-            iconSrc="sap-icon://sort"
 			headerText="Sort Order Material">
 
 			<f:dragDropConfig>
@@ -55,15 +54,16 @@ tmpl.innerHTML = `
 			</f:dragDropConfig>
 
 			<f:GridListItem">
+
                 <m:List
-                    showSeparators="None"
-                    counter={rank}
+                    counter="{rank}"
                     items="{products>/productItems}">
                     <m:StandardListItem
                         description="{products>description}"
                         icon="{products>iconFile}"
                         title="{products>id}" />
                 </m:List>
+
 			</f:GridListItem>
 		</f:GridList>
       </m:Panel>
@@ -146,19 +146,19 @@ export default class IFMDraggable extends HTMLElement {
                                 {
                                     "id": "P_0123456",
                                     "description": "Test 1",
-                                    "iconFile": "sap-icon://world",
+                                    "iconFile": "sap-icon://numbered-text",
                                     "rank": 1
                                 },
                                 {
                                     "id": "P_1234567",
                                     "description": "Test 2",
-                                    "iconFile": "sap-icon://call",
+                                    "iconFile": "sap-icon://numbered-text",
                                     "rank": 2
                                 },
                                 {
                                     "id": "P_2345678",
                                     "description": "Test 3",
-                                    "iconFile": "sap-icon://business-card",
+                                    "iconFile": "sap-icon://numbered-text",
                                     "rank": 3
                                 }
                             ]
