@@ -49,8 +49,8 @@ tmpl.innerHTML = `
 
 						<Title text="{products>id}" wrapping="true" />
 						<Label text="{products>description}" wrapping="true" />
-					</VBox>
-				</VBox>
+					</m:VBox>
+				</m:VBox>
 			</f:GridListItem>
 		</f:GridList>
       </m:Panel>
