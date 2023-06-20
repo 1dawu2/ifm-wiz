@@ -55,32 +55,6 @@ export default class IFMDraggable extends HTMLElement {
         _shadowRoot.appendChild(tmpl.content.cloneNode(true));
 
         this._export_settings = {};
-        this._export_settings.listItems = "";
-    }
-
-    // SETTINGS
-    get ArrayByValue() {
-        return this._export_settings.listItems;
-    }
-
-    set ArrayByValue(value) {
-        this._export_settings.listItems = value;
-    }
-
-    static get observedAttributes() {
-        return [
-            "listItems",
-        ];
-    }
-
-
-    onCustomWidgetResize(width, height) {
-    }
-
-    connectedCallback() {
-    }
-
-    disconnectedCallback() {
     }
 
     onCustomWidgetBeforeUpdate(changedProperties) {
