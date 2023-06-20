@@ -25,7 +25,7 @@ tmpl.innerHTML = `
             <f:layout>
                 <f:GridContainerSettings rowSize="5rem" columnSize="5rem" gap="1rem" />
             </f:layout>
-            <f:Card width="400px">
+            <f:Card width="300px">
                 <f:header>
                 <card:Header iconSrc="sap-icon://sort" title="Sort Order" subtitle="Material" />
                 </f:header>
@@ -34,9 +34,9 @@ tmpl.innerHTML = `
                     showSeparators="None"
                     items="{products>/productItems}">
                     <m:StandardListItem
-                    description="{products>subtitle}"
+                    description="{products>description}"
                     icon="{products>iconFile}"
-                    title="{products>title}" />
+                    title="{products>id}" />
                 </m:List>
                 </f:content>
             </f:Card>
@@ -55,19 +55,26 @@ export default class IFMDraggable extends HTMLElement {
 
         _shadowRoot.appendChild(tmpl.content.cloneNode(true));
 
-        this._export_settings = {};
+        this._listOfItems = {};
+
+
     }
 
-    onCustomWidgetBeforeUpdate(changedProperties) {
-        if ("designMode" in changedProperties) {
-            this._designMode = changedProperties["designMode"];
-        }
+    // setter and getter functions
+    setListValue(newList) {
+        this._listOfItems = newList;
+        this.dispatchEvent(new CustomEvent("propertiesChanged", {
+            detail: {
+                properties: {
+                    listOfItems: this._listOfItems
+                }
+            }
+        }));
     }
 
-    onCustomWidgetAfterUpdate(changedProperties) {
-        this.buildUI(changedProperties, this);
+    getListValue() {
+        return this._listOfItems;
     }
-
 
     buildUI(changedProperties, that) {
 
@@ -92,35 +99,38 @@ export default class IFMDraggable extends HTMLElement {
 
                     onInit: function (oEvent) {
                         this.oPanel = this.byId("oPanel");
-                        this.configGrid();
+                        this.configGrid(this.get);
                     },
 
-                    configGrid: function () {
+                    configGrid: function (materialJSON) {
                         var DropLayout = sap.ui.core.dnd.DropLayout;
                         var DropPosition = sap.ui.core.dnd.DropPosition;
                         var oGrid = this.byId("grid1");
                         var modelProduct = new sap.ui.model.json.JSONModel();
-                        modelProduct.setData(
-                            {
-                                "productItems": [
-                                    {
-                                        "title": "Website",
-                                        "subtitle": "http://www.infomotion.de",
-                                        "iconFile": "sap-icon://world"
-                                    },
-                                    {
-                                        "title": "Telefon",
-                                        "subtitle": "+49 69 56608 3231",
-                                        "iconFile": "sap-icon://call"
-                                    },
-                                    {
-                                        "title": "Mail",
-                                        "subtitle": "david.wurm@infomotion.de",
-                                        "iconFile": "sap-icon://business-card"
-                                    }
-                                ]
-                            }
-                        );
+                        myList = {
+                            "productItems": [
+                                {
+                                    "id": "P_0123456",
+                                    "description": "Test 1",
+                                    "iconFile": "sap-icon://world"
+                                },
+                                {
+                                    "id": "P_1234567",
+                                    "description": "Test 2",
+                                    "iconFile": "sap-icon://call"
+                                },
+                                {
+                                    "id": "P_2345678",
+                                    "description": "Test 3",
+                                    "iconFile": "sap-icon://business-card"
+                                }
+                            ]
+                        };
+
+                        this.setListValue(myList);
+                        console.log(this.getListValue);
+                        modelProduct.setData(myList);
+
                         sap.ui.getCore().setModel(modelProduct, "products");
 
                         oGrid.addDragDropConfig(new sap.ui.core.dnd.DragInfo({

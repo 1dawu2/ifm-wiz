@@ -21,30 +21,24 @@
     "properties": {
         "listOfItems": {
             "type": "string[]",
-            "description": "List Items",
-            "default": [
-                "Prod1",
-                "Prod2"
-            ]
+            "description": "List Items"
         }
     },
     "dataBindings": {},
     "methods": {
-        "setValue": {
+        "setListValue": {
             "description": "set the list items",
             "parameters": [
                 {
-                    "name": "newItem",
-                    "type": "string",
-                    "description": "new List Item"
+                    "name": "newList",
+                    "type": "string[]",
+                    "description": "new List Items"
                 }
-            ],
-            "body": "var list = this.listOfItems; list.push(newItem); this.listOfItems = list;"
+            ]
         },
-        "getValue": {
+        "getListValue": {
             "returnType": "string[]",
-            "description": "return List Items",
-            "body": "return this.listOfItems;"
+            "description": "return List Items"
         }
     },
     "events": {
