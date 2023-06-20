@@ -44,29 +44,34 @@ tmpl.innerHTML = `
       xmlns:card="sap.f.cards"
       xmlns:mvc="sap.ui.core.mvc">
       <m:Panel height="100%" expandable="true" expanded="true" headerText="Maintain Aggregate" id="oPanel">
-		<f:GridList
-			id="grid1"
-			headerText="Sort Order Material">
-
-			<f:dragDropConfig>
-				<dnd:DragInfo sourceAggregation="items" />
-				<dnd-grid:GridDropInfo targetAggregation="items" dropPosition="Between" dropLayout="Vertical" drop="onDrop" />
-			</f:dragDropConfig>
-
-			<f:GridListItem">
-
-                <m:List
-                    counter="{rank}"
-                    items="{products>/productItems}">
-                    <m:StandardListItem
-                        description="{products>description}"
-                        icon="{products>iconFile}"
-                        title="{products>id}" />
-                </m:List>
-
-			</f:GridListItem>
-		</f:GridList>
-      </m:Panel>
+        <f:GridContainer
+            id="grid1"
+            snapToRow="true">
+            <f:layout>
+                <f:GridContainerSettings rowSize="5rem" columnSize="5rem" gap="1rem" />
+            </f:layout>
+            <f:Card width="300px">                
+                <f:header>
+                    <card:Header iconSrc="sap-icon://sort" title="Sort Order" subtitle="Material" />
+                </f:header>
+                <f:content>
+                	<f:dragDropConfig>
+				        <dnd:DragInfo sourceAggregation="items" />
+				        <dnd-grid:GridDropInfo targetAggregation="items" dropPosition="Between" dropLayout="Vertical" drop="onDrop" />
+			        </f:dragDropConfig>
+                    <m:List
+                        showSeparators="None"                    
+                        items="{products>/productItems}">
+                        <m:StandardListItem
+                            rank="{products>rank}"
+                            description="{products>description}"
+                            icon="{products>iconFile}"
+                            title="{products>id}" />
+                    </m:List>
+                </f:content>
+            </f:Card>
+        </f:GridContainer>
+        </m:Panel>
     </mvc:View>
     </script>
 `
