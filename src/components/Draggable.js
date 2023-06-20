@@ -16,6 +16,7 @@ tmpl.innerHTML = `
       xmlns:t="sap.ui.table"
       xmlns:m="sap.m"
       xmlns:f="sap.f"
+      xmlns:card="sap.f.cards"
       xmlns:mvc="sap.ui.core.mvc">
       <m:Panel height="100%" expandable="true" expanded="true" headerText="SAC artifacts" id="oPanel">
         <f:GridContainer
