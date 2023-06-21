@@ -19,28 +19,13 @@
         }
     ],
     "properties": {
-        "listOfItems": {
+        "listItems": {
             "type": "string[]",
             "description": "List Items"
         }
     },
     "dataBindings": {},
-    "methods": {
-        "setListValue": {
-            "description": "set the list items",
-            "parameters": [
-                {
-                    "name": "newList",
-                    "type": "string[]",
-                    "description": "new List Items"
-                }
-            ]
-        },
-        "getListValue": {
-            "returnType": "string[]",
-            "description": "return List Items"
-        }
-    },
+    "methods": {},
     "events": {
         "onStart": {
             "description": "onStart events trigger"

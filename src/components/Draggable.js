@@ -19,8 +19,7 @@ tmpl.innerHTML = `
       xmlns:card="sap.f.cards"
       xmlns:mvc="sap.ui.core.mvc">
       <m:Panel height="100%" expandable="true" expanded="true" headerText="Maintain Aggregate" id="oPanel">
-        <f:GridContainer
-            id="grid1"
+        <f:GridContainer            
             snapToRow="true">
             <f:layout>
                 <f:GridContainerSettings rowSize="5rem" columnSize="5rem" gap="1rem" />
@@ -31,8 +30,9 @@ tmpl.innerHTML = `
                 </f:header>
                 <f:content>
                     <m:List
+                        id="listDragnDrop"
                         showSeparators="None"                    
-                        items="{products>/productItems}">
+                        items="{products>/productItems}">                        
                         <m:StandardListItem
                             rank="{products>rank}"
                             description="{products>description}"
@@ -56,33 +56,21 @@ export default class IFMDraggable extends HTMLElement {
 
         _shadowRoot.appendChild(tmpl.content.cloneNode(true));
 
-        this._listOfItems = {};
-
+        this._listItems = {};
 
     }
-
-    onCustomWidgetAfterUpdate(changedProperties) {
-        this.buildUI(changedProperties, this);
-    }
-
 
     // setter and getter functions
-    set ListValue(newList) {
-        this._listOfItems = newList;
-        this.dispatchEvent(new CustomEvent("propertiesChanged", {
-            detail: {
-                properties: {
-                    listOfItems: this._listOfItems
-                }
-            }
-        }));
+    get listItems() {
+        return this._listItems;
     }
 
-    get ListValue() {
-        return this._listOfItems;
+    set listItems(newList) {
+        this._listItems = newList;
     }
 
-    buildUI(changedProperties, that) {
+
+    buildUI(that) {
 
         var that_ = that;
 
@@ -110,13 +98,13 @@ export default class IFMDraggable extends HTMLElement {
                         console.log(this._listOfItems);
                     },
 
-                    configGrid: function (materialJSON) {
+                    configGrid: function () {
                         var DropLayout = sap.ui.core.dnd.DropLayout;
                         var DropPosition = sap.ui.core.dnd.DropPosition;
-                        var oGrid = this.byId("grid1");
+                        var oGrid = this.byId("listDragnDrop");
                         var modelProduct = new sap.ui.model.json.JSONModel();
                         console.log("--- JSON Model omit configGrid ---");
-                        console.log(materialJSON);
+                        console.log(this._listItems);
                         var myList = {
                             "productItems": [
                                 {
