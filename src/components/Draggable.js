@@ -55,8 +55,18 @@ export default class IFMDraggable extends HTMLElement {
 
         _shadowRoot.appendChild(tmpl.content.cloneNode(true));
 
-        this._props = {};
+        this._export_settings = {};
+        this._export_settings.listItems = [];
 
+    }
+
+    // SETTINGS
+    get listItems() {
+        return this._export_settings.listItems;
+    }
+
+    set listItems(newListItems) {
+        this._export_settings.restapiurl = newListItems;
     }
 
     onCustomWidgetResize(width, height) {
@@ -69,8 +79,9 @@ export default class IFMDraggable extends HTMLElement {
     }
 
     onCustomWidgetBeforeUpdate(changedProperties) {
-        this._props = { ...this._props, ...changedProperties };
-        console.log(`${this._props["listItems"]}`);
+        if ("designMode" in changedProperties) {
+            this._designMode = changedProperties["designMode"];
+        }
     }
 
     onCustomWidgetAfterUpdate(changedProperties) {
@@ -104,8 +115,6 @@ export default class IFMDraggable extends HTMLElement {
                     onInit: function (oEvent) {
                         this.oPanel = this.byId("oPanel");
                         this.configGrid(this.get);
-                        console.log("--- onInit ---")
-                        console.log(this._props["listItems"]);
                     },
 
                     configGrid: function () {
@@ -113,9 +122,7 @@ export default class IFMDraggable extends HTMLElement {
                         var DropPosition = sap.ui.core.dnd.DropPosition;
                         var oGrid = this.byId("listDragnDrop");
                         var modelProduct = new sap.ui.model.json.JSONModel();
-                        console.log("--- JSON Model omit configGrid ---");
-                        console.log(this._props["listItems"]);
-                        var myList = this._props["listItems"];
+                        var myList = this._props.listItems;
                         modelProduct.setData(myList);
 
                         sap.ui.getCore().setModel(modelProduct, "products");
