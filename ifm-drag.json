@@ -25,7 +25,24 @@
         }
     },
     "dataBindings": {},
-    "methods": {},
+    "methods": {
+        "setListItems": {
+            "description": "Set list items.",
+            "parameters": [
+                {
+                    "name": "newListItems",
+                    "type": "string[]",
+                    "description": "New list items."
+                }
+            ],
+            "body": "this.listItems = newListItems;"
+        },
+        "getListItems": {
+            "returnType": "string[]",
+            "description": "Returns the list items.",
+            "body": "return this.listItems;"
+        }
+    },
     "events": {
         "onStart": {
             "description": "onStart events trigger"
