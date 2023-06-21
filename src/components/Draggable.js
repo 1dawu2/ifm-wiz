@@ -122,7 +122,7 @@ export default class IFMDraggable extends HTMLElement {
                         var DropPosition = sap.ui.core.dnd.DropPosition;
                         var oGrid = this.byId("listDragnDrop");
                         var modelProduct = new sap.ui.model.json.JSONModel();
-                        var myList = this._props.listItems;
+                        var myList = this._export_settings.listItems;
                         modelProduct.setData(myList);
 
                         sap.ui.getCore().setModel(modelProduct, "products");
