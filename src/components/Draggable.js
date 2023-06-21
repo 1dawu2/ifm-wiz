@@ -34,7 +34,6 @@ tmpl.innerHTML = `
                         showSeparators="None"                    
                         items="{products>/productItems}">                        
                         <m:StandardListItem
-                            rank="{products>rank}"
                             description="{products>description}"
                             icon="{products>iconFile}"
                             title="{products>id}" />
@@ -106,7 +105,7 @@ export default class IFMDraggable extends HTMLElement {
                         this.oPanel = this.byId("oPanel");
                         this.configGrid(this.get);
                         console.log("--- onInit ---")
-                        console.log(this._listOfItems);
+                        console.log(this._props["listItems"]);
                     },
 
                     configGrid: function () {
@@ -115,32 +114,8 @@ export default class IFMDraggable extends HTMLElement {
                         var oGrid = this.byId("listDragnDrop");
                         var modelProduct = new sap.ui.model.json.JSONModel();
                         console.log("--- JSON Model omit configGrid ---");
-                        console.log(this._listItems);
-                        var myList = {
-                            "productItems": [
-                                {
-                                    "id": "P_0123456",
-                                    "description": "Test 1",
-                                    "iconFile": "sap-icon://numbered-text",
-                                    "rank": 1
-                                },
-                                {
-                                    "id": "P_1234567",
-                                    "description": "Test 2",
-                                    "iconFile": "sap-icon://numbered-text",
-                                    "rank": 2
-                                },
-                                {
-                                    "id": "P_2345678",
-                                    "description": "Test 3",
-                                    "iconFile": "sap-icon://numbered-text",
-                                    "rank": 3
-                                }
-                            ]
-                        };
-                        this._listOfItems = myList;
-                        console.log("--- list after assignment ---")
-                        console.log(this._listOfItems);
+                        console.log(this._props["listItems"]);
+                        var myList = this._props["listItems"];
                         modelProduct.setData(myList);
 
                         sap.ui.getCore().setModel(modelProduct, "products");
@@ -173,7 +148,7 @@ export default class IFMDraggable extends HTMLElement {
                                 }
 
                                 oGrid.insertItem(oDragged, iDropPosition);
-                                oGrid.focusItem(iDropPosition);
+                                //oGrid.focusItem(iDropPosition);
                             }
                         }));
                     },
