@@ -56,7 +56,7 @@ export default class IFMDraggable extends HTMLElement {
         _shadowRoot.appendChild(tmpl.content.cloneNode(true));
 
         this._export_settings = {};
-        this._export_settings.listItems = [];
+        this._export_settings.listItems = this.listItems;
         this.buildUI();
     }
 
