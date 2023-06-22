@@ -19,28 +19,28 @@
         }
     ],
     "properties": {
-        "listItems": {
+        "sac_list": {
             "type": "string[]",
             "description": "List Items"
         }
     },
     "dataBindings": {},
     "methods": {
-        "setListItems": {
+        "sac_list_setter": {
             "description": "Set list items.",
             "parameters": [
                 {
-                    "name": "newListItems",
+                    "name": "newList",
                     "type": "string[]",
                     "description": "New list items."
                 }
             ],
-            "body": "this.listItems = newListItems;"
+            "body": "this.sac_list = newList;"
         },
-        "getListItems": {
+        "sac_list_getter": {
             "returnType": "string[]",
             "description": "Returns the list items.",
-            "body": "return this.listItems;"
+            "body": "return this.sac_list;"
         }
     },
     "events": {

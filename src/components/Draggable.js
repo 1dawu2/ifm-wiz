@@ -54,19 +54,13 @@ export default class IFMDraggable extends HTMLElement {
         });
 
         _shadowRoot.appendChild(tmpl.content.cloneNode(true));
-
+        this._props = {};
+        console.log("constructor props")
+        console.log(`${this._props['sac_list']}`);
         this.buildUI();
     }
 
     // SETTINGS 
-
-    get listItems() {
-        return this.listItems;
-    }
-
-    set listItems(newListItems) {
-        this.listItems = newListItems;
-    }
 
 
     onCustomWidgetResize(width, height) {
@@ -78,10 +72,17 @@ export default class IFMDraggable extends HTMLElement {
     disconnectedCallback() {
     }
 
-    onCustomWidgetBeforeUpdate() {
+    onCustomWidgetBeforeUpdate(changedProperties) {
+        this._props = { ...this._props, ...changedProperties };
     }
 
-    onCustomWidgetAfterUpdate() {
+    onCustomWidgetAfterUpdate(changedProperties) {
+        if ("color" in changedProperties) {
+            this.style["background-color"] = changedProperties["color"];
+        }
+        if ("opacity" in changedProperties) {
+            this.style["opacity"] = changedProperties["opacity"];
+        }
     }
 
 
