@@ -77,11 +77,10 @@ export default class IFMDraggable extends HTMLElement {
     }
 
     onCustomWidgetAfterUpdate(changedProperties) {
-        if ("color" in changedProperties) {
-            this.style["background-color"] = changedProperties["color"];
-        }
-        if ("opacity" in changedProperties) {
-            this.style["opacity"] = changedProperties["opacity"];
+        if ("sac_list" in changedProperties) {
+            this.sac_list = changedProperties["sac_list"];
+        } else {
+            console.log("no property found");
         }
     }
 
