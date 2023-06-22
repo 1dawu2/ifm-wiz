@@ -91,7 +91,7 @@ export default class IFMDraggable extends HTMLElement {
 
         let content = document.createElement('div');
         content.slot = "content";
-        that_.appendChild(content);
+        this.appendChild(content);
 
         sap.ui.define(
             [
