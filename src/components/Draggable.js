@@ -66,7 +66,7 @@ export default class IFMDraggable extends HTMLElement {
     }
 
     set listItems(newListItems) {
-        this._export_settings.restapiurl = newListItems;
+        this._export_settings.listItems = newListItems;
     }
 
     onCustomWidgetResize(width, height) {
@@ -91,8 +91,6 @@ export default class IFMDraggable extends HTMLElement {
 
     buildUI(changedProperties, that) {
 
-        console.log("changedProperties:");
-        console.log(changedProperties);
         var that_ = that;
 
         let content = document.createElement('div');
@@ -114,7 +112,9 @@ export default class IFMDraggable extends HTMLElement {
 
                     onInit: function (oEvent) {
                         this.oPanel = this.byId("oPanel");
-                        this.configGrid(this.get);
+                        console.log("--- on init ---");
+                        console.log(that_._export_settings.listItems);
+                        this.configGrid();
                     },
 
                     configGrid: function () {
@@ -122,7 +122,9 @@ export default class IFMDraggable extends HTMLElement {
                         var DropPosition = sap.ui.core.dnd.DropPosition;
                         var oGrid = this.byId("listDragnDrop");
                         var modelProduct = new sap.ui.model.json.JSONModel();
-                        var myList = this._export_settings.listItems;
+                        console.log("--- changed properties ---");
+                        console.log(changedProperties['listItems']);
+                        var myList = that_._export_settings.listItems;
                         modelProduct.setData(myList);
 
                         sap.ui.getCore().setModel(modelProduct, "products");
