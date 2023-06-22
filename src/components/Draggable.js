@@ -57,6 +57,7 @@ export default class IFMDraggable extends HTMLElement {
 
         this._export_settings = {};
         this._export_settings.listItems = [];
+        this.buildUI();
     }
 
     // SETTINGS 
@@ -83,13 +84,10 @@ export default class IFMDraggable extends HTMLElement {
     }
 
     onCustomWidgetAfterUpdate() {
-        this.buildUI(this);
     }
 
 
-    buildUI(that) {
-
-        var that_ = that;
+    buildUI() {
 
         let content = document.createElement('div');
         content.slot = "content";
@@ -109,7 +107,7 @@ export default class IFMDraggable extends HTMLElement {
 
 
                     onInit: function (oEvent) {
-                        this.oPanel = this.byId("oPanel");
+                        //this.oPanel = this.byId("oPanel");
                         this.configGrid();
                     },
 
@@ -118,7 +116,7 @@ export default class IFMDraggable extends HTMLElement {
                         var DropPosition = sap.ui.core.dnd.DropPosition;
                         var oGrid = this.byId("listDragnDrop");
                         var modelProduct = new sap.ui.model.json.JSONModel();
-                        var myList = that_._export_settings.listItems;
+                        var myList = this._export_settings.listItems;
                         console.log("--- my list ---");
                         console.log(myList);
                         modelProduct.setData(
@@ -174,7 +172,6 @@ export default class IFMDraggable extends HTMLElement {
                                 }
 
                                 oGrid.insertItem(oDragged, iDropPosition);
-                                //oGrid.focusItem(iDropPosition);
                             }
                         }));
                     },
