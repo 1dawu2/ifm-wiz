@@ -24,7 +24,7 @@ tmpl.innerHTML = `
             <f:layout>
                 <f:GridContainerSettings rowSize="5rem" columnSize="5rem" gap="1rem" />
             </f:layout>
-            <f:Card width="300px">                
+            <f:Card width="500px">                
                 <f:header>
                     <card:Header iconSrc="sap-icon://sort" title="Sort Order" subtitle="Material" />
                 </f:header>

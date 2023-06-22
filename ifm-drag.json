@@ -14,8 +14,8 @@
             "kind": "main",
             "tag": "ifm-drag",
             "url": "https://1dawu2.github.io/ifm-wiz/dist/main_bundle.js",
-            "integrity": "sha384-oGRfIz/g6dfgTiKjkVrf6LRMlSXTCFgeoSAD8djrH1UBgApLS6YvFNxYxvfq6Aza",
-            "ignoreIntegrity": false
+            "integrity": "",
+            "ignoreIntegrity": true
         }
     ],
     "properties": {
