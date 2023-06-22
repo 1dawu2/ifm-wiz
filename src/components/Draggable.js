@@ -55,19 +55,17 @@ export default class IFMDraggable extends HTMLElement {
 
         _shadowRoot.appendChild(tmpl.content.cloneNode(true));
 
-        this._export_settings = {};
-        this._export_settings.listItems = this.listItems;
         this.buildUI();
     }
 
     // SETTINGS 
 
     get listItems() {
-        return this._export_settings.listItems;
+        return this.listItems;
     }
 
     set listItems(newListItems) {
-        this._export_settings.listItems = newListItems;
+        this.listItems = newListItems;
     }
 
 
@@ -116,7 +114,7 @@ export default class IFMDraggable extends HTMLElement {
                         var DropPosition = sap.ui.core.dnd.DropPosition;
                         var oGrid = this.byId("listDragnDrop");
                         var modelProduct = new sap.ui.model.json.JSONModel();
-                        var myList = this._export_settings.listItems;
+                        var myList = this.listItems;
                         console.log("--- my list ---");
                         console.log(myList);
                         modelProduct.setData(
