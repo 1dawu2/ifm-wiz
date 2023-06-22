@@ -125,6 +125,8 @@ export default class IFMDraggable extends HTMLElement {
                         console.log("--- changed properties ---");
                         console.log(changedProperties['listItems']);
                         var myList = that_._export_settings.listItems;
+                        console.log("--- my list ---");
+                        console.log(myList);
                         modelProduct.setData(myList);
 
                         sap.ui.getCore().setModel(modelProduct, "products");
