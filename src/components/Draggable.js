@@ -57,8 +57,6 @@ export default class IFMDraggable extends HTMLElement {
 
         this._export_settings = {};
         this._export_settings.listItems = [];
-        this.buildUI(this);
-
     }
 
     // SETTINGS 
@@ -81,15 +79,15 @@ export default class IFMDraggable extends HTMLElement {
     disconnectedCallback() {
     }
 
-    onCustomWidgetBeforeUpdate(changedProperties) {
+    onCustomWidgetBeforeUpdate() {
     }
 
-    onCustomWidgetAfterUpdate(changedProperties) {
-        //this.buildUI(changedProperties, this);
+    onCustomWidgetAfterUpdate() {
+        this.buildUI(this);
     }
 
 
-    buildUI(changedProperties, that) {
+    buildUI(that) {
 
         var that_ = that;
 
