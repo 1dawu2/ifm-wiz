@@ -55,13 +55,14 @@ export default class IFMDraggable extends HTMLElement {
 
         _shadowRoot.appendChild(tmpl.content.cloneNode(true));
 
-        //this._export_settings = {};
-        //this._export_settings.listItems = [];
+        this._export_settings = {};
+        this._export_settings.listItems = [];
+        this.buildUI(this);
 
     }
 
     // SETTINGS 
-    /*   
+
     get listItems() {
         return this._export_settings.listItems;
     }
@@ -69,7 +70,7 @@ export default class IFMDraggable extends HTMLElement {
     set listItems(newListItems) {
         this._export_settings.listItems = newListItems;
     }
-    */
+
 
     onCustomWidgetResize(width, height) {
     }
@@ -84,7 +85,7 @@ export default class IFMDraggable extends HTMLElement {
     }
 
     onCustomWidgetAfterUpdate(changedProperties) {
-        this.buildUI(changedProperties, this);
+        //this.buildUI(changedProperties, this);
     }
 
 
@@ -111,8 +112,6 @@ export default class IFMDraggable extends HTMLElement {
 
                     onInit: function (oEvent) {
                         this.oPanel = this.byId("oPanel");
-                        console.log("--- on init ---");
-                        console.log(changedProperties['listItems']);
                         this.configGrid();
                     },
 
@@ -121,10 +120,30 @@ export default class IFMDraggable extends HTMLElement {
                         var DropPosition = sap.ui.core.dnd.DropPosition;
                         var oGrid = this.byId("listDragnDrop");
                         var modelProduct = new sap.ui.model.json.JSONModel();
-                        var myList = changedProperties['listItems'];
+                        var myList = that_._export_settings.listItems;
                         console.log("--- my list ---");
                         console.log(myList);
-                        modelProduct.setData(myList);
+                        modelProduct.setData(
+                            {
+                                "productItems": [
+                                    {
+                                        "id": "Website",
+                                        "description": "http://www.infomotion.de",
+                                        "iconFile": "sap-icon://world"
+                                    },
+                                    {
+                                        "id": "Telefon",
+                                        "description": "+49 69 56608 3231",
+                                        "iconFile": "sap-icon://call"
+                                    },
+                                    {
+                                        "id": "Mail",
+                                        "description": "david.wurm@infomotion.de",
+                                        "iconFile": "sap-icon://business-card"
+                                    }
+                                ]
+                            }
+                        );
                         sap.ui.getCore().setModel(modelProduct, "products");
                         console.log("--- my product model ---");
                         console.log(modelProduct);
