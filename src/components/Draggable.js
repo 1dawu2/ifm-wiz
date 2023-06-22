@@ -61,6 +61,7 @@ export default class IFMDraggable extends HTMLElement {
     }
 
     // SETTINGS
+    /*
     get listItems() {
         return this._export_settings.listItems;
     }
@@ -68,6 +69,7 @@ export default class IFMDraggable extends HTMLElement {
     set listItems(newListItems) {
         this._export_settings.listItems = newListItems;
     }
+    */
 
     onCustomWidgetResize(width, height) {
     }
