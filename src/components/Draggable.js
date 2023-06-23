@@ -57,12 +57,7 @@ export default class IFMDraggable extends HTMLElement {
         _shadowRoot.appendChild(tmpl.content.cloneNode(true));
 
         this._firstConnection = 0;
-        console.log("--- constructor list ---");
-        this._list = this.getList();
-        console.log(this.getList());
-        console.log(this.list);
-        console.log(this._list);
-        //this.buildUI(this);
+        this.buildUI(this);
 
     }
 
@@ -83,10 +78,17 @@ export default class IFMDraggable extends HTMLElement {
         return this.list;
     }
 
+
+    onWidgetAfterUpdate() {
+
+    }
+
     buildUI(that) {
         var that_ = that;
         console.log("start build ui");
         console.log(that_);
+        console.log("get list");
+        console.log(that_.getList());
 
         if (that_._firstConnection === 0) {
             console.log("--First Time --");
