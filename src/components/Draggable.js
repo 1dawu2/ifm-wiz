@@ -64,21 +64,21 @@ export default class IFMDraggable extends HTMLElement {
     }
 
     // SETTINGS
-    // set list(newList) {
-    //     this.list = newList;
-    //     // fire "properties changed"
-    //     this.dispatchEvent(new CustomEvent("propertiesChanged", {
-    //         detail: {
-    //             properties: {
-    //                 list: this.list
-    //             }
-    //         }
-    //     }));
-    // }
+    set list(newListItem) {
+        this.list = newListItem;
+        // fire "properties changed"
+        this.dispatchEvent(new CustomEvent("propertiesChanged", {
+            detail: {
+                properties: {
+                    list: this.list
+                }
+            }
+        }));
+    }
 
-    // get list() {
-    //     return this.list;
-    // }
+    get list() {
+        return this.list;
+    }
 
     // get list() {
     //     return this._list;

@@ -27,8 +27,7 @@
     "methods": {
         "getList": {
             "returnType": "ListItem[]",
-            "description": "Get list",
-            "body": "return values;"
+            "description": "Get list"
         },
         "setList": {
             "description": "Set list",
@@ -38,8 +37,7 @@
                     "type": "ListItem[]",
                     "description": "The new list"
                 }
-            ],
-            "body": "this.list = values;"
+            ]
         }
     },
     "types": {
