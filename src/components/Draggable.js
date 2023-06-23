@@ -55,41 +55,33 @@ export default class IFMDraggable extends HTMLElement {
 
         _shadowRoot.appendChild(tmpl.content.cloneNode(true));
 
-        this._sharing_settings = {};
-        this._sharing_settings.sac_list = "";
+        this._export_settings = {};
+        this._export_settings.list = [];
+        this._firstConnection = 0;
 
-        this.buildUI();
     }
 
     // SETTINGS
-
-    pullListItem() {
-        return this.sac_list_items;
-    }
-    putListItem(value) {
-        this._setValue("sac_list_items", value);
+    get list() {
+        return this._export_settings.list;
     }
 
-    get sac_list_items() {
-        return this._sharing_settings.sac_list;
-    }
-    set sac_list_items(value) {
-        this._sharing_settings.sac_list = value;
+    set list(value) {
+        this._export_settings.list = value;
     }
 
     // METHODS
-    _setValue(name, value) {
-        this[name] = value;
-
-        let properties = {};
-        properties[name] = this[name];
-        this.dispatchEvent(new CustomEvent("propertiesChanged", {
-            detail: {
-                properties: properties
-            }
-        }));
+    static get observedAttributes() {
+        return [
+            "list"
+        ];
     }
 
+    attributeChangedCallback(name, oldValue, newValue) {
+        if (oldValue != newValue) {
+            this[name] = newValue;
+        }
+    }
 
     onCustomWidgetResize(width, height) {
     }
@@ -107,13 +99,24 @@ export default class IFMDraggable extends HTMLElement {
     }
 
     onCustomWidgetAfterUpdate(changedProperties) {
+        var that = this;
+        this.buildUI(that, changedProperties);
     }
 
 
-    buildUI() {
-        let content = document.createElement('div');
-        content.slot = "content";
-        this.appendChild(content);
+    buildUI(that, changedProperties) {
+        that_ = that;
+        console.log("start build ui");
+        console.log(that_);
+        console.log("changed properties");
+        console.log(changedProperties);
+
+        if (that._firstConnection === 0) {
+            console.log("--First Time --");
+            let content = document.createElement('div');
+            content.slot = "content";
+            that_.appendChild(content);
+        }
 
         sap.ui.define(
             [
@@ -130,7 +133,14 @@ export default class IFMDraggable extends HTMLElement {
 
                     onInit: function (oEvent) {
                         //this.oPanel = this.byId("oPanel");
-                        this.configGrid();
+                        console.log("-------oninit--------");
+                        console.log(that._export_settings.list);
+                        if (that._firstConnection === 0) {
+                            this.configGrid();
+                            that._firstConnection = 1;
+                        } else {
+                            console.log("--- not first connection ---");
+                        }
                     },
 
                     configGrid: function () {

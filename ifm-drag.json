@@ -19,35 +19,28 @@
         }
     ],
     "properties": {
-        "sac_list_items": {
-            "type": "Object<string>",
+        "list": {
+            "type": "string[]",
             "description": "Collection of list items"
         }
     },
-    "dataBindings": {},
     "methods": {
-        "putListItem": {
-            "description": "Set list items.",
+        "getList": {
+            "returnType": "string[]",
+            "description": "Get list",
+            "parameters": [],
+            "body": "return this.list;"
+        },
+        "setList": {
+            "description": "Set list",
             "parameters": [
-                {
-                    "name": "name",
-                    "type": "string"
-                },
                 {
                     "name": "value",
-                    "type": "string"
-                }
-            ]
-        },
-        "pullListItem": {
-            "description": "Returns the list items.",
-            "parameters": [
-                {
-                    "name": "name",
-                    "type": "string"
+                    "type": "string[]",
+                    "description": "The new list"
                 }
             ],
-            "returnType": "string"
+            "body": "this.list = value;"
         }
     },
     "events": {
