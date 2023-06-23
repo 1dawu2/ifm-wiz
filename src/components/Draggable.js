@@ -54,18 +54,48 @@ export default class IFMDraggable extends HTMLElement {
         });
 
         _shadowRoot.appendChild(tmpl.content.cloneNode(true));
+
+        this._sharing_settings = {};
+        this._sharing_settings.sac_list = "";
+        this._updateSettings();
+
         this.buildUI();
     }
 
     // SETTINGS
-    putListItem(name, value) {
-        this.sac_list_items = this.sac_list_items || {};
-        this.sac_list_items[name] = value;
+
+    pullListItem() {
+        return this.sac_list_items;
+    }
+    putListItem(value) {
+        this._setValue("sac_list_items", value);
     }
 
-    pullListItem(name) {
-        return this.myNumbers[name];
+    get sac_list_items() {
+        return this._sharing_settings.sac_list;
     }
+    set sac_list_items(value) {
+        this._sharing_settings.sac_list = value;
+        this._updateSettings();
+    }
+
+    // METHODS
+    _updateSettings() {
+        this.settings.value = JSON.stringify(this._sharing_settings);
+    }
+
+    _setValue(name, value) {
+        this[name] = value;
+
+        let properties = {};
+        properties[name] = this[name];
+        this.dispatchEvent(new CustomEvent("propertiesChanged", {
+            detail: {
+                properties: properties
+            }
+        }));
+    }
+
 
     onCustomWidgetResize(width, height) {
     }
@@ -77,15 +107,12 @@ export default class IFMDraggable extends HTMLElement {
     }
 
     onCustomWidgetBeforeUpdate(changedProperties) {
-
+        if ("designMode" in changedProperties) {
+            this._designMode = changedProperties["designMode"];
+        }
     }
 
     onCustomWidgetAfterUpdate(changedProperties) {
-        if ("sac_list" in changedProperties) {
-            this.sac_list_items = changedProperties["sac_list_items"];
-        } else {
-            console.log("no property found");
-        }
     }
 
 
@@ -120,9 +147,6 @@ export default class IFMDraggable extends HTMLElement {
                         var DropPosition = sap.ui.core.dnd.DropPosition;
                         var oGrid = this.byId("listDragnDrop");
                         var modelProduct = new sap.ui.model.json.JSONModel();
-                        var myList = this.listItems;
-                        console.log("--- my list ---");
-                        console.log(myList);
                         modelProduct.setData(
                             {
                                 "productItems": [
