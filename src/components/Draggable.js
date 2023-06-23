@@ -58,6 +58,8 @@ export default class IFMDraggable extends HTMLElement {
 
         this._firstConnection = 0;
         this._listArr = this.getList();
+        console.log("--- constructor list ---");
+        console.log(this._listArr);
         //this.buildUI(this);
 
     }
