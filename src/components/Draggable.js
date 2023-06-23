@@ -57,29 +57,28 @@ export default class IFMDraggable extends HTMLElement {
         _shadowRoot.appendChild(tmpl.content.cloneNode(true));
 
         this._firstConnection = 0;
-        this._listArr = this.list;
         console.log("--- constructor list ---");
-        console.log(this._listArr);
+        console.log(this.list);
         //this.buildUI(this);
 
     }
 
     // SETTINGS
-    set list(newList) {
-        this.list = newList;
-        // fire "properties changed"
-        this.dispatchEvent(new CustomEvent("propertiesChanged", {
-            detail: {
-                properties: {
-                    list: this.list
-                }
-            }
-        }));
-    }
+    // set list(newList) {
+    //     this.list = newList;
+    //     // fire "properties changed"
+    //     this.dispatchEvent(new CustomEvent("propertiesChanged", {
+    //         detail: {
+    //             properties: {
+    //                 list: this.list
+    //             }
+    //         }
+    //     }));
+    // }
 
-    get list() {
-        return this.list;
-    }
+    // get list() {
+    //     return this.list;
+    // }
 
     // get list() {
     //     return this._list;
@@ -88,40 +87,6 @@ export default class IFMDraggable extends HTMLElement {
     // set list(newListItem) {
     //     this._list = newListItem;
     // }
-
-    // METHODS
-    // static get observedAttributes() {
-    //     return [
-    //         "list"
-    //     ];
-    // }
-
-    // attributeChangedCallback(name, oldValue, newValue) {
-    //     if (oldValue != newValue) {
-    //         this[name] = newValue;
-    //     }
-    // }
-
-    onCustomWidgetResize(width, height) {
-    }
-
-    connectedCallback() {
-    }
-
-    disconnectedCallback() {
-    }
-
-    // onCustomWidgetBeforeUpdate(propertiesChanged) {
-    //     if ("designMode" in changedProperties) {
-    //         this._designMode = changedProperties["designMode"];
-    //     }
-    // }
-
-    // onCustomWidgetAfterUpdate(propertiesChanged) {
-    //     //var that = this;
-    //     //this.buildUI(that, changedProperties);
-    // }
-
 
     buildUI(that) {
         var that_ = that;
@@ -151,7 +116,7 @@ export default class IFMDraggable extends HTMLElement {
                     onInit: function (oEvent) {
                         //this.oPanel = this.byId("oPanel");
                         console.log("-------oninit--------");
-                        console.log(that_._list);
+                        console.log(that_.list);
                         if (that._firstConnection === 0) {
                             this.configGrid();
                             that_._firstConnection = 1;
@@ -165,7 +130,7 @@ export default class IFMDraggable extends HTMLElement {
                         var DropPosition = sap.ui.core.dnd.DropPosition;
                         var oGrid = this.byId("listDragnDrop");
                         var modelProduct = new sap.ui.model.json.JSONModel();
-                        var tmpList = that_._list;
+                        var tmpList = that_.list;
                         console.log(tmpList);
                         modelProduct.setData(
                             {
