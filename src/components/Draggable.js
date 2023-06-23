@@ -58,13 +58,16 @@ export default class IFMDraggable extends HTMLElement {
 
         this._firstConnection = 0;
         console.log("--- constructor list ---");
+        this._list = this.getList();
+        console.log(this.getList());
         console.log(this.list);
+        console.log(this._list);
         //this.buildUI(this);
 
     }
 
     // SETTINGS
-    set list(newListItem) {
+    setList(newListItem) {
         this.list = newListItem;
         // fire "properties changed"
         this.dispatchEvent(new CustomEvent("propertiesChanged", {
@@ -76,17 +79,9 @@ export default class IFMDraggable extends HTMLElement {
         }));
     }
 
-    get list() {
-        return this.list;
+    getList(listItems) {
+        return listItems;
     }
-
-    // get list() {
-    //     return this._list;
-    // }
-
-    // set list(newListItem) {
-    //     this._list = newListItem;
-    // }
 
     buildUI(that) {
         var that_ = that;
@@ -116,7 +111,7 @@ export default class IFMDraggable extends HTMLElement {
                     onInit: function (oEvent) {
                         //this.oPanel = this.byId("oPanel");
                         console.log("-------oninit--------");
-                        console.log(that_.list);
+                        console.log(that_._list);
                         if (that._firstConnection === 0) {
                             this.configGrid();
                             that_._firstConnection = 1;
@@ -130,7 +125,7 @@ export default class IFMDraggable extends HTMLElement {
                         var DropPosition = sap.ui.core.dnd.DropPosition;
                         var oGrid = this.byId("listDragnDrop");
                         var modelProduct = new sap.ui.model.json.JSONModel();
-                        var tmpList = that_.list;
+                        var tmpList = that_._list;
                         console.log(tmpList);
                         modelProduct.setData(
                             {
