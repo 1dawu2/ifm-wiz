@@ -55,33 +55,48 @@ export default class IFMDraggable extends HTMLElement {
 
         _shadowRoot.appendChild(tmpl.content.cloneNode(true));
 
-        this._export_settings = {};
-        this._export_settings.list = [];
+        this._list = Object;
         this._firstConnection = 0;
 
     }
 
     // SETTINGS
-    get list() {
-        return this._export_settings.list;
+    setList(newListItem) {
+        this._list = newListItem;
+        // fire "properties changed"
+        this.dispatchEvent(new CustomEvent("propertiesChanged", {
+            detail: {
+                properties: {
+                    list: this._list
+                }
+            }
+        }));
     }
 
-    set list(value) {
-        this._export_settings.list = value;
+    getList() {
+        return this._list;
     }
+
+    // get list() {
+    //     return this._list;
+    // }
+
+    // set list(newListItem) {
+    //     this._list = newListItem;
+    // }
 
     // METHODS
-    static get observedAttributes() {
-        return [
-            "list"
-        ];
-    }
+    // static get observedAttributes() {
+    //     return [
+    //         "list"
+    //     ];
+    // }
 
-    attributeChangedCallback(name, oldValue, newValue) {
-        if (oldValue != newValue) {
-            this[name] = newValue;
-        }
-    }
+    // attributeChangedCallback(name, oldValue, newValue) {
+    //     if (oldValue != newValue) {
+    //         this[name] = newValue;
+    //     }
+    // }
 
     onCustomWidgetResize(width, height) {
     }
@@ -111,7 +126,7 @@ export default class IFMDraggable extends HTMLElement {
         console.log("changed properties");
         console.log(changedProperties);
 
-        if (that._firstConnection === 0) {
+        if (that_._firstConnection === 0) {
             console.log("--First Time --");
             let content = document.createElement('div');
             content.slot = "content";
@@ -134,10 +149,10 @@ export default class IFMDraggable extends HTMLElement {
                     onInit: function (oEvent) {
                         //this.oPanel = this.byId("oPanel");
                         console.log("-------oninit--------");
-                        console.log(that._export_settings.list);
+                        console.log(that_._list);
                         if (that._firstConnection === 0) {
                             this.configGrid();
-                            that._firstConnection = 1;
+                            that_._firstConnection = 1;
                         } else {
                             console.log("--- not first connection ---");
                         }

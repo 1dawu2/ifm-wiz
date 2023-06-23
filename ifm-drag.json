@@ -20,27 +20,49 @@
     ],
     "properties": {
         "list": {
-            "type": "string[]",
+            "type": "Object<ListItem>",
             "description": "Collection of list items"
         }
     },
     "methods": {
         "getList": {
-            "returnType": "string[]",
-            "description": "Get list",
-            "parameters": [],
-            "body": "return this.list;"
+            "returnType": "Object<ListItem>",
+            "description": "Get list"
         },
         "setList": {
             "description": "Set list",
             "parameters": [
                 {
-                    "name": "value",
-                    "type": "string[]",
+                    "name": "newListItem",
+                    "type": "Object<ListItem>",
                     "description": "The new list"
                 }
-            ],
-            "body": "this.list = value;"
+            ]
+        }
+    },
+    "types": {
+        "ListItem": {
+            "description": "A list item",
+            "properties": [
+                {
+                    "name": "id",
+                    "type": "string",
+                    "description": "ID of the list item",
+                    "mandatory": true
+                },
+                {
+                    "name": "description",
+                    "type": "string",
+                    "description": "Description of the list item",
+                    "mandatory": false
+                },
+                {
+                    "name": "iconFile",
+                    "type": "string",
+                    "description": "Icon file name of the list item",
+                    "mandatory": false
+                }
+            ]
         }
     },
     "events": {
