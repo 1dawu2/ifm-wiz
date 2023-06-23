@@ -55,7 +55,7 @@ export default class IFMDraggable extends HTMLElement {
         });
 
         _shadowRoot.appendChild(tmpl.content.cloneNode(true));
-
+        this.list;
         this._firstConnection = 0;
         this.buildUI(this);
 
@@ -79,8 +79,9 @@ export default class IFMDraggable extends HTMLElement {
     }
 
 
-    onWidgetAfterUpdate() {
-
+    onCustomWidgetAfterUpdate(oChangedProperties) {
+        this.list = this.getList();
+        console.log(this.list);
     }
 
     buildUI(that) {
