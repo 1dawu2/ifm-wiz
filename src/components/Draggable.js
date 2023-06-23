@@ -65,7 +65,7 @@ export default class IFMDraggable extends HTMLElement {
     }
 
     // SETTINGS
-    setList(newList) {
+    set list(newList) {
         this.list = newList;
         // fire "properties changed"
         this.dispatchEvent(new CustomEvent("propertiesChanged", {
@@ -77,7 +77,7 @@ export default class IFMDraggable extends HTMLElement {
         }));
     }
 
-    getList() {
+    get list() {
         return this.list;
     }
 
