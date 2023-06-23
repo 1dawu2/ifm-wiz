@@ -48,6 +48,7 @@ tmpl.innerHTML = `
 export default class IFMDraggable extends HTMLElement {
     constructor() {
         // start constructor
+        console.log("constructor:");
         super();
 
         _shadowRoot = this.attachShadow({
@@ -58,39 +59,26 @@ export default class IFMDraggable extends HTMLElement {
 
         this._props = {};
         this._firstConnection = 0;
-        this.buildUI(this);
+        //this.buildUI(this);
 
     }
 
     // SETTINGS
-    // setList(newList) {
-    //     this.list = newList;
-    //     // fire "properties changed"
-    //     this.dispatchEvent(new CustomEvent("propertiesChanged", {
-    //         detail: {
-    //             properties: {
-    //                 list: this.list
-    //             }
-    //         }
-    //     }));
-    // }
-
-    // getList() {
-    //     return this.list;
-    // }
-
     onCustomWidgetBeforeUpdate(changedProperties) {
         this._props = { ...this._props, ...changedProperties };
+        console.log("before update:");
+        console.log(this._props);
     }
 
 
     onCustomWidgetAfterUpdate(changedProperties) {
+        console.log("after update:");
         if ("value" in changedProperties) {
             this.$list = changedProperties["list"];
+            console.log(this.$list);
         }
-        this.buildUI(this, this.$list);
+        //this.buildUI(this, this.$list);
     }
-
 
     buildUI(that, list) {
         var that_ = that;
@@ -135,6 +123,7 @@ export default class IFMDraggable extends HTMLElement {
                         var oGrid = this.byId("listDragnDrop");
                         var modelProduct = new sap.ui.model.json.JSONModel();
                         var tmpList = that_.list;
+                        console.log("config grid");
                         console.log(tmpList);
                         modelProduct.setData(
                             {
