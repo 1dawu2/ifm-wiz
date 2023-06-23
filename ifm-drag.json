@@ -20,13 +20,13 @@
     ],
     "properties": {
         "list": {
-            "type": "Object<ListItem>",
+            "type": "ListItem",
             "description": "Collection of list items"
         }
     },
     "methods": {
         "getList": {
-            "returnType": "Object<ListItem>",
+            "returnType": "ListItem",
             "description": "Get list"
         },
         "setList": {
@@ -34,7 +34,7 @@
             "parameters": [
                 {
                     "name": "newListItem",
-                    "type": "Object<ListItem>",
+                    "type": "ListItem",
                     "description": "The new list"
                 }
             ]
