@@ -67,8 +67,8 @@ export default class IFMDraggable extends HTMLElement {
     }
 
     // SETTINGS
-    setList(newListItem) {
-        this.list = newListItem;
+    setList(newList) {
+        this.list = newList;
         // fire "properties changed"
         this.dispatchEvent(new CustomEvent("propertiesChanged", {
             detail: {
@@ -79,8 +79,8 @@ export default class IFMDraggable extends HTMLElement {
         }));
     }
 
-    getList(listItems) {
-        return listItems;
+    getList() {
+        return this.list;
     }
 
     buildUI(that) {

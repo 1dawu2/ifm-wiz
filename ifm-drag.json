@@ -26,12 +26,6 @@
     },
     "methods": {
         "getList": {
-            "parameters": [
-                {
-                    "name": "listItems",
-                    "type": "ListItem[]"
-                }
-            ],
             "returnType": "ListItem[]",
             "description": "Get list"
         },
@@ -39,7 +33,7 @@
             "description": "Set list",
             "parameters": [
                 {
-                    "name": "newListItem",
+                    "name": "newList",
                     "type": "ListItem[]"
                 }
             ]
