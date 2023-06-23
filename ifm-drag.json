@@ -20,13 +20,13 @@
     ],
     "properties": {
         "list": {
-            "type": "ListItem",
-            "description": "Collection of list items"
+            "type": "ListItem[]",
+            "description": "Array of list items"
         }
     },
     "methods": {
         "getList": {
-            "returnType": "ListItem",
+            "returnType": "ListItem[]",
             "description": "Get list"
         },
         "setList": {
@@ -34,7 +34,7 @@
             "parameters": [
                 {
                     "name": "newListItem",
-                    "type": "ListItem",
+                    "type": "ListItem[]",
                     "description": "The new list"
                 }
             ]

@@ -56,27 +56,27 @@ export default class IFMDraggable extends HTMLElement {
 
         _shadowRoot.appendChild(tmpl.content.cloneNode(true));
 
-        this._list = Object;
         this._firstConnection = 0;
-        this.buildUI(this);
+        this._listArr = this.getList();
+        //this.buildUI(this);
 
     }
 
     // SETTINGS
-    setList(newListItem) {
-        this._list = newListItem;
+    setList(newList) {
+        this.list = newList;
         // fire "properties changed"
         this.dispatchEvent(new CustomEvent("propertiesChanged", {
             detail: {
                 properties: {
-                    list: this._list
+                    list: this.list
                 }
             }
         }));
     }
 
     getList() {
-        return this._list;
+        return this.list;
     }
 
     // get list() {
