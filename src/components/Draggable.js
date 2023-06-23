@@ -54,14 +54,20 @@ export default class IFMDraggable extends HTMLElement {
         });
 
         _shadowRoot.appendChild(tmpl.content.cloneNode(true));
-        this._props = {};
-        console.log("constructor props")
-        console.log(`${this._props['sac_list']}`);
+        this._props.sac_list_items = {};
+
         this.buildUI();
     }
 
-    // SETTINGS 
+    // SETTINGS
+    putListItem(name, value) {
+        this.sac_list_items = this.sac_list_items || {};
+        this.sac_list_items[name] = value;
+    }
 
+    pullListItem(name) {
+        return this.myNumbers[name];
+    }
 
     onCustomWidgetResize(width, height) {
     }
@@ -73,18 +79,12 @@ export default class IFMDraggable extends HTMLElement {
     }
 
     onCustomWidgetBeforeUpdate(changedProperties) {
-        this._props = { ...this._props, ...changedProperties };
-        console.log("before update");
-        console.log(`${this._props['sac_list']}`);
-        console.log(changedProperties);
+
     }
 
     onCustomWidgetAfterUpdate(changedProperties) {
-        console.log("after update");
-        console.log(`${this._props['sac_list']}`);
-        console.log(changedProperties);
         if ("sac_list" in changedProperties) {
-            this.sac_list = changedProperties["sac_list"];
+            this.sac_list_items = changedProperties["sac_list_items"];
         } else {
             console.log("no property found");
         }
@@ -92,7 +92,6 @@ export default class IFMDraggable extends HTMLElement {
 
 
     buildUI() {
-
         let content = document.createElement('div');
         content.slot = "content";
         this.appendChild(content);
@@ -112,6 +111,9 @@ export default class IFMDraggable extends HTMLElement {
 
                     onInit: function (oEvent) {
                         //this.oPanel = this.byId("oPanel");
+                        this.put("n1");
+                        console.log("on init");
+                        console.log(this.get("n2"));
                         this.configGrid();
                     },
 
