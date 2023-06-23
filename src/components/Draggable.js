@@ -54,8 +54,6 @@ export default class IFMDraggable extends HTMLElement {
         });
 
         _shadowRoot.appendChild(tmpl.content.cloneNode(true));
-        this._props.sac_list_items = {};
-
         this.buildUI();
     }
 
