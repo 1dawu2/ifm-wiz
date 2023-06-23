@@ -25,10 +25,6 @@
         }
     },
     "methods": {
-        "getList": {
-            "returnType": "ListItem[]",
-            "description": "Get list"
-        },
         "setList": {
             "description": "Set list",
             "parameters": [
@@ -36,7 +32,13 @@
                     "name": "newList",
                     "type": "ListItem[]"
                 }
-            ]
+            ],
+            "body": "this.list = newList"
+        },
+        "getList": {
+            "returnType": "ListItem[]",
+            "description": "Get list",
+            "body": "return this.list;"
         }
     },
     "types": {

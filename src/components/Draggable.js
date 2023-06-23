@@ -55,41 +55,47 @@ export default class IFMDraggable extends HTMLElement {
         });
 
         _shadowRoot.appendChild(tmpl.content.cloneNode(true));
-        this.list;
+
+        this._props = {};
         this._firstConnection = 0;
         this.buildUI(this);
 
     }
 
     // SETTINGS
-    setList(newList) {
-        this.list = newList;
-        // fire "properties changed"
-        this.dispatchEvent(new CustomEvent("propertiesChanged", {
-            detail: {
-                properties: {
-                    list: this.list
-                }
-            }
-        }));
+    // setList(newList) {
+    //     this.list = newList;
+    //     // fire "properties changed"
+    //     this.dispatchEvent(new CustomEvent("propertiesChanged", {
+    //         detail: {
+    //             properties: {
+    //                 list: this.list
+    //             }
+    //         }
+    //     }));
+    // }
+
+    // getList() {
+    //     return this.list;
+    // }
+
+    onCustomWidgetBeforeUpdate(changedProperties) {
+        this._props = { ...this._props, ...changedProperties };
     }
 
-    getList() {
-        return this.list;
+
+    onCustomWidgetAfterUpdate(changedProperties) {
+        if ("value" in changedProperties) {
+            this.$list = changedProperties["list"];
+        }
+        this.buildUI(this, this.$list);
     }
 
 
-    onCustomWidgetAfterUpdate(oChangedProperties) {
-        this.list = this.getList();
-        console.log(this.list);
-    }
-
-    buildUI(that) {
+    buildUI(that, list) {
         var that_ = that;
         console.log("start build ui");
-        console.log(that_);
-        console.log("get list");
-        console.log(that_.getList());
+        console.log(list);
 
         if (that_._firstConnection === 0) {
             console.log("--First Time --");
