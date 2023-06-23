@@ -99,8 +99,8 @@ export default class IFMDraggable extends HTMLElement {
     }
 
     onCustomWidgetAfterUpdate(changedProperties) {
-        var that = this;
-        this.buildUI(that, changedProperties);
+        //var that = this;
+        //this.buildUI(that, changedProperties);
     }
 
 
