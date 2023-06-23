@@ -57,7 +57,6 @@ export default class IFMDraggable extends HTMLElement {
 
         this._sharing_settings = {};
         this._sharing_settings.sac_list = "";
-        this._updateSettings();
 
         this.buildUI();
     }
@@ -76,14 +75,9 @@ export default class IFMDraggable extends HTMLElement {
     }
     set sac_list_items(value) {
         this._sharing_settings.sac_list = value;
-        this._updateSettings();
     }
 
     // METHODS
-    _updateSettings() {
-        this.settings.value = JSON.stringify(this._sharing_settings);
-    }
-
     _setValue(name, value) {
         this[name] = value;
 
