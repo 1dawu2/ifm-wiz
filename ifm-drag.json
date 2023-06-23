@@ -33,7 +33,7 @@
                     "type": "ListItem[]"
                 }
             ],
-            "body": "this.list = newList"
+            "body": "this.list = newList;"
         },
         "getList": {
             "returnType": "ListItem[]",
