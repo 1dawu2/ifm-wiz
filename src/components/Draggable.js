@@ -58,7 +58,7 @@ export default class IFMDraggable extends HTMLElement {
 
         this._list = Object;
         this._firstConnection = 0;
-        this.buildUI(this, propertiesChanged);
+        this.buildUI(this);
 
     }
 
@@ -109,24 +109,22 @@ export default class IFMDraggable extends HTMLElement {
     disconnectedCallback() {
     }
 
-    onCustomWidgetBeforeUpdate(propertiesChanged) {
-        if ("designMode" in changedProperties) {
-            this._designMode = changedProperties["designMode"];
-        }
-    }
+    // onCustomWidgetBeforeUpdate(propertiesChanged) {
+    //     if ("designMode" in changedProperties) {
+    //         this._designMode = changedProperties["designMode"];
+    //     }
+    // }
 
-    onCustomWidgetAfterUpdate(propertiesChanged) {
-        //var that = this;
-        //this.buildUI(that, changedProperties);
-    }
+    // onCustomWidgetAfterUpdate(propertiesChanged) {
+    //     //var that = this;
+    //     //this.buildUI(that, changedProperties);
+    // }
 
 
-    buildUI(that, propertiesChanged) {
+    buildUI(that) {
         var that_ = that;
         console.log("start build ui");
         console.log(that_);
-        console.log("changed properties");
-        console.log(propertiesChanged);
 
         if (that_._firstConnection === 0) {
             console.log("--First Time --");
