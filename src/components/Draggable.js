@@ -105,7 +105,7 @@ export default class IFMDraggable extends HTMLElement {
 
 
     buildUI(that, changedProperties) {
-        that_ = that;
+        var that_ = that;
         console.log("start build ui");
         console.log(that_);
         console.log("changed properties");
