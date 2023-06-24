@@ -59,7 +59,7 @@ export default class IFMDraggable extends HTMLElement {
 
         this._props = {};
         this._firstConnection = 0;
-        //this.buildUI(this);
+        this.buildUI(this);
 
     }
 
@@ -82,24 +82,25 @@ export default class IFMDraggable extends HTMLElement {
     onCustomWidgetBeforeUpdate(changedProperties) {
         this._props = { ...this._props, ...changedProperties };
         console.log("before update:");
-        console.log(this._props);
-        console.log(this.$list);
+        if ("list" in changedProperties) {
+            this.$list = changedProperties["list"];
+            console.log(this.$list);
+        }
     }
 
 
     onCustomWidgetAfterUpdate(changedProperties) {
         console.log("after update:");
-        if ("value" in changedProperties) {
+        if ("list" in changedProperties) {
             this.$list = changedProperties["list"];
             console.log(this.$list);
         }
-        //this.buildUI(this, this.$list);
     }
 
-    buildUI(that, list) {
+    buildUI(that) {
         var that_ = that;
         console.log("start build ui");
-        console.log(list);
+        console.log(this.prepareListData(that_.$list));
 
         if (that_._firstConnection === 0) {
             console.log("--First Time --");
@@ -124,7 +125,6 @@ export default class IFMDraggable extends HTMLElement {
                     onInit: function (oEvent) {
                         //this.oPanel = this.byId("oPanel");
                         console.log("-------oninit--------");
-                        console.log(that_.list);
                         if (that._firstConnection === 0) {
                             this.configGrid();
                             that_._firstConnection = 1;
@@ -138,10 +138,7 @@ export default class IFMDraggable extends HTMLElement {
                         var DropPosition = sap.ui.core.dnd.DropPosition;
                         var oGrid = this.byId("listDragnDrop");
                         var modelProduct = new sap.ui.model.json.JSONModel();
-                        var tmpList = that_.list;
                         console.log("config grid");
-                        console.log(tmpList);
-
                         modelProduct.setData(
                             {
                                 "productItems": [
