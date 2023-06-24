@@ -73,6 +73,7 @@ export default class IFMDraggable extends HTMLElement {
         //     "description": listItems[i].description,
         //     "iconFile": listItems[i].iconFile
         // };
+        Object.values(listItems).forEach(val => console.log(val));
         if (typeof listItems != 'undefined' && listItems) {
             for (const key in listItems) {
                 if (listItems.hasOwnProperty(key)) {
