@@ -76,7 +76,7 @@ export default class IFMDraggable extends HTMLElement {
 
         if (typeof listItems != 'undefined' && listItems) {
             Object.values(listItems).forEach(
-                val => sacList["productItems"] = val
+                val => sacList["productItems"].push(val)
             );
             // for (const key in listItems) {
             //     if (listItems.hasOwnProperty(key)) {
