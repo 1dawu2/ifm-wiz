@@ -75,7 +75,7 @@ export default class IFMDraggable extends HTMLElement {
         // };
         for (const key in listItems) {
 
-            if (user.hasOwnProperty(key)) {
+            if (listItems.hasOwnProperty(key)) {
 
                 console.log(`${key}: ${listItems[key]}`);
             }
