@@ -75,18 +75,22 @@ export default class IFMDraggable extends HTMLElement {
         // };
 
         if (typeof listItems != 'undefined' && listItems) {
-            Object.values(listItems).forEach(val => console.log(val));
-            for (const key in listItems) {
-                if (listItems.hasOwnProperty(key)) {
-                    for (const item in key) {
-                        if (key.hasOwnProperty(item)) {
-                            console.log("list item from object:");
-                            console.log(key + ":" + item);
-                        };
-                    };
-                };
-            };
+            Object.values(listItems).forEach(
+                val => sacList["productItems"] = val
+            );
+            // for (const key in listItems) {
+            //     if (listItems.hasOwnProperty(key)) {
+            //         for (const item in key) {
+            //             if (key.hasOwnProperty(item)) {
+            //                 console.log("list item from object:");
+            //                 console.log(key + ":" + item);
+            //             };
+            //         };
+            //     };
+            // };
         }
+        console.log("sac list");
+        console.log(sacList["productItems"]);
         // console.log("prepare data");
         // console.log(sacList);
         // modelData.setData(sacList);
