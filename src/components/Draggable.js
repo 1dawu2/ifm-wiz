@@ -84,6 +84,7 @@ export default class IFMDraggable extends HTMLElement {
     onCustomWidgetBeforeUpdate(changedProperties) {
         this._props = { ...this._props, ...changedProperties };
         console.log("before update:");
+        console.log(this._firstConnection);
         if ("list" in changedProperties) {
             this.$list = changedProperties["list"];
             console.log(this.$list);
@@ -93,6 +94,7 @@ export default class IFMDraggable extends HTMLElement {
 
     onCustomWidgetAfterUpdate(changedProperties) {
         console.log("after update:");
+        console.log(this._firstConnection);
         if ("list" in changedProperties) {
             this.$list = changedProperties["list"];
             console.log(this.$list);
