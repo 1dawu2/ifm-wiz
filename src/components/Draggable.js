@@ -65,19 +65,20 @@ export default class IFMDraggable extends HTMLElement {
     }
 
     prepareListData(listItems) {
+        console.log("list item for data preparation");
         console.log(listItems);
         var modelData = new sap.ui.model.json.JSONModel();
         var sacList = { "productItems": [] }
-        for (var i = 0; i < listItems.length; i++) {
-            console.log(listItems[i].id);
-            sacList["productItems"] = {
-                "id": listItems[i].id,
-                "description": listItems[i].description,
-                "iconFile": listItems[i].iconFile
-            };
-        };
-        console.log("prepare data");
-        console.log(sacList);
+        // for (var i = 0; i < listItems.length; i++) {
+        //     console.log(listItems[i].id);
+        //     sacList["productItems"] = {
+        //         "id": listItems[i].id,
+        //         "description": listItems[i].description,
+        //         "iconFile": listItems[i].iconFile
+        //     };
+        // };
+        // console.log("prepare data");
+        // console.log(sacList);
         // modelData.setData(sacList);
         // return modelData
     }
