@@ -68,14 +68,16 @@ export default class IFMDraggable extends HTMLElement {
         console.log(listItems);
         var modelData = new sap.ui.model.json.JSONModel();
         var sacList = { "productItems": [] }
-        // for (var i = 0; i < listItems.length; i++) {
-        //     console.log(listItems[i].id);
-        //     sacList["productItems"] = {
-        //         "id": listItems[i].id,
-        //         "description": listItems[i].description,
-        //         "iconFile": listItems[i].iconFile
-        //     };
-        // };
+        for (var i = 0; i < listItems.length; i++) {
+            console.log(listItems[i].id);
+            sacList["productItems"] = {
+                "id": listItems[i].id,
+                "description": listItems[i].description,
+                "iconFile": listItems[i].iconFile
+            };
+        };
+        console.log("prepare data");
+        console.log(sacList);
         // modelData.setData(sacList);
         // return modelData
     }
@@ -87,17 +89,22 @@ export default class IFMDraggable extends HTMLElement {
         console.log(this._firstConnection);
         if ("list" in changedProperties) {
             this.$list = changedProperties["list"];
-            console.log(this.$list);
+            if (typeof this.$list != 'undefined' && this.$list) {
+                console.log(this.$list);
+                this.prepareListData(this.$list);
+            }
         }
     }
-
 
     onCustomWidgetAfterUpdate(changedProperties) {
         console.log("after update:");
         console.log(this._firstConnection);
         if ("list" in changedProperties) {
             this.$list = changedProperties["list"];
-            console.log(this.$list);
+            if (typeof this.$list != 'undefined' && this.$list) {
+                console.log(this.$list);
+                this.prepareListData(this.$list);
+            }
         }
     }
 
