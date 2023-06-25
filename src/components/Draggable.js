@@ -148,7 +148,7 @@ export default class IFMDraggable extends HTMLElement {
                         var oGrid = this.byId("listDragnDrop");
                         var modelProduct = new sap.ui.model.json.JSONModel();
                         console.log("config grid");
-                        modelProduct.setData(this.prepareListData(that_.$list));
+                        modelProduct.setData(that_.prepareListData(that_.$list));
                         // modelProduct.setData(
                         //     {
                         //         "productItems": [
