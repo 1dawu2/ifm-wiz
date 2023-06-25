@@ -60,8 +60,6 @@ export default class IFMDraggable extends HTMLElement {
         this._props = {};
         this._firstConnection = 0;
         console.log(this.$list);
-        this.buildUI(this);
-
     }
 
     prepareListData(listItems) {
@@ -86,10 +84,10 @@ export default class IFMDraggable extends HTMLElement {
         console.log(this._firstConnection);
         if ("list" in changedProperties) {
             this.$list = changedProperties["list"];
-            if (typeof this.$list != 'undefined' && this.$list) {
-                console.log(this.$list);
-                this.prepareListData(this.$list);
-            }
+            // if (typeof this.$list != 'undefined' && this.$list) {
+            //     console.log(this.$list);
+            //     this.prepareListData(this.$list);
+            // }
         }
     }
 
@@ -100,7 +98,7 @@ export default class IFMDraggable extends HTMLElement {
             this.$list = changedProperties["list"];
             if (typeof this.$list != 'undefined' && this.$list) {
                 console.log(this.$list);
-                this.prepareListData(this.$list);
+                this.buildUI(this);
             }
         }
     }
