@@ -66,7 +66,6 @@ export default class IFMDraggable extends HTMLElement {
 
     prepareListData(listItems) {
         console.log("list item for data preparation");
-        var modelData = new sap.ui.model.json.JSONModel();
         var sacList = { "productItems": [] };
 
         if (typeof listItems != 'undefined' && listItems) {
@@ -76,9 +75,8 @@ export default class IFMDraggable extends HTMLElement {
         }
         console.log("sac list");
         console.log(sacList["productItems"]);
-        modelData.setData(sacList);
 
-        return modelData
+        return sacList
     }
 
     // SETTINGS
