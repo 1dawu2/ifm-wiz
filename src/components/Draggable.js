@@ -78,7 +78,6 @@ export default class IFMDraggable extends HTMLElement {
     }
 
     retrieveListData(listItems, fromIndex, toIndex) {
-        var element = arr[fromIndex];
         var sacList = [];
         if (typeof listItems != 'undefined' && listItems) {
             Object.values(listItems).forEach(
@@ -213,7 +212,12 @@ export default class IFMDraggable extends HTMLElement {
 
                                 console.log("--- my product model ---");
                                 console.log(modelProduct);
-                                that_.arrayMove(this.$list, iDragPosition, iDropPosition);
+
+                                var oData = sap.ui.getCore().getModel("products").oData;
+                                console.log("oDAta");
+                                console.log(oData);
+                                // var oData = this.getView().getModel("products").oData;
+                                that_.retrieveListData(oData, iDragPosition, iDropPosition);
 
                                 oGrid.removeItem(oDragged);
 
