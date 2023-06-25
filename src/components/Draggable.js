@@ -92,6 +92,14 @@ export default class IFMDraggable extends HTMLElement {
     }
 
     // SETTINGS
+    onCustomWidgetDestroy() {
+
+    }
+
+    disconnectedCallback() {
+
+    }
+
     onCustomWidgetBeforeUpdate(changedProperties) {
         this._props = { ...this._props, ...changedProperties };
         console.log("before update:");
@@ -119,6 +127,7 @@ export default class IFMDraggable extends HTMLElement {
 
     buildUI(that) {
         var that_ = that;
+
         console.log("start build ui");
 
         if (that_._firstConnection === 0) {
@@ -142,7 +151,7 @@ export default class IFMDraggable extends HTMLElement {
 
 
                     onInit: function (oEvent) {
-                        //this.oPanel = this.byId("oPanel");
+                        this.oPanel = this.byId("oPanel");
                         console.log("-------oninit--------");
                         if (that._firstConnection === 0) {
                             this.configGrid();
