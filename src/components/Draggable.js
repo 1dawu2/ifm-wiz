@@ -68,33 +68,17 @@ export default class IFMDraggable extends HTMLElement {
         console.log("list item for data preparation");
         var modelData = new sap.ui.model.json.JSONModel();
         var sacList = { "productItems": [] };
-        // sacList["productItems"] = {
-        //     "id": listItems[i].id,
-        //     "description": listItems[i].description,
-        //     "iconFile": listItems[i].iconFile
-        // };
 
         if (typeof listItems != 'undefined' && listItems) {
             Object.values(listItems).forEach(
                 val => sacList["productItems"].push(val)
             );
-            // for (const key in listItems) {
-            //     if (listItems.hasOwnProperty(key)) {
-            //         for (const item in key) {
-            //             if (key.hasOwnProperty(item)) {
-            //                 console.log("list item from object:");
-            //                 console.log(key + ":" + item);
-            //             };
-            //         };
-            //     };
-            // };
         }
         console.log("sac list");
         console.log(sacList["productItems"]);
-        // console.log("prepare data");
-        // console.log(sacList);
-        // modelData.setData(sacList);
-        // return modelData
+        modelData.setData(sacList);
+
+        return modelData
     }
 
     // SETTINGS
@@ -126,7 +110,6 @@ export default class IFMDraggable extends HTMLElement {
     buildUI(that) {
         var that_ = that;
         console.log("start build ui");
-        console.log(this.prepareListData(that_.$list));
 
         if (that_._firstConnection === 0) {
             console.log("--First Time --");
@@ -165,27 +148,28 @@ export default class IFMDraggable extends HTMLElement {
                         var oGrid = this.byId("listDragnDrop");
                         var modelProduct = new sap.ui.model.json.JSONModel();
                         console.log("config grid");
-                        modelProduct.setData(
-                            {
-                                "productItems": [
-                                    {
-                                        "id": "Website",
-                                        "description": "http://www.infomotion.de",
-                                        "iconFile": "sap-icon://world"
-                                    },
-                                    {
-                                        "id": "Telefon",
-                                        "description": "+49 69 56608 3231",
-                                        "iconFile": "sap-icon://call"
-                                    },
-                                    {
-                                        "id": "Mail",
-                                        "description": "david.wurm@infomotion.de",
-                                        "iconFile": "sap-icon://business-card"
-                                    }
-                                ]
-                            }
-                        );
+                        modelProduct.setData(this.prepareListData(that_.$list));
+                        // modelProduct.setData(
+                        //     {
+                        //         "productItems": [
+                        //             {
+                        //                 "id": "Website",
+                        //                 "description": "http://www.infomotion.de",
+                        //                 "iconFile": "sap-icon://world"
+                        //             },
+                        //             {
+                        //                 "id": "Telefon",
+                        //                 "description": "+49 69 56608 3231",
+                        //                 "iconFile": "sap-icon://call"
+                        //             },
+                        //             {
+                        //                 "id": "Mail",
+                        //                 "description": "david.wurm@infomotion.de",
+                        //                 "iconFile": "sap-icon://business-card"
+                        //             }
+                        //         ]
+                        //     }
+                        // );
                         sap.ui.getCore().setModel(modelProduct, "products");
                         console.log("--- my product model ---");
                         console.log(modelProduct);
