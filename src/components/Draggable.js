@@ -77,8 +77,14 @@ export default class IFMDraggable extends HTMLElement {
         console.log(event);
     }
 
-    arrayMove(arr, fromIndex, toIndex) {
+    retrieveListData(listItems, fromIndex, toIndex) {
         var element = arr[fromIndex];
+        var sacList = [];
+        if (typeof listItems != 'undefined' && listItems) {
+            Object.values(listItems).forEach(
+                val => sacList.push(val)
+            );
+        }
         arr.splice(fromIndex, 1);
         arr.splice(toIndex, 0, element);
     }
@@ -204,6 +210,9 @@ export default class IFMDraggable extends HTMLElement {
                                 console.log(iDragPosition);
                                 console.log("Drop Position");
                                 console.log(iDropPosition);
+
+                                console.log("--- my product model ---");
+                                console.log(modelProduct);
                                 that_.arrayMove(this.$list, iDragPosition, iDropPosition);
 
                                 oGrid.removeItem(oDragged);
