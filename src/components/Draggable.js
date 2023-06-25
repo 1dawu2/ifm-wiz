@@ -71,6 +71,7 @@ export default class IFMDraggable extends HTMLElement {
         console.log(this.$list);
     }
 
+    // HELPER
     fireChanged(event) {
         console.log("onClick triggerd");
         console.log(event);
@@ -91,7 +92,11 @@ export default class IFMDraggable extends HTMLElement {
         return sacList
     }
 
-    // SETTINGS
+    setListData(listItems) {
+
+    }
+
+    // CLEAN-UP
     onCustomWidgetDestroy() {
 
     }
@@ -100,6 +105,7 @@ export default class IFMDraggable extends HTMLElement {
 
     }
 
+    // SETTINGS
     onCustomWidgetBeforeUpdate(changedProperties) {
         this._props = { ...this._props, ...changedProperties };
         console.log("before update:");
@@ -181,6 +187,8 @@ export default class IFMDraggable extends HTMLElement {
                             dropPosition: DropPosition.Between,
                             dropLayout: DropLayout.Vertical,
                             drop: function (oInfo) {
+                                console.log("Drag&Dropp Info:");
+                                console.log(oInfo);
                                 var oDragged = oInfo.getParameter("draggedControl"),
                                     oDropped = oInfo.getParameter("droppedControl"),
                                     sInsertPosition = oInfo.getParameter("dropPosition"),
@@ -200,6 +208,8 @@ export default class IFMDraggable extends HTMLElement {
                                 }
 
                                 oGrid.insertItem(oDragged, iDropPosition);
+                                console.log("Grid")
+                                console.log(oGrid)
                             }
                         }));
                     },
