@@ -204,6 +204,7 @@ export default class IFMDraggable extends HTMLElement {
                                 console.log(iDragPosition);
                                 console.log("Drop Position");
                                 console.log(iDropPosition);
+                                this.arrayMove(this.$list, iDragPosition, iDropPosition);
 
                                 oGrid.removeItem(oDragged);
 
