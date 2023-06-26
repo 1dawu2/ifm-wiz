@@ -78,14 +78,9 @@ export default class IFMDraggable extends HTMLElement {
     }
 
     retrieveListData(listItems, fromIndex, toIndex) {
-        var sacList = [];
-        if (typeof listItems != 'undefined' && listItems) {
-            Object.values(listItems).forEach(
-                val => sacList.push(val)
-            );
-        }
-        arr.splice(fromIndex, 1);
-        arr.splice(toIndex, 0, element);
+        var element = listItems["productItems"][fromIndex];
+        listItems["productItems"].splice(fromIndex, 1);
+        listItems["productItems"].splice(toIndex, 0, element);
     }
 
     prepareListData(listItems) {
@@ -210,17 +205,9 @@ export default class IFMDraggable extends HTMLElement {
                                 console.log("Drop Position");
                                 console.log(iDropPosition);
 
-                                var oBindingContext = oInfo.getSource().getBindingContext();
-                                console.log("list items binding context");
-                                console.log(oBindingContext)
-
-                                console.log("--- my product model ---");
-                                console.log(modelProduct);
-
                                 var oData = sap.ui.getCore().getModel("products").oData;
-                                console.log("oDAta");
+                                console.log("oData");
                                 console.log(oData);
-                                // var oData = this.getView().getModel("products").oData;
                                 that_.retrieveListData(oData, iDragPosition, iDropPosition);
 
                                 oGrid.removeItem(oDragged);
