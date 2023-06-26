@@ -20,9 +20,6 @@ tmpl.innerHTML = `
       xmlns:mvc="sap.ui.core.mvc">
         <f:GridContainer            
             snapToRow="true">
-            <f:layout>
-                <f:GridContainerSettings rowSize="5rem" columnSize="5rem" gap="1rem" />
-            </f:layout>
             <f:Card width="500px">                
                 <f:header>
                     <card:Header iconSrc="sap-icon://sort" title="Sort Order" subtitle="Material" />
