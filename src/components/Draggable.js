@@ -3,7 +3,7 @@ let tmpl = document.createElement("template");
 tmpl.innerHTML = `
     <style>
     </style>
-    <div id="ifm_hack_content" name="ifm_hack_content">
+    <div id="ifm_draggable" name="ifm_draggable">
       <slot name="content"></slot>
     </div>
     <script id="oView" name="oView" type="sapui5/xmlview">
@@ -17,26 +17,28 @@ tmpl.innerHTML = `
       xmlns:m="sap.m"
       xmlns:f="sap.f"
       xmlns:card="sap.f.cards"
-      xmlns:mvc="sap.ui.core.mvc">
-        <f:GridContainer            
-            snapToRow="true">
-            <f:Card width="500px">                
-                <f:header>
-                    <card:Header iconSrc="sap-icon://sort" title="Sort Order" subtitle="Material" />
-                </f:header>
-                <f:content>
-                    <m:List
-                        id="listDragnDrop"
-                        showSeparators="None"                    
-                        items="{products>/productItems}">                        
-                        <m:StandardListItem
-                            description="{products>description}"
-                            icon="{products>iconFile}"
-                            title="{products>id}" />
-                    </m:List>
-                </f:content>
-            </f:Card>
-        </f:GridContainer>
+      xmlns:mvc="sap.ui.core.mvc"
+      height="100%">
+        <f:Card width="500px">                
+            <f:header>
+                <card:Header iconSrc="sap-icon://sort" title="Sort Order" subtitle="Material" />
+                <f:action>
+                    <Button name="close" design="Emphasized" text="close" />
+                </f:action>
+            </f:header>
+            <f:content>
+                <m:List
+                    showSeparators="All"
+                    id="listDragnDrop"
+                    showSeparators="None"                    
+                    items="{products>/productItems}">                        
+                    <m:StandardListItem
+                        description="{products>description}"
+                        icon="{products>iconFile}"
+                        title="{products>id}" />
+                </m:List>
+            </f:content>
+        </f:Card>
     </mvc:View>
     </script>
 `
@@ -193,6 +195,8 @@ export default class IFMDraggable extends HTMLElement {
                                     sInsertPosition = oInfo.getParameter("dropPosition"),
                                     iDragPosition = oGrid.indexOfItem(oDragged),
                                     iDropPosition = oGrid.indexOfItem(oDropped);
+                                console.log("sInsertPosition");
+                                console.log(sInsertPosition);
                                 console.log("Drag Position: ");
                                 console.log(iDragPosition);
                                 console.log("Drop Position");
