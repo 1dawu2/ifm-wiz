@@ -75,6 +75,7 @@ export default class IFMDraggable extends HTMLElement {
         listItems[modelIdentifier].splice(fromIndex, 1);
         listItems[modelIdentifier].splice(toIndex, 0, element);
         this.$sortedList = listItems[modelIdentifier];
+        changedProperties['sortedList'] = $this.sortedList;
         console.log("sorted list items");
         console.log(this.$sortedList);
 
