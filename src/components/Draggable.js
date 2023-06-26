@@ -82,6 +82,8 @@ export default class IFMDraggable extends HTMLElement {
         listItems[modelIdentifier].splice(fromIndex, 1);
         listItems[modelIdentifier].splice(toIndex, 0, element);
         this.$sortedList = listItems[modelIdentifier];
+        console.log("sorted list items");
+        console.log(this.$sortedList);
     }
 
     prepareListData(listItems) {
@@ -117,10 +119,6 @@ export default class IFMDraggable extends HTMLElement {
         console.log(this._firstConnection);
         if ("list" in changedProperties) {
             this.$list = changedProperties["list"];
-            // if (typeof this.$list != 'undefined' && this.$list) {
-            //     console.log(this.$list);
-            //     this.prepareListData(this.$list);
-            // }
         }
     }
 
@@ -195,8 +193,6 @@ export default class IFMDraggable extends HTMLElement {
                             dropPosition: DropPosition.Between,
                             dropLayout: DropLayout.Vertical,
                             drop: function (oInfo) {
-                                console.log("Drag&Dropp Info:");
-                                console.log(oInfo);
                                 var oDragged = oInfo.getParameter("draggedControl"),
                                     oDropped = oInfo.getParameter("droppedControl"),
                                     sInsertPosition = oInfo.getParameter("dropPosition"),
@@ -223,8 +219,6 @@ export default class IFMDraggable extends HTMLElement {
                                 }
 
                                 oGrid.insertItem(oDragged, iDropPosition);
-                                // console.log("Grid")
-                                // console.log(oGrid)
                             }
                         }));
                     },
