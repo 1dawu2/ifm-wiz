@@ -134,6 +134,8 @@ export default class IFMDraggable extends HTMLElement {
             console.log("sorted list after update");
             console.log(this.$sortedList);
         }
+        console.log("changed properties");
+        console.log(changedProperties);
     }
 
     buildUI(that) {
