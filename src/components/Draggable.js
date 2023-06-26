@@ -199,9 +199,6 @@ export default class IFMDraggable extends HTMLElement {
                                 console.log(iDropPosition);
 
                                 var oData = sap.ui.getCore().getModel("products").oData;
-                                console.log("oData");
-                                console.log(oData);
-                                that_.retrieveListData(oData, "productItems", iDragPosition, iDropPosition);
 
                                 oGrid.removeItem(oDragged);
 
@@ -213,6 +210,9 @@ export default class IFMDraggable extends HTMLElement {
                                     iDropPosition++;
                                 }
 
+                                that_.retrieveListData(oData, "productItems", iDragPosition, iDropPosition);
+                                console.log("oData");
+                                console.log(oData)
                                 oGrid.insertItem(oDragged, iDropPosition);
                             }
                         }));
