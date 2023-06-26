@@ -69,11 +69,13 @@ export default class IFMDraggable extends HTMLElement {
     updateList(oData) {
         console.log("oData update");
         console.log(oData);
-        var sacList = {};
+        var sacList = [];
         if (typeof oData != 'undefined' && oData) {
             Object.values(oData).forEach(
                 val => sacList.push(val)
             );
+            console.log("updated list");
+            console.log(sacList);
             this.$list = sacList;
         }
     }
