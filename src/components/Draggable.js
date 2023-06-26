@@ -123,6 +123,7 @@ export default class IFMDraggable extends HTMLElement {
         console.log(this._firstConnection);
         if ("list" in changedProperties) {
             this.$list = changedProperties["list"];
+            this.$sortedList = this.$list;
             if (typeof this.$list != 'undefined' && this.$list) {
                 console.log(this.$list);
                 this.buildUI(this);
