@@ -22,9 +22,6 @@ tmpl.innerHTML = `
         <f:Card width="500px">                
             <f:header>
                 <card:Header iconSrc="sap-icon://sort" title="Sort Order" subtitle="Material" />
-                <f:action>
-                    <Button name="close" design="Emphasized" text="close" />
-                </f:action>
             </f:header>
             <f:content>
                 <m:List
