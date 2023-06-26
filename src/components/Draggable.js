@@ -19,22 +19,15 @@ tmpl.innerHTML = `
       xmlns:card="sap.f.cards"
       xmlns:mvc="sap.ui.core.mvc"
       height="100%">
-        <f:Card width="500px">                
-            <f:header>
-                <card:Header iconSrc="sap-icon://sort" title="Sort Order" subtitle="Material" />
-            </f:header>
-            <f:content>
-                <m:List
-                    showSeparators="All"
-                    id="listDragnDrop"                 
-                    items="{products>/productItems}">                        
-                    <m:StandardListItem
-                        description="{products>description}"
-                        icon="{products>iconFile}"
-                        title="{products>id}" />
-                </m:List>
-            </f:content>
-        </f:Card>
+        <m:List
+            showSeparators="All"
+            id="listDragnDrop"                 
+            items="{products>/productItems}">                        
+            <m:StandardListItem
+                description="{products>description}"
+                icon="{products>iconFile}"
+                title="{products>id}" />
+        </m:List>
     </mvc:View>
     </script>
 `
@@ -60,18 +53,8 @@ export default class IFMDraggable extends HTMLElement {
 
         // handle variables
         this._props = {};
-        this._props.sortedList = [];
         this._firstConnection = 0;
     }
-
-    // Getter & Setter
-    // get sortedList() {
-    //     return this._props.sortedList;
-    // }
-
-    // set sortedList(listItems) {
-    //     this._props.sortedList = listItems;
-    // }
 
     // HELPER
     fireChanged(event) {
@@ -84,12 +67,17 @@ export default class IFMDraggable extends HTMLElement {
         listItems[modelIdentifier].splice(fromIndex, 1);
         listItems[modelIdentifier].splice(toIndex, 0, element);
 
-        this.getSortedList(listItems[modelIdentifier]);
+        // this.getSortedList(listItems[modelIdentifier]);
     }
 
-    getSortedList(listItems) {
-        this._props.sortedList = listItems;
+    updateList(oData) {
+        console.log("oData update");
+        console.log(oData);
     }
+
+    // getSortedList(listItems) {
+    //     this._props.sortedList = listItems;
+    // }
 
     prepareListData(listItems, modelIdentifier) {
         var sacList = { "productItems": [] };
@@ -98,6 +86,7 @@ export default class IFMDraggable extends HTMLElement {
             Object.values(listItems).forEach(
                 val => sacList["productItems"].push(val)
             );
+            this.updateList(sacList["productItems"]);
         }
 
         return sacList
@@ -120,10 +109,6 @@ export default class IFMDraggable extends HTMLElement {
         if ("list" in changedProperties) {
             this.$list = changedProperties["list"];
         };
-
-        if ("sortedList" in changedProperties) {
-            this.$sortedList = changedProperties["sortedList"];
-        };
     }
 
     onCustomWidgetAfterUpdate(changedProperties) {
@@ -131,21 +116,17 @@ export default class IFMDraggable extends HTMLElement {
         console.log(this._firstConnection);
         if ("list" in changedProperties) {
             this.$list = changedProperties["list"];
-            this.$sortedList = this.$list;
             if (typeof this.$list != 'undefined' && this.$list) {
                 this.buildUI(this);
             };
         };
 
-        if ("sortedList" in changedProperties) {
-            this.$sortedList = changedProperties["sortedList"];
-        };
     }
 
     // Attribute Observer
     static get observedAttributes() {
         return [
-            "sortedList"
+            "list"
         ];
     }
 
@@ -226,6 +207,7 @@ export default class IFMDraggable extends HTMLElement {
                                 var oData = sap.ui.getCore().getModel("products").oData;
 
                                 that_.retrieveListData(oData, "productItems", iDragPosition, iDropPosition);
+                                that_.updateList(oData);
                                 oGrid.insertItem(oDragged, iDropPosition);
                             }
                         }));
