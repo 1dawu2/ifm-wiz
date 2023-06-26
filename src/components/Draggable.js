@@ -65,9 +65,13 @@ export default class IFMDraggable extends HTMLElement {
         console.log(this.$list);
     }
 
-    // Getter
+    // Getter & Setter
     get sortedList() {
         return this._props.sortedList;
+    }
+
+    set sortedList(listItems) {
+        this._props.sortedList = listItems;
     }
 
     // HELPER
@@ -85,7 +89,9 @@ export default class IFMDraggable extends HTMLElement {
     }
 
     getSortedList(listItems) {
-        return this._props.sortedList = listItems;
+        console.log("function getSortedList");
+        console.log(listItems);
+        this._props.sortedList = listItems;
     }
 
     prepareListData(listItems) {
