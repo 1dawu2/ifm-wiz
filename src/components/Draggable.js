@@ -75,8 +75,8 @@ export default class IFMDraggable extends HTMLElement {
                 val => sacList.push(val)
             );
             console.log("updated list");
-            console.log(sacList);
             this.$list = sacList;
+            console.log(this.$list);
         }
     }
 
