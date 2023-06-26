@@ -18,8 +18,6 @@ tmpl.innerHTML = `
       xmlns:f="sap.f"
       xmlns:card="sap.f.cards"
       xmlns:mvc="sap.ui.core.mvc">
-      <m:content>
-        <m:Panel height="100%" expandable="true" expanded="true" headerText="Maintain Aggregate" id="oPanel">
             <f:GridContainer            
                 snapToRow="true">
                 <f:layout>
@@ -42,7 +40,6 @@ tmpl.innerHTML = `
                     </f:content>
                 </f:Card>
             </f:GridContainer>
-        </m:Panel>
     </m:content>
     </mvc:View>
     </script>
