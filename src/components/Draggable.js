@@ -13,12 +13,8 @@ tmpl.innerHTML = `
 	  xmlns:dnd="sap.ui.core.dnd"
 	  xmlns:dnd-grid="sap.f.dnd"
       xmlns:core="sap.ui.core"
-      xmlns:t="sap.ui.table"
       xmlns:m="sap.m"
-      xmlns:f="sap.f"
-      xmlns:card="sap.f.cards"
-      xmlns:mvc="sap.ui.core.mvc"
-      height="100%">
+      xmlns:mvc="sap.ui.core.mvc">
         <m:List
             showSeparators="All"
             id="listDragnDrop"                 
@@ -73,11 +69,14 @@ export default class IFMDraggable extends HTMLElement {
     updateList(oData) {
         console.log("oData update");
         console.log(oData);
+        var sacList = {};
+        if (typeof oData != 'undefined' && oData) {
+            Object.values(oData).forEach(
+                val => sacList.push(val)
+            );
+            this.$list = sacList;
+        }
     }
-
-    // getSortedList(listItems) {
-    //     this._props.sortedList = listItems;
-    // }
 
     prepareListData(listItems, modelIdentifier) {
         var sacList = { "productItems": [] };
