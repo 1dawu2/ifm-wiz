@@ -77,10 +77,11 @@ export default class IFMDraggable extends HTMLElement {
         console.log(event);
     }
 
-    retrieveListData(listItems, fromIndex, toIndex) {
-        var element = listItems["productItems"][fromIndex];
-        listItems["productItems"].splice(fromIndex, 1);
-        listItems["productItems"].splice(toIndex, 0, element);
+    retrieveListData(listItems, modelIdentifier, fromIndex, toIndex) {
+        var element = listItems[modelIdentifier][fromIndex];
+        listItems[modelIdentifier].splice(fromIndex, 1);
+        listItems[modelIdentifier].splice(toIndex, 0, element);
+        this.$sortedList = listItems[modelIdentifier];
     }
 
     prepareListData(listItems) {
@@ -98,9 +99,7 @@ export default class IFMDraggable extends HTMLElement {
         return sacList
     }
 
-    setListData(listItems) {
 
-    }
 
     // CLEAN-UP
     onCustomWidgetDestroy() {
@@ -134,6 +133,9 @@ export default class IFMDraggable extends HTMLElement {
                 console.log(this.$list);
                 this.buildUI(this);
             }
+        }
+        if ("sortedList" in changedProperties) {
+            this.$sortedList = changedProperties["sortedList"];
         }
     }
 
@@ -208,7 +210,7 @@ export default class IFMDraggable extends HTMLElement {
                                 var oData = sap.ui.getCore().getModel("products").oData;
                                 console.log("oData");
                                 console.log(oData);
-                                that_.retrieveListData(oData, iDragPosition, iDropPosition);
+                                that_.retrieveListData(oData, "productItems", iDragPosition, iDropPosition);
 
                                 oGrid.removeItem(oDragged);
 

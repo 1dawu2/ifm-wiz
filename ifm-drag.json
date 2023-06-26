@@ -22,6 +22,10 @@
         "list": {
             "type": "ListItem[]",
             "description": "Array of list items"
+        },
+        "sortedList": {
+            "type": "string[]",
+            "description": "Sorted array of list items"
         }
     },
     "methods": {
@@ -39,39 +43,43 @@
             "returnType": "ListItem[]",
             "description": "Get list",
             "body": "return this.list;"
-        }
-    },
-    "types": {
-        "ListItem": {
-            "description": "A list item",
-            "properties": [
-                {
-                    "name": "id",
-                    "type": "string",
-                    "description": "ID of the list item",
-                    "mandatory": true
-                },
-                {
-                    "name": "description",
-                    "type": "string",
-                    "description": "Description of the list item",
-                    "mandatory": false
-                },
-                {
-                    "name": "iconFile",
-                    "type": "string",
-                    "description": "Icon file name of the list item",
-                    "mandatory": false
-                }
-            ]
-        }
-    },
-    "events": {
-        "onStart": {
-            "description": "onStart events trigger"
         },
-        "onClick": {
-            "description": "onClick events trigger"
+        "getSortedList": {
+            "returnType": "string[]",
+            "description": "Get sorted list",
+            "body": "return this.sortedList;"
+        },
+        "types": {
+            "ListItem": {
+                "description": "A list item",
+                "properties": [
+                    {
+                        "name": "id",
+                        "type": "string",
+                        "description": "ID of the list item",
+                        "mandatory": true
+                    },
+                    {
+                        "name": "description",
+                        "type": "string",
+                        "description": "Description of the list item",
+                        "mandatory": false
+                    },
+                    {
+                        "name": "iconFile",
+                        "type": "string",
+                        "description": "Icon file name of the list item",
+                        "mandatory": false
+                    }
+                ]
+            }
+        },
+        "events": {
+            "onStart": {
+                "description": "onStart events trigger"
+            },
+            "onClick": {
+                "description": "onClick events trigger"
+            }
         }
     }
-}
