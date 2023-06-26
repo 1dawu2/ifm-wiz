@@ -113,6 +113,9 @@ export default class IFMDraggable extends HTMLElement {
         if ("list" in changedProperties) {
             this.$list = changedProperties["list"];
         }
+        if ("sortedList" in changedProperties) {
+            this.$sortedList = changedProperties["sortedList"];
+        }
     }
 
     onCustomWidgetAfterUpdate(changedProperties) {
