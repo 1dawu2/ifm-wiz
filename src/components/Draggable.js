@@ -210,6 +210,10 @@ export default class IFMDraggable extends HTMLElement {
                                 console.log("Drop Position");
                                 console.log(iDropPosition);
 
+                                var oBindingContext = oInfo.getSource().getBindingContext();
+                                console.log("list items binding context");
+                                console.log(oBindingContext)
+
                                 console.log("--- my product model ---");
                                 console.log(modelProduct);
 
