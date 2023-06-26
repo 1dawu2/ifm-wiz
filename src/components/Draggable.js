@@ -83,7 +83,7 @@ export default class IFMDraggable extends HTMLElement {
         this.getSortedList(listItems[modelIdentifier]);
     }
 
-    setSortedList(listItems) {
+    getSortedList(listItems) {
         this.$sortedList = listItems;
     }
 
