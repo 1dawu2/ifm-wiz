@@ -92,11 +92,11 @@ export default class IFMDraggable extends HTMLElement {
     }
 
     prepareListData(listItems, modelIdentifier) {
-        var sacList = { modelIdentifier: [] };
+        var sacList = { "productItems": [] };
 
         if (typeof listItems != 'undefined' && listItems) {
             Object.values(listItems).forEach(
-                val => sacList[modelIdentifier].push(val)
+                val => sacList["productItems"].push(val)
             );
         }
 
