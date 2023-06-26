@@ -29,8 +29,7 @@ tmpl.innerHTML = `
             <f:content>
                 <m:List
                     showSeparators="All"
-                    id="listDragnDrop"
-                    showSeparators="None"                    
+                    id="listDragnDrop"                 
                     items="{products>/productItems}">                        
                     <m:StandardListItem
                         description="{products>description}"
