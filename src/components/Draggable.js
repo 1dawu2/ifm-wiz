@@ -62,17 +62,16 @@ export default class IFMDraggable extends HTMLElement {
         this._props = {};
         this._props.sortedList = [];
         this._firstConnection = 0;
-        console.log(this.$list);
     }
 
     // Getter & Setter
-    get sortedList() {
-        return this._props.sortedList;
-    }
+    // get sortedList() {
+    //     return this._props.sortedList;
+    // }
 
-    set sortedList(listItems) {
-        this._props.sortedList = listItems;
-    }
+    // set sortedList(listItems) {
+    //     this._props.sortedList = listItems;
+    // }
 
     // HELPER
     fireChanged(event) {
@@ -89,22 +88,17 @@ export default class IFMDraggable extends HTMLElement {
     }
 
     getSortedList(listItems) {
-        console.log("function getSortedList");
-        console.log(listItems);
         this._props.sortedList = listItems;
     }
 
-    prepareListData(listItems) {
-        console.log("list item for data preparation");
-        var sacList = { "productItems": [] };
+    prepareListData(listItems, modelIdentifier) {
+        var sacList = { modelIdentifier: [] };
 
         if (typeof listItems != 'undefined' && listItems) {
             Object.values(listItems).forEach(
-                val => sacList["productItems"].push(val)
+                val => sacList[modelIdentifier].push(val)
             );
         }
-        console.log("sac list");
-        console.log(sacList["productItems"]);
 
         return sacList
     }
@@ -135,25 +129,33 @@ export default class IFMDraggable extends HTMLElement {
     onCustomWidgetAfterUpdate(changedProperties) {
         console.log("after update:");
         console.log(this._firstConnection);
-        if ("sortedList" in changedProperties) {
-            this.$sortedList = changedProperties["sortedList"];
-            console.log("sorted list after update");
-            console.log(this.$sortedList);
-        };
-
         if ("list" in changedProperties) {
             this.$list = changedProperties["list"];
             this.$sortedList = this.$list;
             if (typeof this.$list != 'undefined' && this.$list) {
-                console.log(this.$list);
                 this.buildUI(this);
             };
         };
 
-        console.log("changed properties");
-        console.log(changedProperties);
+        if ("sortedList" in changedProperties) {
+            this.$sortedList = changedProperties["sortedList"];
+        };
     }
 
+    // Attribute Observer
+    static get observedAttributes() {
+        return [
+            "sortedList"
+        ];
+    }
+
+    attributeChangedCallback(name, oldValue, newValue) {
+        if (oldValue != newValue) {
+            this[name] = newValue;
+        }
+    }
+
+    // Main UI Logic
     buildUI(that) {
         var that_ = that;
 
@@ -178,9 +180,7 @@ export default class IFMDraggable extends HTMLElement {
 
                 return Controller.extend("ifm.drag.initial", {
 
-
                     onInit: function (oEvent) {
-                        // this.oPanel = this.byId("oPanel");
                         console.log("-------oninit--------");
                         if (that._firstConnection === 0) {
                             this.configGrid();
@@ -195,11 +195,8 @@ export default class IFMDraggable extends HTMLElement {
                         var DropPosition = sap.ui.core.dnd.DropPosition;
                         var oGrid = this.byId("listDragnDrop");
                         var modelProduct = new sap.ui.model.json.JSONModel();
-                        console.log("config grid");
-                        modelProduct.setData(that_.prepareListData(that_.$list));
+                        modelProduct.setData(that_.prepareListData(that_.$list, "productItems"));
                         sap.ui.getCore().setModel(modelProduct, "products");
-                        console.log("--- my product model ---");
-                        console.log(modelProduct);
 
                         oGrid.addDragDropConfig(new sap.ui.core.dnd.DragInfo({
                             sourceAggregation: "items"
@@ -215,12 +212,6 @@ export default class IFMDraggable extends HTMLElement {
                                     sInsertPosition = oInfo.getParameter("dropPosition"),
                                     iDragPosition = oGrid.indexOfItem(oDragged),
                                     iDropPosition = oGrid.indexOfItem(oDropped);
-                                console.log("sInsertPosition");
-                                console.log(sInsertPosition);
-                                console.log("Drag Position: ");
-                                console.log(iDragPosition);
-                                console.log("Drop Position");
-                                console.log(iDropPosition);
 
                                 oGrid.removeItem(oDragged);
 
@@ -235,8 +226,6 @@ export default class IFMDraggable extends HTMLElement {
                                 var oData = sap.ui.getCore().getModel("products").oData;
 
                                 that_.retrieveListData(oData, "productItems", iDragPosition, iDropPosition);
-                                console.log("oData");
-                                console.log(oData)
                                 oGrid.insertItem(oDragged, iDropPosition);
                             }
                         }));
