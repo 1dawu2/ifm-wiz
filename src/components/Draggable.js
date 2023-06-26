@@ -18,30 +18,32 @@ tmpl.innerHTML = `
       xmlns:f="sap.f"
       xmlns:card="sap.f.cards"
       xmlns:mvc="sap.ui.core.mvc">
-      <m:Panel height="100%" expandable="true" expanded="true" headerText="Maintain Aggregate" id="oPanel">
-        <f:GridContainer            
-            snapToRow="true">
-            <f:layout>
-                <f:GridContainerSettings rowSize="5rem" columnSize="5rem" gap="1rem" />
-            </f:layout>
-            <f:Card width="500px">                
-                <f:header>
-                    <card:Header iconSrc="sap-icon://sort" title="Sort Order" subtitle="Material" />
-                </f:header>
-                <f:content>
-                    <m:List
-                        id="listDragnDrop"
-                        showSeparators="None"                    
-                        items="{products>/productItems}">                        
-                        <m:StandardListItem
-                            description="{products>description}"
-                            icon="{products>iconFile}"
-                            title="{products>id}" />
-                    </m:List>
-                </f:content>
-            </f:Card>
-        </f:GridContainer>
+      <m:content>
+        <m:Panel height="100%" expandable="true" expanded="true" headerText="Maintain Aggregate" id="oPanel">
+            <f:GridContainer            
+                snapToRow="true">
+                <f:layout>
+                    <f:GridContainerSettings rowSize="5rem" columnSize="5rem" gap="1rem" />
+                </f:layout>
+                <f:Card width="500px">                
+                    <f:header>
+                        <card:Header iconSrc="sap-icon://sort" title="Sort Order" subtitle="Material" />
+                    </f:header>
+                    <f:content>
+                        <m:List
+                            id="listDragnDrop"
+                            showSeparators="None"                    
+                            items="{products>/productItems}">                        
+                            <m:StandardListItem
+                                description="{products>description}"
+                                icon="{products>iconFile}"
+                                title="{products>id}" />
+                        </m:List>
+                    </f:content>
+                </f:Card>
+            </f:GridContainer>
         </m:Panel>
+    </m:content>
     </mvc:View>
     </script>
 `
@@ -103,8 +105,6 @@ export default class IFMDraggable extends HTMLElement {
         return sacList
     }
 
-
-
     // CLEAN-UP
     onCustomWidgetDestroy() {
 
@@ -165,7 +165,7 @@ export default class IFMDraggable extends HTMLElement {
 
 
                     onInit: function (oEvent) {
-                        this.oPanel = this.byId("oPanel");
+                        // this.oPanel = this.byId("oPanel");
                         console.log("-------oninit--------");
                         if (that._firstConnection === 0) {
                             this.configGrid();
