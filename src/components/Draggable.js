@@ -64,6 +64,11 @@ export default class IFMDraggable extends HTMLElement {
         console.log(this.$list);
     }
 
+    // Getter
+    get sortedList() {
+        return this.$sortedList;
+    }
+
     // HELPER
     fireChanged(event) {
         console.log("onClick triggerd");
@@ -74,12 +79,12 @@ export default class IFMDraggable extends HTMLElement {
         var element = listItems[modelIdentifier][fromIndex];
         listItems[modelIdentifier].splice(fromIndex, 1);
         listItems[modelIdentifier].splice(toIndex, 0, element);
-        this.$sortedList = listItems[modelIdentifier];
-        changedProperties['sortedList'] = $this.sortedList;
-        console.log("sorted list items");
-        console.log(this.$sortedList);
 
-        return this.$sortedList;
+        this.getSortedList(listItems[modelIdentifier]);
+    }
+
+    setSortedList(listItems) {
+        this.$sortedList = listItems;
     }
 
     prepareListData(listItems) {
@@ -113,28 +118,31 @@ export default class IFMDraggable extends HTMLElement {
         console.log(this._firstConnection);
         if ("list" in changedProperties) {
             this.$list = changedProperties["list"];
-        }
+        };
+
         if ("sortedList" in changedProperties) {
             this.$sortedList = changedProperties["sortedList"];
-        }
+        };
     }
 
     onCustomWidgetAfterUpdate(changedProperties) {
         console.log("after update:");
         console.log(this._firstConnection);
+        if ("sortedList" in changedProperties) {
+            this.$sortedList = changedProperties["sortedList"];
+            console.log("sorted list after update");
+            console.log(this.$sortedList);
+        };
+
         if ("list" in changedProperties) {
             this.$list = changedProperties["list"];
             this.$sortedList = this.$list;
             if (typeof this.$list != 'undefined' && this.$list) {
                 console.log(this.$list);
                 this.buildUI(this);
-            }
-        }
-        if ("sortedList" in changedProperties) {
-            this.$sortedList = changedProperties["sortedList"];
-            console.log("sorted list after update");
-            console.log(this.$sortedList);
-        }
+            };
+        };
+
         console.log("changed properties");
         console.log(changedProperties);
     }
