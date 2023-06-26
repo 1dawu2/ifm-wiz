@@ -84,6 +84,8 @@ export default class IFMDraggable extends HTMLElement {
         this.$sortedList = listItems[modelIdentifier];
         console.log("sorted list items");
         console.log(this.$sortedList);
+
+        return this.$sortedList;
     }
 
     prepareListData(listItems) {
