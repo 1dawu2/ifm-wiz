@@ -18,29 +18,28 @@ tmpl.innerHTML = `
       xmlns:f="sap.f"
       xmlns:card="sap.f.cards"
       xmlns:mvc="sap.ui.core.mvc">
-            <f:GridContainer            
-                snapToRow="true">
-                <f:layout>
-                    <f:GridContainerSettings rowSize="5rem" columnSize="5rem" gap="1rem" />
-                </f:layout>
-                <f:Card width="500px">                
-                    <f:header>
-                        <card:Header iconSrc="sap-icon://sort" title="Sort Order" subtitle="Material" />
-                    </f:header>
-                    <f:content>
-                        <m:List
-                            id="listDragnDrop"
-                            showSeparators="None"                    
-                            items="{products>/productItems}">                        
-                            <m:StandardListItem
-                                description="{products>description}"
-                                icon="{products>iconFile}"
-                                title="{products>id}" />
-                        </m:List>
-                    </f:content>
-                </f:Card>
-            </f:GridContainer>
-    </m:content>
+        <f:GridContainer            
+            snapToRow="true">
+            <f:layout>
+                <f:GridContainerSettings rowSize="5rem" columnSize="5rem" gap="1rem" />
+            </f:layout>
+            <f:Card width="500px">                
+                <f:header>
+                    <card:Header iconSrc="sap-icon://sort" title="Sort Order" subtitle="Material" />
+                </f:header>
+                <f:content>
+                    <m:List
+                        id="listDragnDrop"
+                        showSeparators="None"                    
+                        items="{products>/productItems}">                        
+                        <m:StandardListItem
+                            description="{products>description}"
+                            icon="{products>iconFile}"
+                            title="{products>id}" />
+                    </m:List>
+                </f:content>
+            </f:Card>
+        </f:GridContainer>
     </mvc:View>
     </script>
 `
