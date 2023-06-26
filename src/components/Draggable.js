@@ -131,6 +131,8 @@ export default class IFMDraggable extends HTMLElement {
         }
         if ("sortedList" in changedProperties) {
             this.$sortedList = changedProperties["sortedList"];
+            console.log("sorted list after update");
+            console.log(this.$sortedList);
         }
     }
 
