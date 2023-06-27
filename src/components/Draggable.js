@@ -71,6 +71,14 @@ export default class IFMDraggable extends HTMLElement {
         this._props.list = newList;
     }
 
+    getList() {
+        return this.$list
+    }
+
+    setList(newList) {
+        this.$list = newList;
+    }
+
     // HELPER
     fireChanged(event) {
         console.log("onClick triggerd");
@@ -92,8 +100,9 @@ export default class IFMDraggable extends HTMLElement {
                 val => sacList.push(val)
             );
             console.log("updated list");
-            this.$list = sacList;
-            this._props.list = sacList;
+            this.$list = {};
+            console.log(this.$list);
+            this._props.list = {};
             console.log(this._props);
         }
     }
