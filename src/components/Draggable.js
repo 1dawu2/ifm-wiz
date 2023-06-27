@@ -53,7 +53,7 @@ export default class IFMDraggable extends HTMLElement {
         this.addEventListener("click", event => {
             var event = new Event("onClick");
             this.dispatchEvent(event);
-            this.fireChanged(event);
+            this._fireEventChanged(event);
         });
 
         // handle variables
@@ -80,11 +80,36 @@ export default class IFMDraggable extends HTMLElement {
     }
 
     // HELPER
-    fireChanged(event) {
+    _fireEventChanged(event) {
         console.log("onClick triggerd");
         console.log(event);
     }
 
+    _firePropertiesChanged() {
+        this.list = "";
+        this.dispatchEvent(new CustomEvent("propertiesChanged", {
+            detail: {
+                properties: {
+                    list: this.list
+                }
+            }
+        }));
+    }
+
+    // Attribute Observer
+    static get observedAttributes() {
+        return [
+            "list"
+        ];
+    }
+
+    attributeChangedCallback(name, oldValue, newValue) {
+        if (oldValue != newValue) {
+            this[name] = newValue;
+        }
+    }
+
+    // CONTROL FLOW
     retrieveListData(listItems, modelIdentifier, fromIndex, toIndex) {
         var element = listItems[modelIdentifier][fromIndex];
         listItems[modelIdentifier].splice(fromIndex, 1);
@@ -100,10 +125,12 @@ export default class IFMDraggable extends HTMLElement {
                 val => sacList.push(val)
             );
             console.log("updated list");
-            this.$list = {};
+
+            this.list = sacList;
             console.log(this.$list);
-            this._props.list = {};
+            this._props.list = sacList;
             console.log(this._props);
+            this._firePropertiesChanged();
         }
     }
 
@@ -152,19 +179,6 @@ export default class IFMDraggable extends HTMLElement {
             };
         };
 
-    }
-
-    // Attribute Observer
-    static get observedAttributes() {
-        return [
-            "list"
-        ];
-    }
-
-    attributeChangedCallback(name, oldValue, newValue) {
-        if (oldValue != newValue) {
-            this[name] = newValue;
-        }
     }
 
     // Main UI Logic
