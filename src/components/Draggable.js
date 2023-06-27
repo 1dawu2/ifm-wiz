@@ -9,24 +9,30 @@ tmpl.innerHTML = `
     <script id="oView" name="oView" type="sapui5/xmlview">
     <mvc:View
         controllerName="ifm.drag.initial"
-        xmlns:grid="sap.ui.layout.cssgrid"
+        xmlns:l="sap.ui.layout"  
         xmlns:dnd="sap.ui.core.dnd"
         xmlns:dnd-grid="sap.f.dnd"
         xmlns:core="sap.ui.core"
         xmlns:m="sap.m"        
         xmlns:mvc="sap.ui.core.mvc"
         xmlns:f="sap.f"
-        xmlns:card="sap.f.cards"        
+        xmlns:card="sap.f.cards"
         height="100%">
-            <m:List
-                showSeparators="All"
-                id="listDragnDrop"                 
-                items="{products>/productItems}">                        
-                <m:StandardListItem
-                    description="{products>description}"
-                    icon="{products>iconFile}"
-                    title="{products>id}" />
-            </m:List>       
+            <l:VerticalLayout
+                class="sapUiContentPadding"
+                width="100%">
+                <l:content>
+                    <m:List
+                        showSeparators="All"
+                        id="listDragnDrop"                 
+                        items="{products>/productItems}">                        
+                        <m:StandardListItem
+                            description="{products>description}"
+                            icon="{products>iconFile}"
+                            title="{products>id}" />
+                    </m:List>
+                </l:content>
+            </l:VerticalLayout>
     </mvc:View>
     </script>
 `
@@ -95,6 +101,9 @@ export default class IFMDraggable extends HTMLElement {
             this.updateList(sacList["productItems"]);
         }
 
+        console.log("prepared list");
+        console.log(sacList);
+
         return sacList
     }
 
@@ -158,7 +167,6 @@ export default class IFMDraggable extends HTMLElement {
         sap.ui.define(
             [
                 "sap/ui/core/mvc/Controller",
-                "sap/ui/export/Spreadsheet",
                 "sap/f/dnd/GridDropInfo",
                 "sap/ui/core/library",
             ],
