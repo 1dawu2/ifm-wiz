@@ -72,11 +72,11 @@ export default class IFMDraggable extends HTMLElement {
     }
 
     getList() {
-        return this.$list
+        return this.list
     }
 
     setList(newList) {
-        this.$list = newList;
+        this.list = newList;
     }
 
     // HELPER
@@ -85,12 +85,14 @@ export default class IFMDraggable extends HTMLElement {
         console.log(event);
     }
 
-    _firePropertiesChanged() {
-        this.list = "";
+    _firePropertiesChanged(value) {
+        this.list = value;
+        console.log("property change");
+        console.log(this.list);
         this.dispatchEvent(new CustomEvent("propertiesChanged", {
             detail: {
                 properties: {
-                    list: this.list
+                    list: value
                 }
             }
         }));
@@ -124,13 +126,7 @@ export default class IFMDraggable extends HTMLElement {
             Object.values(oData).forEach(
                 val => sacList.push(val)
             );
-            console.log("updated list");
-
-            this.list = sacList;
-            console.log(this.$list);
-            this._props.list = sacList;
-            console.log(this._props);
-            this._firePropertiesChanged();
+            this._firePropertiesChanged(sacList);
         }
     }
 
@@ -165,7 +161,7 @@ export default class IFMDraggable extends HTMLElement {
         console.log("before update:");
         console.log(this._firstConnection);
         if ("list" in changedProperties) {
-            this.$list = changedProperties["list"];
+            this.list = changedProperties["list"];
         };
     }
 
@@ -173,8 +169,8 @@ export default class IFMDraggable extends HTMLElement {
         console.log("after update:");
         console.log(this._firstConnection);
         if ("list" in changedProperties) {
-            this.$list = changedProperties["list"];
-            if (typeof this.$list != 'undefined' && this.$list) {
+            this.list = changedProperties["list"];
+            if (typeof this.list != 'undefined' && this.list) {
                 this.buildUI(this);
             };
         };
@@ -220,7 +216,7 @@ export default class IFMDraggable extends HTMLElement {
                         var DropPosition = sap.ui.core.dnd.DropPosition;
                         var oGrid = this.byId("listDragnDrop");
                         var modelProduct = new sap.ui.model.json.JSONModel();
-                        modelProduct.setData(that_.prepareListData(that_.$list, "productItems"));
+                        modelProduct.setData(that_.prepareListData(that_.list, "productItems"));
                         sap.ui.getCore().setModel(modelProduct, "products");
 
                         oGrid.addDragDropConfig(new sap.ui.core.dnd.DragInfo({
