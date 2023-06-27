@@ -62,6 +62,15 @@ export default class IFMDraggable extends HTMLElement {
         this._firstConnection = 0;
     }
 
+    // GETTER & SETTER
+    get list() {
+        return this._props.list;
+    }
+
+    set list(newList) {
+        this._props.list = newList;
+    }
+
     // HELPER
     fireChanged(event) {
         console.log("onClick triggerd");
@@ -72,8 +81,6 @@ export default class IFMDraggable extends HTMLElement {
         var element = listItems[modelIdentifier][fromIndex];
         listItems[modelIdentifier].splice(fromIndex, 1);
         listItems[modelIdentifier].splice(toIndex, 0, element);
-
-        // this.getSortedList(listItems[modelIdentifier]);
     }
 
     updateList(oData) {

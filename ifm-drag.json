@@ -22,10 +22,6 @@
         "list": {
             "type": "ListItem[]",
             "description": "Array of list items"
-        },
-        "sortedList": {
-            "type": "string[]",
-            "description": "Sorted array of list items"
         }
     },
     "methods": {
@@ -43,11 +39,6 @@
             "returnType": "ListItem[]",
             "description": "Get list",
             "body": "return this.list;"
-        },
-        "getSortedList": {
-            "returnType": "string[]",
-            "description": "Get sorted list",
-            "body": "return this.sortedList;"
         }
     },
     "types": {
