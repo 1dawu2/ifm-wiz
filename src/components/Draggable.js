@@ -17,7 +17,6 @@ tmpl.innerHTML = `
         xmlns:mvc="sap.ui.core.mvc"
         xmlns:f="sap.f"
         xmlns:card="sap.f.cards"        
-        displayBlock="true"
         height="100%">
             <m:List
                 showSeparators="All"
@@ -53,6 +52,7 @@ export default class IFMDraggable extends HTMLElement {
 
         // handle variables
         this._props = {};
+        this._props.list = {};
         this._firstConnection = 0;
     }
 
@@ -80,7 +80,8 @@ export default class IFMDraggable extends HTMLElement {
             );
             console.log("updated list");
             this.$list = sacList;
-            console.log(this.$list);
+            this._props.list = sacList;
+            console.log(this._props);
         }
     }
 
