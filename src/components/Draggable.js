@@ -217,8 +217,7 @@ export default class IFMDraggable extends HTMLElement {
                                 }
 
                                 var oData = sap.ui.getCore().getModel("products").oData;
-                                var updateData = that_.retrieveListData(oData, "productItems", iDragPosition, iDropPosition);
-                                that_.updateList(updateData);
+                                that_.retrieveListData(oData, "productItems", iDragPosition, iDropPosition);
                                 oGrid.insertItem(oDragged, iDropPosition);
                             }
                         }));
