@@ -19,22 +19,15 @@ tmpl.innerHTML = `
         xmlns:card="sap.f.cards"        
         displayBlock="true"
         height="100%">
-        <f:Card class="sapUiMediumMargin" width="300px">
-            <f:header>
-                <card:Header title="Aggregate sorting:" />
-            </f:header>
-		    <f:content>
-                <m:List
-                    showSeparators="All"
-                    id="listDragnDrop"                 
-                    items="{products>/productItems}">                        
-                    <m:StandardListItem
-                        description="{products>description}"
-                        icon="{products>iconFile}"
-                        title="{products>id}" />
-                </m:List>
-            </f:content>
-        </f:Card>        
+            <m:List
+                showSeparators="All"
+                id="listDragnDrop"                 
+                items="{products>/productItems}">                        
+                <m:StandardListItem
+                    description="{products>description}"
+                    icon="{products>iconFile}"
+                    title="{products>id}" />
+            </m:List>       
     </mvc:View>
     </script>
 `
@@ -217,7 +210,9 @@ export default class IFMDraggable extends HTMLElement {
                                 }
 
                                 var oData = sap.ui.getCore().getModel("products").oData;
+
                                 that_.retrieveListData(oData, "productItems", iDragPosition, iDropPosition);
+                                that_.updateList(oData);
                                 oGrid.insertItem(oDragged, iDropPosition);
                             }
                         }));
