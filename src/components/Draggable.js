@@ -8,22 +8,33 @@ tmpl.innerHTML = `
     </div>
     <script id="oView" name="oView" type="sapui5/xmlview">
     <mvc:View
-      controllerName="ifm.drag.initial"
-	  xmlns:grid="sap.ui.layout.cssgrid"
-	  xmlns:dnd="sap.ui.core.dnd"
-	  xmlns:dnd-grid="sap.f.dnd"
-      xmlns:core="sap.ui.core"
-      xmlns:m="sap.m"
-      xmlns:mvc="sap.ui.core.mvc">
-        <m:List
-            showSeparators="All"
-            id="listDragnDrop"                 
-            items="{products>/productItems}">                        
-            <m:StandardListItem
-                description="{products>description}"
-                icon="{products>iconFile}"
-                title="{products>id}" />
-        </m:List>
+        controllerName="ifm.drag.initial"
+        xmlns:grid="sap.ui.layout.cssgrid"
+        xmlns:dnd="sap.ui.core.dnd"
+        xmlns:dnd-grid="sap.f.dnd"
+        xmlns:core="sap.ui.core"
+        xmlns:m="sap.m"        
+        xmlns:mvc="sap.ui.core.mvc"
+        xmlns:f="sap.f"
+        xmlns:card="sap.f.cards"        
+        displayBlock="true"
+        height="100%">
+        <f:Card class="sapUiMediumMargin" width="300px">
+            <f:header>
+                <card:Header title="Aggregate sorting:" />
+            </f:header>
+		    <f:content>
+                <m:List
+                    showSeparators="All"
+                    id="listDragnDrop"                 
+                    items="{products>/productItems}">                        
+                    <m:StandardListItem
+                        description="{products>description}"
+                        icon="{products>iconFile}"
+                        title="{products>id}" />
+                </m:List>
+            </f:content>
+        </f:Card>        
     </mvc:View>
     </script>
 `
