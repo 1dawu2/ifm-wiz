@@ -9,8 +9,6 @@ tmpl.innerHTML = `
     <script id="oView" name="oView" type="sapui5/xmlview">
     <mvc:View
         controllerName="ifm.drag.initial"
-        xmlns:dnd="sap.ui.core.dnd"
-        xmlns:dnd-grid="sap.f.dnd"
         xmlns:core="sap.ui.core"
         xmlns:m="sap.m"        
         xmlns:mvc="sap.ui.core.mvc">
@@ -20,15 +18,10 @@ tmpl.innerHTML = `
                         height="100%"
                         alignItems="Start"
                         justifyContent="Center">
-                            <m:List
-                            showSeparators="All"
-                            id="listDragnDrop"                 
-                            items="{products>/productItems}">                        
-                                <m:StandardListItem
-                                    description="{products>description}"
-                                    icon="{products>iconFile}"
-                                    title="{products>id}" />
-                            </m:List>
+                            <m:Button text="Execute Task Chain"
+                                press="onPress"
+                                ariaDescribedBy="defaultButtonDescription genericButtonDescription">
+                            </m:Button>
                     </m:FlexBox>
                 </m:Panel>
             </m:VBox>
