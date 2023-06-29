@@ -12,15 +12,17 @@ tmpl.innerHTML = `
         xmlns:core="sap.ui.core"
         xmlns:m="sap.m"        
         xmlns:mvc="sap.ui.core.mvc">
-        <m:List
-            showSeparators="All"
-            id="listDragnDrop"                 
-            items="{products>/productItems}">                        
-                <m:StandardListItem
-                    description="{products>description}"
-                    icon="{products>iconFile}"
-                    title="{products>id}" />
-        </m:List>
+        <m:Page class=”sapUiResponsivePadding”>
+            <m:List
+                showSeparators="All"
+                id="ifmDragnDrop"                 
+                items="{products>/productItems}">                        
+                    <m:StandardListItem
+                        description="{products>description}"
+                        icon="{products>iconFile}"
+                        title="{products>id}" />
+            </m:List>
+        </m:Page>
     </mvc:View>
     </script>
 `;
@@ -203,7 +205,7 @@ export default class IFMDraggable extends HTMLElement {
                     configGrid: function () {
                         var DropLayout = sap.ui.core.dnd.DropLayout;
                         var DropPosition = sap.ui.core.dnd.DropPosition;
-                        var oGrid = this.byId("listDragnDrop");
+                        var oGrid = this.byId("ifmDragnDrop");
                         var modelProduct = new sap.ui.model.json.JSONModel();
                         modelProduct.setData(that_.prepareListData(that_.list, "productItems"));
                         sap.ui.getCore().setModel(modelProduct, "products");
