@@ -195,14 +195,14 @@ export default class IFMDraggable extends HTMLElement {
                     onInit: function (oEvent) {
                         console.log("-------oninit--------");
                         if (that._firstConnection === 0) {
-                            this.configGrid();
+                            this.configList();
                             that_._firstConnection = 1;
                         } else {
                             console.log("--- not first connection ---");
                         }
                     },
 
-                    configGrid: function () {
+                    configList: function () {
                         var DropLayout = sap.ui.core.dnd.DropLayout;
                         var DropPosition = sap.ui.core.dnd.DropPosition;
                         var oGrid = this.byId("listDragnDrop");
