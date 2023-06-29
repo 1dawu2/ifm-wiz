@@ -12,24 +12,17 @@ tmpl.innerHTML = `
         xmlns:core="sap.ui.core"
         xmlns:m="sap.m"        
         xmlns:mvc="sap.ui.core.mvc">
-            <m:VBox>
-                <m:Panel headerText="Sort List Items">            
-                    <m:FlexBox
-                        height="100%"
-                        alignItems="Start"
-                        justifyContent="Center">
-                            <m:List
-                                showSeparators="All"
-                                id="listDragnDrop"                 
-                                items="{products>/productItems}">                        
-                                    <m:StandardListItem
-                                        description="{products>description}"
-                                        icon="{products>iconFile}"
-                                        title="{products>id}" />
-                            </m:List>
-                    </m:FlexBox>
-                </m:Panel>
-            </m:VBox>
+            <m:Page width="250px">
+                <m:List
+                    showSeparators="All"
+                    id="listDragnDrop"                 
+                    items="{products>/productItems}">                        
+                        <m:StandardListItem
+                            description="{products>description}"
+                            icon="{products>iconFile}"
+                            title="{products>id}" />
+                </m:List>
+            </m:Page>
     </mvc:View>
     </script>
 `;
