@@ -9,47 +9,29 @@ tmpl.innerHTML = `
     <script id="oView" name="oView" type="sapui5/xmlview">
     <mvc:View
         controllerName="ifm.drag.initial"
-        xmlns:f="sap.f"
-        xmlns:card="sap.f.cards"
+        xmlns:dnd="sap.ui.core.dnd"
+        xmlns:dnd-grid="sap.f.dnd"
         xmlns:core="sap.ui.core"
         xmlns:m="sap.m"        
         xmlns:mvc="sap.ui.core.mvc">
-        <m:NavContainer
-            id="pageContainer"
-            initialPage="root">
-            <m:Page id="root">
-                <m:OverflowToolbar>
-                <m:ToolbarSpacer/>
-                <m:Title text="Sort List"/>
-                <m:ToolbarSpacer/>
-                </m:OverflowToolbar>
-                <m:Panel
-                id="SortList">
-                    <f:GridContainer
-                    id="grid1"
-                    snapToRow="true">
-                        <f:layout>
-                        <f:GridContainerSettings rowSize="5rem" columnSize="5rem" gap="1rem" />
-                        </f:layout>
-                        <f:Card width="400px">
-                        <f:header>
-                            <card:Header title="Kontakt" subtitle="David Wurm" />
-                        </f:header>
-                        <f:content>
+            <m:VBox>
+                <m:Panel headerText="Sort List Items">            
+                    <m:FlexBox
+                        height="100%"
+                        alignItems="Start"
+                        justifyContent="Center">
                             <m:List
-                            showSeparators="None"
-                            items="{products>/productItems}">
-                            <m:StandardListItem
-                                description="{products>description}"
-                                icon="{products>iconFile}"
-                                title="{products>id}" />
+                            showSeparators="All"
+                            id="listDragnDrop"                 
+                            items="{products>/productItems}">                        
+                                <m:StandardListItem
+                                    description="{products>description}"
+                                    icon="{products>iconFile}"
+                                    title="{products>id}" />
                             </m:List>
-                        </f:content>
-                        </f:Card>
-                    </f:GridContainer>
-                </m:Panel>                  
-            </m:Page>
-        </m:NavContainer>
+                    </m:FlexBox>
+                </m:Panel>
+            </m:VBox>
     </mvc:View>
     </script>
 `;
