@@ -25,7 +25,7 @@ tmpl.innerHTML = `
                 <m:ToolbarSpacer/>
                 </m:OverflowToolbar>
                 <m:Panel
-                id="Sort List">
+                id="SortList">
                     <f:GridContainer
                     id="grid1"
                     snapToRow="true">
