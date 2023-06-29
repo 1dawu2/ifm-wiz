@@ -13,19 +13,8 @@ tmpl.innerHTML = `
         xmlns:m="sap.m"        
         xmlns:mvc="sap.ui.core.mvc">
         <m:Page class=”sapUiResponsivePadding”>
-            <m:List
-                showSeparators="All"
-                id="ifmDragnDrop"
-                class="sapUiResponsiveMargin" 
-                width="auto"               
-                items="{products>/productItems}">
-                    <m:headerToolbar>
-                        <m:Toolbar>
-                            <m:Title text="Sort List"/>
-                        </m:Toolbar>
-                    </m:headerToolbar>
-
-            </m:List>
+            <m:content>
+            </m:content>
         </m:Page>
     </mvc:View>
     </script>
