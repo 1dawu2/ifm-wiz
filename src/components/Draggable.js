@@ -12,8 +12,7 @@ tmpl.innerHTML = `
         xmlns:core="sap.ui.core"
         xmlns:m="sap.m"        
         xmlns:mvc="sap.ui.core.mvc">
-            <m:Page>
-
+            <m:VBox width="300px">
                 <m:List
                     showSeparators="All"
                     id="listDragnDrop"                 
@@ -23,8 +22,7 @@ tmpl.innerHTML = `
                             icon="{products>iconFile}"
                             title="{products>id}" />
                 </m:List>
-
-            </m:Page>
+            </m:VBox>
     </mvc:View>
     </script>
 `;
