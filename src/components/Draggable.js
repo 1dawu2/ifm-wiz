@@ -24,13 +24,6 @@ tmpl.innerHTML = `
                             <m:Title text="Sort List"/>
                         </m:Toolbar>
                     </m:headerToolbar>
-                    <m:items>
-                        <m:ObjectListItem
-                            title="{products>id}"
-                            description="{products>description}"
-                            icon="{products>iconFile}"
-                        />
-                    </m:items>
 
             </m:List>
         </m:Page>
