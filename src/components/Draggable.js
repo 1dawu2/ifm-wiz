@@ -18,10 +18,6 @@ tmpl.innerHTML = `
               height="100%"
               alignItems="Start"
               justifyContent="Center">
-                <m:Button text="Execute Task Chain"
-                    press="onPress"
-                    ariaDescribedBy="defaultButtonDescription genericButtonDescription">
-                </m:Button>
             </m:FlexBox>
           </m:Panel>
         </m:VBox>
