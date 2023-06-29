@@ -12,17 +12,42 @@ tmpl.innerHTML = `
         xmlns:core="sap.ui.core"
         xmlns:m="sap.m"        
         xmlns:mvc="sap.ui.core.mvc">
-            <m:VBox width="300px">
-                <m:List
-                    showSeparators="All"
-                    id="listDragnDrop"                 
-                    items="{products>/productItems}">                        
-                        <m:StandardListItem
-                            description="{products>description}"
-                            icon="{products>iconFile}"
-                            title="{products>id}" />
-                </m:List>
-            </m:VBox>
+        <m:NavContainer
+            id="pageContainer"
+            initialPage="root">
+            <m:Page id="root">
+                <m:OverflowToolbar>
+                <m:ToolbarSpacer/>
+                <m:Title text="Sort List"/>
+                <m:ToolbarSpacer/>
+                </m:OverflowToolbar>
+                <m:Panel
+                id="SortList">
+                    <f:GridContainer
+                    id="grid1"
+                    snapToRow="true">
+                        <f:layout>
+                        <f:GridContainerSettings rowSize="5rem" columnSize="5rem" gap="1rem" />
+                        </f:layout>
+                        <f:Card width="400px">
+                        <f:header>
+                            <card:Header title="Kontakt" subtitle="David Wurm" />
+                        </f:header>
+                        <f:content>
+                            <m:List
+                            showSeparators="None"
+                            items="{products>/productItems}">
+                            <m:StandardListItem
+                                description="{products>description}"
+                                icon="{products>iconFile}"
+                                title="{products>id}" />
+                            </m:List>
+                        </f:content>
+                        </f:Card>
+                    </f:GridContainer>
+                </m:Panel>                  
+            </m:Page>
+        </m:NavContainer>
     </mvc:View>
     </script>
 `;
