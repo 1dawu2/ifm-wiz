@@ -1,57 +1,31 @@
 let _shadowRoot;
 let tmpl = document.createElement("template");
-let ifmAvatar = "https://1dawu2.github.io/ifm-wiz/icon.png";
 tmpl.innerHTML = `
     <style>
     </style>
-    <div id="ifm_drag" name="ifm_drag">
+    <div id="ifm_draggable" name="ifm_draggable">
       <slot name="content"></slot>
     </div>
     <script id="oView" name="oView" type="sapui5/xmlview">
-      <mvc:View
+    <mvc:View
         controllerName="ifm.drag.initial"
-        xmlns:f="sap.f"
-        xmlns:card="sap.f.cards"
         xmlns:core="sap.ui.core"
-        xmlns:m="sap.m"
+        xmlns:m="sap.m"        
         xmlns:mvc="sap.ui.core.mvc">
-        <m:NavContainer
-            id="pageContainer"
-            initialPage="root">
-            <m:Page id="root">
-                <m:OverflowToolbar>
-                <m:ToolbarSpacer/>
-                <m:Title text="Sort List"/>
-                <m:ToolbarSpacer/>
-                </m:OverflowToolbar>
-                <m:Panel
-                id="SortList">
-                    <f:GridContainer
-                    id="grid1"
-                    snapToRow="true">
-                        <f:layout>
-                        <f:GridContainerSettings rowSize="5rem" columnSize="5rem" gap="1rem" />
-                        </f:layout>
-                        <f:Card width="400px">
-                        <f:header>
-                            <card:Header iconSrc="${ifmAvatar}" title="Kontakt" subtitle="David Wurm" />
-                        </f:header>
-                        <f:content>
-                            <m:List
-                            showSeparators="None"
-                            items="{products>/productItems}">
-                            <m:StandardListItem
-                                description="{products>description}"
-                                icon="{products>iconFile}"
-                                title="{products>id}" />
-                            </m:List>
-                        </f:content>
-                        </f:Card>
-                    </f:GridContainer>
-                </m:Panel>                  
+            <m:Page>
+
+                <m:List
+                    showSeparators="All"
+                    id="listDragnDrop"                 
+                    items="{products>/productItems}">                        
+                        <m:StandardListItem
+                            description="{products>description}"
+                            icon="{products>iconFile}"
+                            title="{products>id}" />
+                </m:List>
+
             </m:Page>
-        </m:NavContainer>
-      </mvc:View>
+    </mvc:View>
     </script>
 `;
 
@@ -233,7 +207,7 @@ export default class IFMDraggable extends HTMLElement {
                     configGrid: function () {
                         var DropLayout = sap.ui.core.dnd.DropLayout;
                         var DropPosition = sap.ui.core.dnd.DropPosition;
-                        var oGrid = this.byId("ifmDragnDrop");
+                        var oGrid = this.byId("listDragnDrop");
                         var modelProduct = new sap.ui.model.json.JSONModel();
                         modelProduct.setData(that_.prepareListData(that_.list, "productItems"));
                         sap.ui.getCore().setModel(modelProduct, "products");
