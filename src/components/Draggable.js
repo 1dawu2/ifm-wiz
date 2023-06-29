@@ -15,12 +15,23 @@ tmpl.innerHTML = `
         <m:Page class=”sapUiResponsivePadding”>
             <m:List
                 showSeparators="All"
-                id="ifmDragnDrop"                 
-                items="{products>/productItems}">                        
-                    <m:StandardListItem
-                        description="{products>description}"
-                        icon="{products>iconFile}"
-                        title="{products>id}" />
+                id="ifmDragnDrop"
+                class="sapUiResponsiveMargin" 
+                width="auto"               
+                items="{products>/productItems}">
+                    <m:headerToolbar>
+                        <m:Toolbar>
+                            <m:Title text="Sort List"/>
+                        </m:Toolbar>
+                    </m:headerToolbar>
+                    <m:items>
+                        <m:ObjectListItem
+                            title="{products>id}"
+                            description="{products>description}"
+                            icon="{products>iconFile}"
+                        />
+                    </m:items>
+
             </m:List>
         </m:Page>
     </mvc:View>
