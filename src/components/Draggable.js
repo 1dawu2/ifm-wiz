@@ -3,37 +3,29 @@ let tmpl = document.createElement("template");
 tmpl.innerHTML = `
     <style>
     </style>
-    <div id="ifm_draggable" name="ifm_draggable">
+    <div id="ifm_drag" name="ifm_drag">
       <slot name="content"></slot>
     </div>
     <script id="oView" name="oView" type="sapui5/xmlview">
-    <mvc:View
-        controllerName="ifm.drag.initial"
+      <mvc:View
+        controllerName="ifm.datasphere.initial"
         xmlns:core="sap.ui.core"
-        xmlns:m="sap.m"        
+        xmlns:m="sap.m"
         xmlns:mvc="sap.ui.core.mvc">
-        <m:Page class="sapUiResponsivePadding">
-            <m:List
-                showSeparators="All"
-                id="ifmDragnDrop"
-                class="sapUiResponsiveMargin" 
-                width="auto"               
-                items="{products>/productItems}">
-                    <m:headerToolbar>
-                        <m:Toolbar>
-                            <m:Title text="Sort List"/>
-                        </m:Toolbar>
-                    </m:headerToolbar>
-                    <m:items>
-                        <m:StandardListItem
-                            title="{products>id}"
-                            description="{products>description}"
-                            icon="{products>iconFile}"
-                        />
-                    </m:items>
-            </m:List>
-        </m:Page>
-    </mvc:View>
+        <m:VBox>
+          <m:Panel headerText="Trigger DataSphere Task Chain">            
+            <m:FlexBox
+              height="100%"
+              alignItems="Start"
+              justifyContent="Center">
+                <m:Button text="Execute Task Chain"
+                    press="onPress"
+                    ariaDescribedBy="defaultButtonDescription genericButtonDescription">
+                </m:Button>
+            </m:FlexBox>
+          </m:Panel>
+        </m:VBox>
+      </mvc:View>
     </script>
 `;
 
