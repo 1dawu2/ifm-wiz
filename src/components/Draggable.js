@@ -12,17 +12,15 @@ tmpl.innerHTML = `
         xmlns:core="sap.ui.core"
         xmlns:m="sap.m"        
         xmlns:mvc="sap.ui.core.mvc">
-            <m:Page width="250px">
-                <m:List
-                    showSeparators="All"
-                    id="listDragnDrop"                 
-                    items="{products>/productItems}">                        
-                        <m:StandardListItem
-                            description="{products>description}"
-                            icon="{products>iconFile}"
-                            title="{products>id}" />
-                </m:List>
-            </m:Page>
+        <m:List
+            showSeparators="All"
+            id="listDragnDrop"                 
+            items="{products>/productItems}">                        
+                <m:StandardListItem
+                    description="{products>description}"
+                    icon="{products>iconFile}"
+                    title="{products>id}" />
+        </m:List>
     </mvc:View>
     </script>
 `;
