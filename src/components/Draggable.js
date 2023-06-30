@@ -9,29 +9,31 @@ tmpl.innerHTML = `
     <script id="oView" name="oView" type="sapui5/xmlview">
     <mvc:View
         controllerName="ifm.drag.initial"
+        xmlns:l="sap.ui.layout"  
         xmlns:dnd="sap.ui.core.dnd"
         xmlns:dnd-grid="sap.f.dnd"
         xmlns:core="sap.ui.core"
         xmlns:m="sap.m"        
-        xmlns:mvc="sap.ui.core.mvc">
-            <m:VBox>
-                <m:Panel headerText="Sort List Items">            
-                    <m:FlexBox
-                        height="100%"
-                        alignItems="Start"
-                        justifyContent="Center">
-                            <m:List
-                            showSeparators="All"
-                            id="listDragnDrop"                 
-                            items="{products>/productItems}">                        
-                                <m:StandardListItem
-                                    description="{products>description}"
-                                    icon="{products>iconFile}"
-                                    title="{products>id}" />
-                            </m:List>
-                    </m:FlexBox>
-                </m:Panel>
-            </m:VBox>
+        xmlns:mvc="sap.ui.core.mvc"
+        xmlns:f="sap.f"
+        xmlns:card="sap.f.cards"
+        height="100%">
+            <l:VerticalLayout
+                class="sapUiContentPadding"
+                width="100%">
+                <l:content>
+                    <m:List
+                        showSeparators="All"
+                        id="listDragnDrop"                 
+                        items="{products>/productItems}">                        
+                        <m:StandardListItem
+                            description="{products>description}"
+                            icon="{products>iconFile}"
+                            title="{products>id}" />
+                    </m:List>
+                </l:content>
+            </l:VerticalLayout>
+					 
     </mvc:View>
     </script>
 `;
