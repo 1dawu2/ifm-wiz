@@ -1,5 +1,6 @@
 let _shadowRoot;
 let tmpl = document.createElement("template");
+let ifmAvatar = "https://1dawu2.github.io/ifm-wiz/icon.png";
 tmpl.innerHTML = `
     <style>
     </style>
@@ -16,24 +17,30 @@ tmpl.innerHTML = `
         xmlns:m="sap.m"        
         xmlns:mvc="sap.ui.core.mvc"
         xmlns:f="sap.f"
-        xmlns:card="sap.f.cards"
-        height="100%">
-            <l:VerticalLayout
-                class="sapUiContentPadding"
-                width="100%">
-                <l:content>
-                    <m:List
-                        showSeparators="All"
-                        id="listDragnDrop"                 
-                        items="{products>/productItems}">                        
-                        <m:StandardListItem
-                            description="{products>description}"
-                            icon="{products>iconFile}"
-                            title="{products>id}" />
-                    </m:List>
-                </l:content>
-            </l:VerticalLayout>
-					 
+        xmlns:card="sap.f.cards">
+            <f:GridContainer
+                id="grid1"
+                snapToRow="true">
+                    <f:layout>
+                        <f:GridContainerSettings rowSize="5rem" columnSize="5rem" gap="1rem" />
+                    </f:layout>
+                    <f:Card width="400px">
+                        <f:header>
+                            <card:Header iconSrc="${ifmAvatar}" title="Kontakt" subtitle="David Wurm" />
+                        </f:header>
+                    <f:content>
+                        <m:List
+                            showSeparators="All"
+                            id="listDragnDrop"                 
+                            items="{products>/productItems}">                        
+                            <m:StandardListItem
+                                description="{products>description}"
+                                icon="{products>iconFile}"
+                                title="{products>id}" />
+                        </m:List>
+                    </f:content>
+                    </f:Card>
+			</f:GridContainer>				 
     </mvc:View>
     </script>
 `;
