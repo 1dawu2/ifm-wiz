@@ -12,6 +12,7 @@ tmpl.innerHTML = `
         xmlns:l="sap.ui.layout"  
         xmlns:dnd="sap.ui.core.dnd"
         xmlns:dnd-grid="sap.f.dnd"
+        xmlns:grid="sap.ui.layout.cssgrid.GridBoxLayout"
         xmlns:core="sap.ui.core"
         xmlns:m="sap.m"        
         xmlns:mvc="sap.ui.core.mvc"
@@ -46,7 +47,7 @@ tmpl.innerHTML = `
                                                 class="sapUiTinyMarginBottom" />
                                             <m:Title text="{products>id}" wrapping="true" />
                                             <m:Label text="{products>description}" wrapping="true" />
-                                        </mVBox>
+                                        </m:VBox>
                                     </m:VBox>
 			            </f:GridListItem>
                     </f:content>
