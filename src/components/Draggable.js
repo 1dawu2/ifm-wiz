@@ -17,31 +17,21 @@ tmpl.innerHTML = `
         xmlns:mvc="sap.ui.core.mvc"
         xmlns:f="sap.f"
         xmlns:card="sap.f.cards">
-            <f:GridContainer
-                id="gridContainer"
-                snapToRow="true">
-                    <f:Card>
-                        <f:header>
-                            <card:Header iconSrc="sap-icon://sort" title="Sort List" />
-                        </f:header>
-                    <f:content>
-                        <f:GridList
-			                id="listDragnDrop"
-			                headerText="Header"
-                            items="{products>/productItems}">
-                                <f:GridListItem>
-                                    <m:VBox height="100%">   
-                                        <core:Icon
-                                            src="{products>iconFile}"
-                                            class="sapUiTinyMarginBottom" />
-                                        <m:Title text="{products>id}" wrapping="true" />
-                                        <m:Label text="{products>description}" wrapping="true" />
-                                    </m:VBox>
-			                    </f:GridListItem>
-                        </f:GridList>
-                    </f:content>
-                    </f:Card>
-			</f:GridContainer>				 
+            <l:VerticalLayout
+                class="sapUiContentPadding"
+                width="100%">
+                <l:content>
+                    <m:List
+                        showSeparators="All"
+                        id="listDragnDrop"                 
+                        items="{products>/productItems}">                        
+                        <m:StandardListItem
+                            description="{products>description}"
+                            icon="{products>iconFile}"
+                            title="{products>id}" />
+                    </m:List>
+                </l:content>
+            </l:VerticalLayout>			 
     </mvc:View>
     </script>
 `;
