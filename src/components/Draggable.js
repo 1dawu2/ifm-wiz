@@ -36,7 +36,7 @@ tmpl.innerHTML = `
                                     <m:VBox height="100%">
                                         <m:VBox class="sapUiSmallMargin">
                                             <m:layoutData>
-                                                <FlexItemData growFactor="1" shrinkFactor="0" />
+                                                <m:FlexItemData growFactor="1" shrinkFactor="0" />
                                             </m:layoutData>
                                             <core:Icon
                                                 src="{products>iconFile}"
