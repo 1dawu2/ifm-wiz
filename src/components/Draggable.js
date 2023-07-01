@@ -12,7 +12,6 @@ tmpl.innerHTML = `
         xmlns:l="sap.ui.layout"  
         xmlns:dnd="sap.ui.core.dnd"
         xmlns:dnd-grid="sap.f.dnd"
-        xmlns:grid="sap.ui.layout.cssgrid.GridBoxLayout"
         xmlns:core="sap.ui.core"
         xmlns:m="sap.m"        
         xmlns:mvc="sap.ui.core.mvc"
@@ -34,7 +33,7 @@ tmpl.innerHTML = `
 			                headerText="Header"
                             items="{products>/productItems}">
                                 <f:customLayout>
-				                    <grid:GridBoxLayout boxMinWidth="17rem" />
+				                    <l:GridBoxLayout boxMinWidth="17rem" />
 			                    </f:customLayout>
                                 <f:GridListItem>
                                     <m:VBox height="100%">
