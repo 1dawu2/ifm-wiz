@@ -20,9 +20,6 @@ tmpl.innerHTML = `
             <f:GridContainer
                 id="gridContainer"
                 snapToRow="true">
-                    <f:layout>
-                        <f:GridContainerSettings rowSize="5rem" />
-                    </f:layout>
                     <f:Card>
                         <f:header>
                             <card:Header iconSrc="sap-icon://sort" title="Sort List" />
@@ -33,17 +30,12 @@ tmpl.innerHTML = `
 			                headerText="Header"
                             items="{products>/productItems}">
                                 <f:GridListItem>
-                                    <m:VBox height="100%">
-                                        <m:VBox class="sapUiSmallMargin">
-                                            <m:layoutData>
-                                                <m:FlexItemData growFactor="1" shrinkFactor="0" />
-                                            </m:layoutData>
-                                            <core:Icon
-                                                src="{products>iconFile}"
-                                                class="sapUiTinyMarginBottom" />
-                                            <m:Title text="{products>id}" wrapping="true" />
-                                            <m:Label text="{products>description}" wrapping="true" />
-                                        </m:VBox>
+                                    <m:VBox height="100%">   
+                                        <core:Icon
+                                            src="{products>iconFile}"
+                                            class="sapUiTinyMarginBottom" />
+                                        <m:Title text="{products>id}" wrapping="true" />
+                                        <m:Label text="{products>description}" wrapping="true" />
                                     </m:VBox>
 			                    </f:GridListItem>
                         </f:GridList>
