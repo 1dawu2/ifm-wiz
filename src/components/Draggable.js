@@ -21,7 +21,7 @@ tmpl.innerHTML = `
                 id="gridContainer"
                 snapToRow="true">
                     <f:layout>
-                        <f:GridContainerSettings rowSize="5rem" columnSize="5rem" gap="1rem" />
+                        <f:GridContainerSettings rowSize="5rem" />
                     </f:layout>
                     <f:Card>
                         <f:header>
@@ -250,7 +250,7 @@ export default class IFMDraggable extends HTMLElement {
                                     oDropped = oInfo.getParameter("droppedControl"),
                                     sInsertPosition = oInfo.getParameter("dropPosition"),
                                     oGrid = oDragged.getParent(),
-                                    oModel = this.getView().getModel(),
+                                    oModel = sap.ui.getCore().getModel("products"),
                                     aItems = oModel.getProperty("/items"),
                                     iDragPosition = oGrid.indexOfItem(oDragged),
                                     iDropPosition = oGrid.indexOfItem(oDropped);
