@@ -35,9 +35,9 @@ tmpl.innerHTML = `
                                 <f:GridListItem>
                                     <m:VBox height="100%">
                                         <m:VBox class="sapUiSmallMargin">
-                                            <layoutData>
+                                            <m:layoutData>
                                                 <FlexItemData growFactor="1" shrinkFactor="0" />
-                                            </layoutData>
+                                            </m:layoutData>
                                             <core:Icon
                                                 src="{products>iconFile}"
                                                 class="sapUiTinyMarginBottom" />
