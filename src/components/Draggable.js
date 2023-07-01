@@ -32,9 +32,6 @@ tmpl.innerHTML = `
 			                id="listDragnDrop"
 			                headerText="Header"
                             items="{products>/productItems}">
-                                <f:customLayout>
-				                    <l:GridBoxLayout boxMinWidth="17rem" />
-			                    </f:customLayout>
                                 <f:GridListItem>
                                     <m:VBox height="100%">
                                         <m:VBox class="sapUiSmallMargin">
@@ -48,7 +45,7 @@ tmpl.innerHTML = `
                                             <m:Label text="{products>description}" wrapping="true" />
                                         </m:VBox>
                                     </m:VBox>
-			                </f:GridListItem>
+			                    </f:GridListItem>
                         </f:GridList>
                     </f:content>
                     </f:Card>
