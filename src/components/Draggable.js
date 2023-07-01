@@ -1,6 +1,5 @@
 let _shadowRoot;
 let tmpl = document.createElement("template");
-let ifmAvatar = "https://1dawu2.github.io/ifm-wiz/icon.png";
 tmpl.innerHTML = `
     <style>
     </style>
@@ -19,25 +18,37 @@ tmpl.innerHTML = `
         xmlns:f="sap.f"
         xmlns:card="sap.f.cards">
             <f:GridContainer
-                id="grid1"
+                id="gridContainer"
                 snapToRow="true">
                     <f:layout>
                         <f:GridContainerSettings rowSize="5rem" columnSize="5rem" gap="1rem" />
                     </f:layout>
-                    <f:Card width="400px">
+                    <f:Card>
                         <f:header>
-                            <card:Header iconSrc="${ifmAvatar}" title="Kontakt" subtitle="David Wurm" />
+                            <card:Header iconSrc="sap-icon://sort" title="Sort List" />
                         </f:header>
                     <f:content>
-                        <m:List
-                            showSeparators="All"
-                            id="listDragnDrop"                 
-                            items="{products>/productItems}">                        
-                            <m:StandardListItem
-                                description="{products>description}"
-                                icon="{products>iconFile}"
-                                title="{products>id}" />
-                        </m:List>
+                        <f:GridList
+			                id="listDragnDrop"
+			                headerText="Header"
+                            items="{products>/productItems}">
+                                <f:customLayout>
+				                    <grid:GridBoxLayout boxMinWidth="17rem" />
+			                    </f:customLayout>
+                                <f:GridListItem>
+                                    <m:VBox height="100%">
+                                        <m:VBox class="sapUiSmallMargin">
+                                            <layoutData>
+                                                <FlexItemData growFactor="1" shrinkFactor="0" />
+                                            </layoutData>
+                                            <core:Icon
+                                                src="{products>iconFile}"
+                                                class="sapUiTinyMarginBottom" />
+                                            <m:Title text="{products>id}" wrapping="true" />
+                                            <m:Label text="{products>description}" wrapping="true" />
+                                        </mVBox>
+                                    </m:VBox>
+			            </f:GridListItem>
                     </f:content>
                     </f:Card>
 			</f:GridContainer>				 
@@ -224,9 +235,9 @@ export default class IFMDraggable extends HTMLElement {
                         var DropLayout = sap.ui.core.dnd.DropLayout;
                         var DropPosition = sap.ui.core.dnd.DropPosition;
                         var oGrid = this.byId("listDragnDrop");
-                        var modelProduct = new sap.ui.model.json.JSONModel();
-                        modelProduct.setData(that_.prepareListData(that_.list, "productItems"));
-                        sap.ui.getCore().setModel(modelProduct, "products");
+                        var oModel = new sap.ui.model.json.JSONModel();
+                        oModel.setData(that_.prepareListData(that_.list, "productItems"));
+                        sap.ui.getCore().setModel(oModel, "products");
 
                         oGrid.addDragDropConfig(new sap.ui.core.dnd.DragInfo({
                             sourceAggregation: "items"
@@ -240,24 +251,51 @@ export default class IFMDraggable extends HTMLElement {
                                 var oDragged = oInfo.getParameter("draggedControl"),
                                     oDropped = oInfo.getParameter("droppedControl"),
                                     sInsertPosition = oInfo.getParameter("dropPosition"),
+                                    oGrid = oDragged.getParent(),
+                                    oModel = this.getView().getModel(),
+                                    aItems = oModel.getProperty("/items"),
                                     iDragPosition = oGrid.indexOfItem(oDragged),
                                     iDropPosition = oGrid.indexOfItem(oDropped);
 
-                                oGrid.removeItem(oDragged);
+                                // remove the item
+                                var oItem = aItems[iDragPosition];
+                                aItems.splice(iDragPosition, 1);
 
                                 if (iDragPosition < iDropPosition) {
                                     iDropPosition--;
                                 }
 
-                                if (sInsertPosition === "After") {
-                                    iDropPosition++;
+                                // insert the control in target aggregation
+                                if (sInsertPosition === "Before") {
+                                    aItems.splice(iDropPosition, 0, oItem);
+                                } else {
+                                    aItems.splice(iDropPosition + 1, 0, oItem);
                                 }
+
+                                oModel.setProperty("/items", aItems);
+
+
+                                // var oDragged = oInfo.getParameter("draggedControl"),
+                                //     oDropped = oInfo.getParameter("droppedControl"),
+                                //     sInsertPosition = oInfo.getParameter("dropPosition"),
+                                //     iDragPosition = oGrid.indexOfItem(oDragged),
+                                //     iDropPosition = oGrid.indexOfItem(oDropped);
+
+                                // oGrid.removeItem(oDragged);
+
+                                // if (iDragPosition < iDropPosition) {
+                                //     iDropPosition--;
+                                // }
+
+                                // if (sInsertPosition === "After") {
+                                //     iDropPosition++;
+                                // }
 
                                 var oData = sap.ui.getCore().getModel("products").oData;
 
                                 that_.retrieveListData(oData, "productItems", iDragPosition, iDropPosition);
                                 that_.updateList(oData);
-                                oGrid.insertItem(oDragged, iDropPosition);
+                                // oGrid.insertItem(oDragged, iDropPosition);
                             }
                         }));
                     },
