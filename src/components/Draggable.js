@@ -192,12 +192,12 @@ export default class IFMDraggable extends HTMLElement {
 
         console.log("start build ui");
 
-        if (that_._firstConnection === 0) {
-            console.log("--First Time --");
-            let content = document.createElement('div');
-            content.slot = "content";
-            that_.appendChild(content);
-        }
+        // if (that_._firstConnection === 0) {
+        console.log("--First Time --");
+        let content = document.createElement('div');
+        content.slot = "content";
+        that_.appendChild(content);
+        // }
 
         sap.ui.define(
             [
