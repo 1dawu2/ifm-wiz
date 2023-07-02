@@ -202,12 +202,12 @@ export default class IFMDraggable extends HTMLElement {
 
                     onInit: function (oEvent) {
                         console.log("-------oninit--------");
-                        if (that._firstConnection === 0) {
-                            this.configList();
-                            that_._firstConnection = 1;
-                        } else {
-                            console.log("--- not first connection ---");
-                        }
+                        // if (that._firstConnection === 0) {
+                        this.configList();
+                        that_._firstConnection = 1;
+                        // } else {
+                        // console.log("--- not first connection ---");
+                        // }
                     },
 
                     configList: function () {
@@ -247,7 +247,7 @@ export default class IFMDraggable extends HTMLElement {
 
                                 that_.retrieveListData(oData, "productItems", iDragPosition, iDropPosition);
                                 that_.updateList(oData);
-                                // oGrid.insertItem(oDragged, iDropPosition);
+                                oGrid.insertItem(oDragged, iDropPosition);
                             }
                         }));
                     },
