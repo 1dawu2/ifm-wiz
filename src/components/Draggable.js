@@ -1,11 +1,6 @@
 let _shadowRoot;
 let tmpl = document.createElement("template");
 tmpl.innerHTML = `
-    <style>
-    </style>
-    <div id="ifm_draggable" name="ifm_draggable">
-      <slot name="content"></slot>
-    </div>
     <script id="oView" name="oView" type="sapui5/xmlview">
     <mvc:View
         controllerName="ifm.drag.initial"
@@ -15,10 +10,7 @@ tmpl.innerHTML = `
         xmlns:m="sap.m"        
         xmlns:mvc="sap.ui.core.mvc">
             <m:ScrollContainer
-                height="100%"
-                width="100%"
-                vertical="true"
-                focusable="true">
+                vertical="true">
                     <m:List
                         showSeparators="All"
                         id="listDragnDrop"                 
