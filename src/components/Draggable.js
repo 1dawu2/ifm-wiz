@@ -182,9 +182,9 @@ export default class IFMDraggable extends HTMLElement {
 
         // if (that_._firstConnection === 0) {
         console.log("--First Time --");
-        // let content = document.createElement('div');
-        // content.slot = "content";
-        // that_.appendChild(content);
+        let content = document.createElement('div');
+        content.slot = "content";
+        that_.appendChild(content);
         // }
 
         sap.ui.define(
@@ -254,10 +254,10 @@ export default class IFMDraggable extends HTMLElement {
             });
 
         //### THE APP: place the XMLView somewhere into DOM ###
-        // var oView = new sap.ui.core.mvc.XMLView({
-        //     viewContent: jQuery(_shadowRoot.getElementById("oView")).html(),
-        // });
-        // oView.placeAt(content);
+        var oView = new sap.ui.core.mvc.XMLView({
+            viewContent: jQuery(_shadowRoot.getElementById("oView")).html(),
+        });
+        oView.placeAt(content);
 
     }
 }
