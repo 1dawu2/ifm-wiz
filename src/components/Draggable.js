@@ -9,26 +9,31 @@ tmpl.innerHTML = `
         xmlns:core="sap.ui.core"
         xmlns:m="sap.m"        
         xmlns:mvc="sap.ui.core.mvc">
-            <m:ScrollContainer
-                vertical="true">
-                    <m:List
-                        showSeparators="All"
-                        id="listDragnDrop"                 
-                        items="{products>/productItems}">                        
-                        <m:headerToolbar>
-                            <m:Toolbar>
-                                <m:content>
-                                    <core:Icon src="sap-icon://sort" />
-                                    <m:Title text="Sort List" level="H2" />
-                                </m:content>
-                            </m:Toolbar>
-                        </m:headerToolbar>
-                        <m:StandardListItem
-                            description="{products>description}"
-                            icon="{products>iconFile}"
-                            title="{products>id}" />
-                    </m:List>
-            </m:ScrollContainer>
+            <m:Panel
+                id="About">
+                <f:GridContainer
+                    id="grid1"
+                    snapToRow="true">
+                    <f:layout>
+                        <f:GridContainerSettings rowSize="5rem" columnSize="5rem" gap="1rem" />
+                    </f:layout>
+                    <f:Card width="400px">
+                        <f:header>
+                            <card:Header iconSrc="sap-icon://sort" title="Sort List" />
+                        </f:header>
+                        <f:content>
+                        <m:List
+                            showSeparators="All"
+                            items="{products>/productItems}"> 
+                            <m:StandardListItem
+                                description="{products>description}"
+                                icon="{products>iconFile}"
+                                title="{products>id}" />
+                        </m:List>
+                        </f:content>
+                    </f:Card>
+                    </f:GridContainer>
+            </m:Panel>
     </mvc:View>
     </script>
 `;
@@ -47,11 +52,11 @@ export default class IFMDraggable extends HTMLElement {
         _shadowRoot.appendChild(tmpl.content.cloneNode(true));
 
         // handle events
-        this.addEventListener("click", event => {
-            var event = new Event("onClick");
-            this.dispatchEvent(event);
-            this._fireEventChanged(event);
-        });
+        // this.addEventListener("click", event => {
+        //     var event = new Event("onClick");
+        //     this.dispatchEvent(event);
+        //     this._fireEventChanged(event);
+        // });
 
         // handle variables
         this._props = {};
@@ -77,10 +82,10 @@ export default class IFMDraggable extends HTMLElement {
     }
 
     // HELPER
-    _fireEventChanged(event) {
-        console.log("onClick triggerd");
-        console.log(event);
-    }
+    // _fireEventChanged(event) {
+    //     console.log("onClick triggerd");
+    //     console.log(event);
+    // }
 
     _firePropertiesChanged(value) {
         this.list = value;
@@ -154,28 +159,29 @@ export default class IFMDraggable extends HTMLElement {
 
     // SETTINGS
     onCustomWidgetBeforeUpdate(changedProperties) {
-        this._props = { ...this._props, ...changedProperties };
-        console.log("before update:");
-        console.log(this._firstConnection);
-        if ("list" in changedProperties) {
-            this.list = changedProperties["list"];
-        };
+        // this._props = { ...this._props, ...changedProperties };
+        // console.log("before update:");
+        // console.log(this._firstConnection);
+        // if ("list" in changedProperties) {
+        //     this.list = changedProperties["list"];
+        // };
     }
 
     onCustomWidgetAfterUpdate(changedProperties) {
         console.log("after update:");
         console.log(this._firstConnection);
-        if ("list" in changedProperties) {
-            this.list = changedProperties["list"];
-            if (typeof this.list != 'undefined' && this.list) {
-                this.buildUI(this);
-            };
-        };
+        this.buildUI(changedProperties, this);
+        // if ("list" in changedProperties) {
+        //     this.list = changedProperties["list"];
+        //     if (typeof this.list != 'undefined' && this.list) {
+        //         this.buildUI(this);
+        //     };
+        // };
 
     }
 
     // Main UI Logic
-    buildUI(that) {
+    buildUI(changedProperties, that) {
         var that_ = that;
 
         console.log("start build ui");
@@ -200,18 +206,20 @@ export default class IFMDraggable extends HTMLElement {
 
                     onInit: function (oEvent) {
                         console.log("-------oninit--------");
-                        if (that._firstConnection === 0) {
-                            this.configList();
-                            that_._firstConnection = 1;
-                        } else {
-                            console.log("--- not first connection ---");
-                        }
+                        this.oPanel = this.byId("oPanel");
+                        this.configList();
+                        // if (that._firstConnection === 0) {
+                        // this.configList();
+                        //     that_._firstConnection = 1;
+                        // } else {
+                        //     console.log("--- not first connection ---");
+                        // }
                     },
 
                     configList: function () {
                         var DropLayout = sap.ui.core.dnd.DropLayout;
                         var DropPosition = sap.ui.core.dnd.DropPosition;
-                        var oGrid = this.byId("listDragnDrop");
+                        var oGrid = this.byId("grid1");
                         var oModel = new sap.ui.model.json.JSONModel();
                         oModel.setData(that_.prepareListData(that_.list, "productItems"));
                         sap.ui.getCore().setModel(oModel, "products");
