@@ -9,37 +9,28 @@ tmpl.innerHTML = `
     <script id="oView" name="oView" type="sapui5/xmlview">
     <mvc:View
         controllerName="ifm.drag.initial"
-        xmlns:l="sap.ui.layout"  
         xmlns:dnd="sap.ui.core.dnd"
         xmlns:dnd-grid="sap.f.dnd"
         xmlns:core="sap.ui.core"
         xmlns:m="sap.m"        
-        xmlns:mvc="sap.ui.core.mvc"
-        xmlns:f="sap.f"
-        xmlns:card="sap.f.cards">
-            <l:VerticalLayout
-                class="sapUiContentPadding"
-                width="100%">
-                <l:content>
-                    <m:List
-                        showSeparators="All"
-                        id="listDragnDrop"                 
-                        items="{products>/productItems}">                        
-                        <m:headerToolbar>
-                            <m:Toolbar>
-                                <m:content>
-                                    <core:Icon src="sap-icon://sort" />
-                                    <m:Title text="Sort List" level="H2" />
-                                </m:content>
-                            </m:Toolbar>
-                        </m:headerToolbar>
-                        <m:StandardListItem
-                            description="{products>description}"
-                            icon="{products>iconFile}"
-                            title="{products>id}" />
-                    </m:List>
-                </l:content>
-            </l:VerticalLayout>			 
+        xmlns:mvc="sap.ui.core.mvc">
+            <m:List
+                showSeparators="All"
+                id="listDragnDrop"                 
+                items="{products>/productItems}">                        
+                <m:headerToolbar>
+                    <m:Toolbar>
+                        <m:content>
+                            <core:Icon src="sap-icon://sort" />
+                            <m:Title text="Sort List" level="H2" />
+                        </m:content>
+                    </m:Toolbar>
+                </m:headerToolbar>
+                <m:StandardListItem
+                    description="{products>description}"
+                    icon="{products>iconFile}"
+                    title="{products>id}" />
+            </m:List>
     </mvc:View>
     </script>
 `;
