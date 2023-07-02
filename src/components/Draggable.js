@@ -25,6 +25,14 @@ tmpl.innerHTML = `
                         showSeparators="All"
                         id="listDragnDrop"                 
                         items="{products>/productItems}">                        
+                        <m:headerToolbar>
+                            <m:Toolbar>
+                                <m:content>
+                                    <core:Icon src="sap-icon://sort" />
+                                    <m:Title text="Sort List" level="H2" />
+                                </m:content>
+                            </m:Toolbar>
+                        </m:headerToolbar>
                         <m:StandardListItem
                             description="{products>description}"
                             icon="{products>iconFile}"
