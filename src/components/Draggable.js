@@ -209,7 +209,7 @@ export default class IFMDraggable extends HTMLElement {
                     onInit: function (oEvent) {
                         console.log("-------oninit--------");
                         this.oPanel = this.byId("oPanel");
-                        this.configList();
+                        // this.configList();
                         // if (that._firstConnection === 0) {
                         // this.configList();
                         //     that_._firstConnection = 1;
