@@ -213,12 +213,12 @@ export default class IFMDraggable extends HTMLElement {
                         oModel.setData(that_.prepareListData(that_.list, "productItems"));
                         sap.ui.getCore().setModel(oModel, "products");
                         // this.configList();
-                        // if (that._firstConnection === 0) {
-                        // this.configList();
-                        //     that_._firstConnection = 1;
-                        // } else {
-                        //     console.log("--- not first connection ---");
-                        // }
+                        if (that._firstConnection === 0) {
+                            this.configList();
+                            that_._firstConnection = 1;
+                        } else {
+                            console.log("--- not first connection ---");
+                        }
                     },
 
                     configList: function () {
