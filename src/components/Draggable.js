@@ -209,6 +209,9 @@ export default class IFMDraggable extends HTMLElement {
                     onInit: function (oEvent) {
                         console.log("-------oninit--------");
                         this.oPanel = this.byId("oPanel");
+                        var oModel = new sap.ui.model.json.JSONModel();
+                        oModel.setData(that_.prepareListData(that_.list, "productItems"));
+                        sap.ui.getCore().setModel(oModel, "products");
                         // this.configList();
                         // if (that._firstConnection === 0) {
                         // this.configList();
@@ -222,10 +225,6 @@ export default class IFMDraggable extends HTMLElement {
                         var DropLayout = sap.ui.core.dnd.DropLayout;
                         var DropPosition = sap.ui.core.dnd.DropPosition;
                         var oGrid = this.byId("grid1");
-                        var oModel = new sap.ui.model.json.JSONModel();
-                        oModel.setData(that_.prepareListData(that_.list, "productItems"));
-                        sap.ui.getCore().setModel(oModel, "products");
-
                         oGrid.addDragDropConfig(new sap.ui.core.dnd.DragInfo({
                             sourceAggregation: "items"
                         }));
