@@ -134,14 +134,16 @@ export default class IFMDraggable extends HTMLElement {
         }
     }
 
-    prepareListData(listItems, modelIdentifier) {
+    prepareListData(listItems, isListUpdate) {
         var sacList = { "productItems": [] };
 
         if (typeof listItems != 'undefined' && listItems) {
             Object.values(listItems).forEach(
                 val => sacList["productItems"].push(val)
             );
-            this.updateList(sacList["productItems"]);
+            if (isListUpdate === true) {
+                this.updateList(sacList["productItems"]);
+            };
         }
 
         console.log("prepared list");
@@ -210,7 +212,7 @@ export default class IFMDraggable extends HTMLElement {
                         console.log("-------oninit--------");
                         this.oPanel = this.byId("oPanel");
                         var oModel = new sap.ui.model.json.JSONModel();
-                        oModel.setData(that_.prepareListData(that_.list, "productItems"));
+                        oModel.setData(that_.prepareListData(that_.list, false));
                         sap.ui.getCore().setModel(oModel, "products");
                         // this.configList();
                         if (that._firstConnection === 0) {
